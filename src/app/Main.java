@@ -1,5 +1,7 @@
 package app;
 
+import data_access.MealPlannerDataAccessObject;
+
 import javax.swing.JFrame;
 
 /**
@@ -24,5 +26,13 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
+
+//        MealPlannerDataAccessObject mealPlannerDataAccessObject = new MealPlannerDataAccessObject();
+//        try{
+//            System.out.println(mealPlannerDataAccessObject.searchFood(1));
+//        }
+//        catch (Exception e){
+//            System.out.println(e);
+//        }
     }
 }
