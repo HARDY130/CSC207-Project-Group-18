@@ -1,0 +1,25 @@
+package use_case.info_collection;
+
+/**
+ * DAO for the Logout Use Case.
+ */
+public interface InfoCollectionUserDataAccessInterface {
+
+    /**
+     * Returns the username of the curren user of the application.
+     * @return the username of the current user
+     */
+    String getCurrentUsername();
+
+    /**
+     * Sets the username indicating who is the current user of the application.
+     * @param username the new current username
+     */
+    void setCurrentUsername(String username);
+}
+
+
+
+
+
+
