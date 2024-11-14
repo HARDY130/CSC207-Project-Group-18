@@ -33,7 +33,6 @@ public class FoodDatabaseAccessObject {
         if (response.statusCode() != 200) {
             throw new Exception("API request failed with status: " + response.statusCode());
         }
-
         return new JSONObject(response.body());
     }
 
@@ -58,21 +57,21 @@ public class FoodDatabaseAccessObject {
         return new JSONObject(response.body());
     }
 
-    // parse food items from response
-    public void printFoodItems(JSONObject response) {
-        JSONArray hints = response.getJSONArray("hints");
-        for (int i = 0; i < hints.length(); i++) {
-            JSONObject food = hints.getJSONObject(i).getJSONObject("food");
-            System.out.println("Label: " + food.getString("label"));
-            System.out.println("Category: " + food.optString("category", "N/A"));
-
-            JSONObject nutrients = food.getJSONObject("nutrients");
-            System.out.println("Nutrients:");
-            System.out.println("  - ENERC_KCAL: " + nutrients.optDouble("ENERC_KCAL", 0.0));
-            System.out.println("  - PROCNT: " + nutrients.optDouble("PROCNT", 0.0));
-            System.out.println("  - FAT: " + nutrients.optDouble("FAT", 0.0));
-            System.out.println("  - CHOCDF: " + nutrients.optDouble("CHOCDF", 0.0));
-            System.out.println("--------------------");
-        }
-    }
+//    parse food items from response
+//    public void printFoodItems(JSONObject response) {
+//        JSONArray hints = response.getJSONArray("hints");
+//        for (int i = 0; i < hints.length(); i++) {
+//            JSONObject food = hints.getJSONObject(i).getJSONObject("food");
+//            System.out.println("Label: " + food.getString("label"));
+//            System.out.println("Category: " + food.optString("category", "N/A"));
+//
+//            JSONObject nutrients = food.getJSONObject("nutrients");
+//            System.out.println("Nutrients:");
+//            System.out.println("  - ENERC_KCAL: " + nutrients.optDouble("ENERC_KCAL", 0.0));
+//            System.out.println("  - PROCNT: " + nutrients.optDouble("PROCNT", 0.0));
+//            System.out.println("  - FAT: " + nutrients.optDouble("FAT", 0.0));
+//            System.out.println("  - CHOCDF: " + nutrients.optDouble("CHOCDF", 0.0));
+//            System.out.println("--------------------");
+//        }
+//    }
 }
