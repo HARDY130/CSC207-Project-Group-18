@@ -28,8 +28,6 @@ public class SearchFoodOutputData {
             foods[i] = new Food(fff.getString("foodId"), fff.getString("label"),
                     fff.getString("category"), nutrientsMap);
         }
-
-
     }
 
     public Food[] getFoods() {

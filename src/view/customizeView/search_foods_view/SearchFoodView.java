@@ -13,9 +13,9 @@ public class SearchFoodView extends JPanel {
 
     public SearchFoodView() {
         JLabel label = new JLabel("Food Keywords");
-        JTextField textField = new JTextField(15); //argument required
+        JTextField textField = new JTextField(20); //argument required
         JButton button = new JButton("Search");
-        this.textField = textField;
+
 
         this.add(label);
         this.add(textField);
