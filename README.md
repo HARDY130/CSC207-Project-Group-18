@@ -11,8 +11,10 @@ Chuxuan -- As a user, I want agit  personal account to record my health data and
 
 Jeffrey -- As a user, I would like this app to offer me a daily meal plan based on my health data. In terms of user interaction, it is to show the daily meal schedule through a clear window.
 
-Hao -- As a user, I hope to be able to personalize the diet plan provided by our app. From the point of user interaction, there must be a sub-setting page for users to modify and update the existing plan.
+Hao -- As a user, I hope to be able to customize the diet plan provided by our app. From the point of user interaction, there must be a sub-setting page for users to modify and update the existing plan.
 
-Zihan -- As a user, I want to understand the nutrition of the foods I like. From the user interaction view, our application should provide a search function within a specific window for users to search foods and get the analyzed results.
+Zihan -- As a user, I want to understand the nutrition of the foods I have. From the user interaction view, our application should provide a search function and display analyzed results im the main window.
 
 App views:
+
+![All Views](images/Views 1.0.jpg)
