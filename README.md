@@ -18,3 +18,4 @@ Zihan -- As a user, I want to understand the nutrition of the foods I have. From
 App views:
 
 ![All Views](images/Views 1.0.jpg)
+The main views are finished. Some core functions are implemented, and other parts are on their way (waiting for the feedback data).

@@ -6,6 +6,12 @@ import interface_adapter.customize.search_foods.SearchFoodViewModel;
 import org.json.JSONObject;
 
 public class SearchFoodInterator implements SearchFoodInputBoundary{
+
+    private final SearchFoodViewModel viewModel;
+
+    public SearchFoodInterator(SearchFoodViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
     @Override
     public void execute(SearchFoodInputData searchFoodInputData) {
         String text = searchFoodInputData.getfoodname();
@@ -19,8 +25,7 @@ public class SearchFoodInterator implements SearchFoodInputBoundary{
             throw new RuntimeException(e);
         }
 
-        SearchFoodViewModel searchFoodViewModel = new SearchFoodViewModel();
-        SearchFoodOutputBoundary presenter = new SearchFoodPresenter(searchFoodViewModel);
+        SearchFoodOutputBoundary presenter = new SearchFoodPresenter(viewModel);
 
         SearchFoodOutputData searchFoodOutputData = new SearchFoodOutputData(obj);
 
