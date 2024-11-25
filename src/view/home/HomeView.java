@@ -1,4 +1,6 @@
-package view.MainPanel;
+package view.home;
+
+import interface_adapter.home.HomeViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MainPanelView extends JPanel implements ActionListener, PropertyChangeListener {
+public class HomeView extends JPanel implements ActionListener, PropertyChangeListener {
 
     private final JTextField lunchField;
     private final JTextField supperField;
@@ -16,7 +18,7 @@ public class MainPanelView extends JPanel implements ActionListener, PropertyCha
     private final JButton customizeButton;
     private NutritionGraphPanel graphPanel;
 
-    public MainPanelView() {
+    public HomeView() {
         setLayout(new BorderLayout(10, 10));
 
         JPanel headerPanel = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -36,7 +38,7 @@ public class MainPanelView extends JPanel implements ActionListener, PropertyCha
         JLabel heightLabel = new JLabel("Your height:");
         heightLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        updateButton = new JButton("Update");
+        updateButton = new JButton(HomeViewModel.Update_Button);
         updateButton.addActionListener(this);
 
         graphPanel = new NutritionGraphPanel();
@@ -65,8 +67,8 @@ public class MainPanelView extends JPanel implements ActionListener, PropertyCha
         mealPanel.add(supperField);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2, 10, 10));
-        offerButton = new JButton("Offer me");
-        customizeButton = new JButton("Customize");
+        offerButton = new JButton(HomeViewModel.MealPlanner_Button);
+        customizeButton = new JButton(HomeViewModel.FoodSearch_Button);
 
         offerButton.addActionListener(this);
         customizeButton.addActionListener(this);
@@ -99,7 +101,7 @@ public class MainPanelView extends JPanel implements ActionListener, PropertyCha
         JFrame frame = new JFrame("Meal Planner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
-        frame.add(new MainPanelView());
+        frame.add(new HomeView());
         frame.setVisible(true);
     }
 }
