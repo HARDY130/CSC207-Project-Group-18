@@ -11,6 +11,7 @@ import java.beans.PropertyChangeListener;
 
 public class HomeView extends JPanel implements ActionListener, PropertyChangeListener {
 
+    private final JTextField breakfastField;
     private final JTextField lunchField;
     private final JTextField supperField;
     private final JButton updateButton;
@@ -55,7 +56,7 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
         JLabel lunchLabel = new JLabel("Lunch:", JLabel.LEFT);
         JLabel supperLabel = new JLabel("Supper:", JLabel.LEFT);
 
-        JTextField breakfastField = new JTextField();
+        breakfastField = new JTextField();
         lunchField = new JTextField();
         supperField = new JTextField();
 

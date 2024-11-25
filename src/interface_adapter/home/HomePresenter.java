@@ -5,7 +5,7 @@ import interface_adapter.home.HomeViewModel;
 import interface_adapter.info_collection.InfoCollectionState;
 import interface_adapter.info_collection.InfoCollectionViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.search_foods.SearchFoodViewModel;
+import interface_adapter.customize.search_foods.SearchFoodViewModel;
 import interface_adapter.mealplanner.MealPlannerViewModel;
 import use_case.home.HomeOutputBoundary;
 import use_case.home.HomeOutputData;
@@ -30,16 +30,21 @@ public class HomePresenter implements HomeOutputBoundary {
 
     @Override
     public void prepareMealPlannerView() {
-
+        viewManagerModel.setState(MealPlannerViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFoodSearchView() {
-
+        viewManagerModel.setState(FoodSearchViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void updateView() {
-        final InfoCollectionState infoCollectionState = infoCollectionViewModel.getState();
+        viewManagerModel.setState(infoCollectionViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
+
+
 }
