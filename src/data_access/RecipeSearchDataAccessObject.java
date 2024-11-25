@@ -8,13 +8,13 @@ import java.util.List;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-public class RecipeSearchAccessObject {
+public class RecipeSearchDataAccessObject {
     private final String APP_ID = "e4b60eb9";
     private final String APP_KEY = "fec8a143bf81dd902b7dfe918d81066c";
     private final String BASE_URL = "https://api.edamam.com/api/recipes/v2";
     private final HttpClient httpClient;
 
-    public RecipeSearchAccessObject() {
+    public RecipeSearchDataAccessObject() {
         this.httpClient = HttpClient.newHttpClient();
     }
 
