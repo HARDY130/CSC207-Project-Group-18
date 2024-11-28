@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.View;
 
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.change_password.LoggedInState;
@@ -33,6 +34,8 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
 
     private final JButton logOut;
 
+    private final JButton View5;
+
     private final JTextField passwordInputField = new JTextField(15);
     private final JButton changePassword;
 
@@ -52,6 +55,9 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
         final JPanel buttons = new JPanel();
         logOut = new JButton("Log Out");
         buttons.add(logOut);
+
+        View5 = new JButton("View5");
+        buttons.add(View5);
 
         changePassword = new JButton("Change Password");
         buttons.add(changePassword);
@@ -100,6 +106,20 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 evt -> {
                     if (evt.getSource().equals(logOut)) {
+                        // 1. get the state out of the loggedInViewModel. It contains the username.
+                        final LoggedInState currentState = loggedInViewModel.getState();
+                        // 2. Execute the logout Controller.
+                        this.logoutController.execute(
+                                currentState.getUsername()
+                        );
+                    }
+                }
+        );
+
+        View5.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                evt -> {
+                    if (evt.getSource().equals(View5)) {
                         // 1. get the state out of the loggedInViewModel. It contains the username.
                         final LoggedInState currentState = loggedInViewModel.getState();
                         // 2. Execute the logout Controller.
