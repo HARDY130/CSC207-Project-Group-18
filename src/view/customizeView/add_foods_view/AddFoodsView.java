@@ -19,7 +19,7 @@ public class AddFoodsView extends JPanel implements PropertyChangeListener {
     private Food[] food_in_box;
     private cacheMap added;
 
-    public AddFoodsView(?) {
+    public AddFoodsView() {
         this.food_in_box = new Food[Constant.LENGTHOFFOODS];
         this.added = new cacheMap();
 
@@ -97,6 +97,8 @@ public class AddFoodsView extends JPanel implements PropertyChangeListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(added.getMap().toString());
+
+                //controller excute put in user.setmap
                 added = new cacheMap();
             }
         });
