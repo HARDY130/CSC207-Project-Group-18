@@ -1,6 +1,7 @@
 package view.home;
 
 import interface_adapter.home.HomeViewModel;
+import view.NutritionGraphPanel;
 
 import javax.swing.*;
 import java.awt.*;

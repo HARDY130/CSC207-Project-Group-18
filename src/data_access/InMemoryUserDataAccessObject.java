@@ -5,6 +5,7 @@ import java.util.Map;
 
 import entity.User;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
+import use_case.dashboard.DashboardDataAccessInterface;
 import use_case.info_collection.InfoCollectionUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
@@ -16,11 +17,13 @@ import use_case.signup.SignupUserDataAccessInterface;
  */
 public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
-        ChangePasswordUserDataAccessInterface,
         LogoutUserDataAccessInterface,
-        InfoCollectionUserDataAccessInterface {
+        InfoCollectionUserDataAccessInterface,
+        DashboardDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
+
+    private final Map<String, NutritionProgress> userProgress = new HashMap<>();
 
     private String currentUsername;
 
@@ -39,11 +42,6 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         return users.get(username);
     }
 
-    @Override
-    public void changePassword(User user) {
-        // Replace the old entry with the new password
-        users.put(user.getName(), user);
-    }
 
     @Override
     public void setCurrentUsername(String name) {
@@ -53,5 +51,28 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
     @Override
     public String getCurrentUsername() {
         return this.currentUsername;
+    }
+
+    @Override
+    public void updateNutritionProgress(String username,
+                                        double consumedCalories,
+                                        double consumedCarbs,
+                                        double consumedProtein,
+                                        double consumedFat) {
+        userProgress.put(username, new NutritionProgress(
+                consumedCalories, consumedCarbs, consumedProtein, consumedFat
+        ));
+    }
+
+    // Helper class to store nutrition progress
+    private static class NutritionProgress {
+        double calories, carbs, protein, fat;
+
+        NutritionProgress(double calories, double carbs, double protein, double fat) {
+            this.calories = calories;
+            this.carbs = carbs;
+            this.protein = protein;
+            this.fat = fat;
+        }
     }
 }
