@@ -17,7 +17,7 @@ public class DashboardPresenter implements DashboardOutputBoundary {
                               InfoCollectionViewModel infoCollectionViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.dashboardViewModel = dashboardViewModel;
-        this.infoCollectionViewModel = new InfoCollectionViewModel();
+        this.infoCollectionViewModel = infoCollectionViewModel;
     }
 
     @Override
