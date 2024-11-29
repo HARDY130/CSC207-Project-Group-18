@@ -1,0 +1,42 @@
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"RemoteRepositoriesConfiguration\">\n    <remote-repository>\n      <option name=\"id\" value=\"central\" />\n      <option name=\"name\" value=\"Central Repository\" />\n      <option name=\"url\" value=\"http://maven.aliyun.com/nexus/content/groups/public/\" />\n    </remote-repository>\n    <remote-repository>\n      <option name=\"id\" value=\"central\" />\n      <option name=\"name\" value=\"Maven Central repository\" />\n      <option name=\"url\" value=\"https://repo1.maven.org/maven2\" />\n    </remote-repository>\n    <remote-repository>\n      <option name=\"id\" value=\"jboss.community\" />\n      <option name=\"name\" value=\"JBoss Community repository\" />\n      <option name=\"url\" value=\"https://repository.jboss.org/nexus/content/repositories/public/\" />\n    </remote-repository>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+--- a/.idea/jarRepositories.xml	(revision 19b08b58368960626cd462a46bc71191b05d335c)
++++ b/.idea/jarRepositories.xml	(date 1732851029214)
+@@ -4,6 +4,11 @@
+     <remote-repository>
+       <option name="id" value="central" />
+       <option name="name" value="Central Repository" />
++      <option name="url" value="https://repo.maven.apache.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Central Repository" />
+       <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
+     </remote-repository>
+     <remote-repository>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"MavenProjectsManager\">\n    <option name=\"originalFiles\">\n      <list>\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_22\" default=\"true\" project-jdk-name=\"openjdk-22\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 19b08b58368960626cd462a46bc71191b05d335c)
++++ b/.idea/misc.xml	(date 1732851029210)
+@@ -8,7 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
