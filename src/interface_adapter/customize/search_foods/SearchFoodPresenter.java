@@ -6,7 +6,7 @@ import use_case.customize.search_food.SearchFoodOutputData;
 
 public class SearchFoodPresenter implements SearchFoodOutputBoundary {
 
-    private SearchFoodViewModel viewModel;
+    private final SearchFoodViewModel viewModel;
 
     public SearchFoodPresenter(SearchFoodViewModel viewModel) {
         this.viewModel = viewModel;
