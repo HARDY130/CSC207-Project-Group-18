@@ -1,34 +1,29 @@
 package use_case.customize.search_food;
 
 import data_access.FoodDatabaseAccessObject;
-import interface_adapter.customize.search_foods.SearchFoodPresenter;
-import interface_adapter.customize.search_foods.SearchFoodViewModel;
 import org.json.JSONObject;
 
 public class SearchFoodInterator implements SearchFoodInputBoundary{
+    private final FoodDatabaseAccessObject foodDatabaseAccessObject1;
+    private final SearchFoodOutputBoundary searchFoodPresenter;
 
-    private final SearchFoodViewModel viewModel;
-
-    public SearchFoodInterator(SearchFoodViewModel viewModel) {
-        this.viewModel = viewModel;
+    public SearchFoodInterator(FoodDatabaseAccessObject foodDatabaseAccessObject, SearchFoodOutputBoundary searchFoodPresenter) {
+        this.foodDatabaseAccessObject1 = foodDatabaseAccessObject;
+        this.searchFoodPresenter = searchFoodPresenter;
     }
     @Override
     public void execute(SearchFoodInputData searchFoodInputData) {
         String text = searchFoodInputData.getfoodname();
 
-        FoodDatabaseAccessObject foodDatabaseAccessObject = new FoodDatabaseAccessObject();
-
         JSONObject obj = null;
         try {
-            obj = foodDatabaseAccessObject.searchFoodWithIngredient(text);
+            obj = foodDatabaseAccessObject1.searchFoodWithIngredient(text);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        SearchFoodOutputBoundary presenter = new SearchFoodPresenter(viewModel);
-
         SearchFoodOutputData searchFoodOutputData = new SearchFoodOutputData(obj);
 
-        presenter.prepareSuccessView(searchFoodOutputData);
+        searchFoodPresenter.prepareSuccessView(searchFoodOutputData);
     }
 }
