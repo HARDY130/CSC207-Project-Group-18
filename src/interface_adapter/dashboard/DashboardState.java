@@ -15,7 +15,7 @@ public class DashboardState {
     private String activityLevel = "";
     private Set<Allergy> allergies = new HashSet<>();
 
-    // Nutrition goals
+    // These are nutrition goals set based on personal info
     private double bmr = 0.0;
     private double tdee = 0.0;
     private double dailyCalorieGoal = 0.0;
@@ -23,7 +23,7 @@ public class DashboardState {
     private double proteinGoalGrams = 0.0;
     private double fatGoalGrams = 0.0;
 
-    // Current progress
+    // These are current progress
     private double consumedCalories = 0.0;
     private double consumedCarbs = 0.0;
     private double consumedProtein = 0.0;
