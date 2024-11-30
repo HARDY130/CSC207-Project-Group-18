@@ -9,7 +9,7 @@ import view.customizeView.search_foods_view.SearchFoodView;
 import javax.swing.*;
 
 public class CustomizeWindowView extends JPanel{
-    private String viewName = "customize";
+    private final String viewName = "customize";
 
     public CustomizeWindowView(){
         SearchFoodViewModel searchFoodViewModel = new SearchFoodViewModel();
