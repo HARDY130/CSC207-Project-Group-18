@@ -5,7 +5,7 @@ import interface_adapter.customize.search_foods.SearchFoodController;
 import interface_adapter.customize.search_foods.SearchFoodPresenter;
 import interface_adapter.customize.search_foods.SearchFoodViewModel;
 import use_case.customize.search_food.SearchFoodInputBoundary;
-import use_case.customize.search_food.SearchFoodInterator;
+import use_case.customize.search_food.SearchFoodInteractor;
 import use_case.customize.search_food.SearchFoodOutputBoundary;
 
 import javax.swing.*;
@@ -36,7 +36,7 @@ public class SearchFoodView extends JPanel {
                 String text = searchFoodView.getTextFromTextField();
                 FoodDatabaseAccessObject foodDatabaseAccessObject = new FoodDatabaseAccessObject();
                 SearchFoodOutputBoundary searchFoodPresenter = new SearchFoodPresenter(viewModel);
-                SearchFoodInputBoundary searchFoodInputBoundary= new SearchFoodInterator(foodDatabaseAccessObject, searchFoodPresenter);
+                SearchFoodInputBoundary searchFoodInputBoundary= new SearchFoodInteractor(foodDatabaseAccessObject, searchFoodPresenter);
                 SearchFoodController controller = new SearchFoodController(searchFoodInputBoundary);
                 controller.execute(text);
             }

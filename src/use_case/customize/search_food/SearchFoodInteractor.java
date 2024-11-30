@@ -3,11 +3,11 @@ package use_case.customize.search_food;
 import data_access.FoodDatabaseAccessObject;
 import org.json.JSONObject;
 
-public class SearchFoodInterator implements SearchFoodInputBoundary{
+public class SearchFoodInteractor implements SearchFoodInputBoundary{
     private final FoodDatabaseAccessObject foodDatabaseAccessObject1;
     private final SearchFoodOutputBoundary searchFoodPresenter;
 
-    public SearchFoodInterator(FoodDatabaseAccessObject foodDatabaseAccessObject, SearchFoodOutputBoundary searchFoodPresenter) {
+    public SearchFoodInteractor(FoodDatabaseAccessObject foodDatabaseAccessObject, SearchFoodOutputBoundary searchFoodPresenter) {
         this.foodDatabaseAccessObject1 = foodDatabaseAccessObject;
         this.searchFoodPresenter = searchFoodPresenter;
     }
