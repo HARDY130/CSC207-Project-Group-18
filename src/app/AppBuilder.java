@@ -10,9 +10,11 @@ import data_access.InMemoryUserDataAccessObject;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.change_password.ChangePasswordController;
-import interface_adapter.change_password.ChangePasswordPresenter;
 import interface_adapter.change_password.LoggedInViewModel;
+import interface_adapter.customize.CustomizeWindowViewModel;
+import interface_adapter.customize.SearchFoodController;
+import interface_adapter.customize.SearchFoodPresenter;
+import interface_adapter.customize.SearchFoodViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -21,9 +23,9 @@ import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
-import use_case.change_password.ChangePasswordInputBoundary;
-import use_case.change_password.ChangePasswordInteractor;
-import use_case.change_password.ChangePasswordOutputBoundary;
+import use_case.customize.SearchFoodInputBoundary;
+import use_case.customize.SearchFoodInterator;
+import use_case.customize.SearchFoodOutputBoundary;
 import use_case.dashboard.DashboardDataAccessInterface;
 import use_case.dashboard.DashboardInputBoundary;
 import use_case.dashboard.DashboardInteractor;
@@ -41,6 +43,8 @@ import view.*;
 import interface_adapter.info_collection.*;
 import interface_adapter.dashboard.*;
 import use_case.info_collection.*;
+import view.FoodSearchView.customize_view.CustomizeWindowView;
+import view.FoodSearchView.search_foods_view.SearchFoodView;
 
 
 /**
@@ -76,6 +80,10 @@ public class AppBuilder {
     private DashboardView dashboardView;
     private DashboardViewModel dashboardViewModel;
     private DashboardController dashboardController;
+    private SearchFoodViewModel searchFoodViewModel;
+    private SearchFoodView searchFoodView;
+    private CustomizeWindowView customizeWindowView;
+    private CustomizeWindowViewModel customizeWindowViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -206,6 +214,40 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addCustomizeWindowView() {
+        customizeWindowViewModel = new CustomizeWindowViewModel();
+        dashboardViewModel = new DashboardViewModel();
+        customizeWindowView = new CustomizeWindowView();
+        cardPanel.add(customizeWindowView, customizeWindowView.getViewName());
+        return this;
+    }
+
+//    public AppBuilder addCustomizeUseCase() {
+//        SearchFoodInputBoundary interactor = new SearchFoodInterator(searchFoodViewModel);
+//        SearchFoodController searchFoodController = new SearchFoodController(interactor);
+//        searchFoodView.setSearchFoodController(searchFoodController);
+//        return this;
+//    }
+
+//    public AppBuilder addSearchFoodView() {
+//        searchFoodViewModel = new SearchFoodViewModel();
+//        dashboardViewModel = new DashboardViewModel();
+//        searchFoodView = new SearchFoodView(searchFoodViewModel);
+//        cardPanel.add(searchFoodView, searchFoodView.getViewName());
+//        return this;
+//    }
+//
+//    public AppBuilder addSearchFoodUseCase() {
+//        SearchFoodOutputBoundary outputBoundary = new SearchFoodPresenter(
+//                searchFoodViewModel
+//        );
+//
+//        SearchFoodInputBoundary interactor = new SearchFoodInterator(
+//
+//        )
+//
+//    }
+
 
     /**
      * Creates the JFrame for the application and initially sets the SignupView to be displayed.
@@ -244,7 +286,8 @@ public class AppBuilder {
         DashboardOutputBoundary outputBoundary = new DashboardPresenter(
                 viewManagerModel,
                 dashboardViewModel,
-                infoCollectionViewModel
+                infoCollectionViewModel,
+                customizeWindowViewModel
         );
 
         DashboardDataAccessInterface userDataAccessObject =
@@ -265,7 +308,7 @@ public class AppBuilder {
         InfoCollectionOutputBoundary outputBoundary = new InfoCollectionPresenter(
                 viewManagerModel,
                 infoCollectionViewModel,
-                dashboardViewModel  // Pass dashboardViewModel
+                dashboardViewModel// Pass dashboardViewModel
         );
 
         InfoCollectionInputBoundary infoCollectionInteractor = new InfoCollectionInteractor(

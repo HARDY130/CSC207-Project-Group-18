@@ -21,13 +21,11 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
 
     @Override
     public void prepareSuccessView(InfoCollectionOutputData response) {
-        // First update info collection state
         InfoCollectionState infoCollectionState = infoCollectionViewModel.getState();
         infoCollectionState.setUsername(response.getUsername());
         infoCollectionViewModel.setState(infoCollectionState);
         infoCollectionViewModel.firePropertyChanged();
 
-        // Prepare dashboard state
         DashboardState dashboardState = (DashboardState) dashboardViewModel.getState();
 
         // Set user information
@@ -43,25 +41,22 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
         dashboardState.setBmr(response.getCalculatedBMR());
         dashboardState.setTdee(response.getCalculatedTDEE());
 
-        // Set activity level description based on multiplier
+        // Set activity level
         dashboardState.setActivityLevel(getActivityLevelDescription(response.getActivityMultiplier()));
 
-        // Clear any existing progress
+        // Reset
         dashboardState.setConsumedCalories(0.0);
         dashboardState.setConsumedCarbs(0.0);
         dashboardState.setConsumedProtein(0.0);
         dashboardState.setConsumedFat(0.0);
 
-        // Clear any error messages and set success message
         dashboardState.setError("");
         dashboardState.setSuccessMessage("Profile created successfully!");
         dashboardState.setLoading(false);
 
-        // Update dashboard view model
         dashboardViewModel.setState(dashboardState);
         dashboardViewModel.firePropertyChanged();
 
-        // Switch to dashboard view
         viewManagerModel.setActiveView(dashboardViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

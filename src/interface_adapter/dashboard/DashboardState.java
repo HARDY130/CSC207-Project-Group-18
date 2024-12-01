@@ -29,12 +29,10 @@ public class DashboardState {
     private double consumedProtein = 0.0;
     private double consumedFat = 0.0;
 
-    // UI state
     private String error = "";
     private String successMessage = "";
     private boolean isLoading = false;
 
-    // Copy constructor
     public DashboardState(DashboardState copy) {
         this.username = copy.username;
         this.birthDate = copy.birthDate;
@@ -59,10 +57,8 @@ public class DashboardState {
         this.isLoading = copy.isLoading;
     }
 
-    // Default constructor
     public DashboardState() {}
 
-    // Base information getters and setters
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
@@ -87,7 +83,6 @@ public class DashboardState {
     public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
     public void setAllergies(Set<Allergy> allergies) { this.allergies = new HashSet<>(allergies); }
 
-    // Nutrition calculations getters and setters
     public double getBmr() { return bmr; }
     public void setBmr(double bmr) {
         this.bmr = bmr;
@@ -106,7 +101,6 @@ public class DashboardState {
         this.dailyCalorieGoal = dailyCalorieGoal;
     }
 
-    // Macro goals
     public double getCarbsGoalGrams() { return carbsGoalGrams; }
     public void setCarbsGoalGrams(double carbsGoalGrams) { this.carbsGoalGrams = carbsGoalGrams; }
 
@@ -116,7 +110,6 @@ public class DashboardState {
     public double getFatGoalGrams() { return fatGoalGrams; }
     public void setFatGoalGrams(double fatGoalGrams) { this.fatGoalGrams = fatGoalGrams; }
 
-    // Consumption tracking
     public double getConsumedCalories() { return consumedCalories; }
     public void setConsumedCalories(double consumedCalories) { this.consumedCalories = consumedCalories; }
 
@@ -129,7 +122,6 @@ public class DashboardState {
     public double getConsumedFat() { return consumedFat; }
     public void setConsumedFat(double consumedFat) { this.consumedFat = consumedFat; }
 
-    // UI state getters and setters
     public String getError() { return error; }
     public void setError(String error) { this.error = error; }
 
@@ -139,7 +131,6 @@ public class DashboardState {
     public boolean isLoading() { return isLoading; }
     public void setLoading(boolean loading) { isLoading = loading; }
 
-    // Progress calculation methods
     public int getCaloriePercentage() {
         return calculatePercentage(consumedCalories, dailyCalorieGoal);
     }
@@ -156,24 +147,18 @@ public class DashboardState {
         return calculatePercentage(consumedFat, fatGoalGrams);
     }
 
-    // Helper methods
     private int calculatePercentage(double current, double goal) {
         return goal > 0 ? (int)((current / goal) * 100) : 0;
     }
 
     private void updateNutritionGoals() {
-        // Calculate macro goals based on TDEE
-        // Carbs: 45-65% (using 50%)
         carbsGoalGrams = (tdee * 0.50) / 4.0;  // 4 calories per gram
 
-        // Protein: 10-35% (using 25%)
         proteinGoalGrams = (tdee * 0.25) / 4.0;  // 4 calories per gram
 
-        // Fat: 20-35% (using 25%)
         fatGoalGrams = (tdee * 0.25) / 9.0;  // 9 calories per gram
     }
 
-    // Formatting helpers for display
     public String getFormattedCalorieProgress() {
         return String.format("%.0f / %.0f kcal", consumedCalories, dailyCalorieGoal);
     }

@@ -2,7 +2,7 @@ package interface_adapter.dashboard;
 
 import interface_adapter.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class DashboardViewModel extends ViewModel<DashboardState> {
     public static final String TITLE_LABEL = "Dashboard";
     public static final String WELCOME_LABEL = "Welcome, ";
     public static final String UPDATE_PROFILE_BUTTON_LABEL = "Update Profile";

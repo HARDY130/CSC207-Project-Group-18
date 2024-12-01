@@ -15,7 +15,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
     private DashboardController dashboardController;
     private LogoutController logoutController;
 
-    // UI Components
     private final JLabel titleLabel;
     private final JLabel welcomeLabel;
     private final JLabel activityLabel;
@@ -30,7 +29,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         this.dashboardViewModel = viewModel;
         this.dashboardViewModel.addPropertyChangeListener(this);
 
-        // Use simple BorderLayout as base
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -45,32 +43,24 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         logoutButton = new JButton("Logout");
         errorLabel = new JLabel();
 
-        // Style components
         styleComponents();
 
-        // Layout components using the simplified approach
         layoutComponents();
 
-        // Add listeners
         addListeners();
     }
 
     private void styleComponents() {
-        // Title styling
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Welcome label styling
         welcomeLabel.setFont(new Font(welcomeLabel.getFont().getName(), Font.BOLD, 18));
 
-        // Activity label styling
         activityLabel.setFont(new Font(activityLabel.getFont().getName(), Font.PLAIN, 14));
 
-        // Error label styling
         errorLabel.setForeground(Color.RED);
         errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Button styling - keep buttons at fixed size
         Dimension buttonSize = new Dimension(150, 40);
         updateProfileButton.setPreferredSize(buttonSize);
         generateMealButton.setPreferredSize(buttonSize);
@@ -79,7 +69,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
     }
 
     private void layoutComponents() {
-        // Header panel using BoxLayout
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -91,7 +80,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         headerPanel.add(Box.createVerticalStrut(5));
         headerPanel.add(activityLabel);
 
-        // Button panel using GridLayout like in simplified version
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4, 10, 0));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPanel.add(updateProfileButton);
@@ -99,7 +87,7 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         buttonPanel.add(recordMealButton);
         buttonPanel.add(logoutButton);
 
-        // Add everything to main panel
+        // Add all the components of the panel
         add(headerPanel, BorderLayout.NORTH);
         add(nutritionPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
@@ -135,11 +123,11 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
 
     private void updateFromViewModel() {
         DashboardState state = (DashboardState) dashboardViewModel.getState();
+
         if (state != null) {
             welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
             activityLabel.setText("Activity Level: " + state.getActivityLevel());
             errorLabel.setText(state.getError());
-
             nutritionPanel.updateProgress(
                     state.getCaloriePercentage(),
                     state.getCarbsPercentage(),

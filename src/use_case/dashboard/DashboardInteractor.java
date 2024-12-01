@@ -29,7 +29,7 @@ public class DashboardInteractor implements DashboardInputBoundary {
 
             CommonUser user = (CommonUser) userDataAccessObject.get(dashboardInputData.getUsername());
 
-            // Update user's nutrition progress
+            // Update nutrition progress
             userDataAccessObject.updateNutritionProgress(
                     dashboardInputData.getUsername(),
                     dashboardInputData.getConsumedCalories(),
@@ -38,7 +38,7 @@ public class DashboardInteractor implements DashboardInputBoundary {
                     dashboardInputData.getConsumedFat()
             );
 
-            // Calculate nutrition goals based on user data
+            // Calculate nutrition goals
             double bmr = user.calculateBMR();
             double tdee = user.calculateTDEE();
             double carbsGoal = user.calculateCarbsGrams();
@@ -76,17 +76,13 @@ public class DashboardInteractor implements DashboardInputBoundary {
 
     @Override
     public void switchToMealPlanner() {
-        // Similar to switchToUpdateProfile, prepare for view transition
         dashboardPresenter.prepareSuccessView(
                 new DashboardOutputData("", 0, 0, 0, 0, 0, 0, 0, 0, 0, "", new HashSet<>(), true)
         );
     }
 
     @Override
-    public void switchToMealRecorder() {
-        // Similar to switchToUpdateProfile, prepare for view transition
-        dashboardPresenter.prepareSuccessView(
-                new DashboardOutputData("", 0, 0, 0, 0, 0, 0, 0, 0, 0, "", new HashSet<>(), true)
-        );
+    public void switchToCustomize() {
+        dashboardPresenter.prepareSwitchToCustomize();
     }
 }

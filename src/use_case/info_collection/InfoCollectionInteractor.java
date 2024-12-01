@@ -30,7 +30,6 @@ public class InfoCollectionInteractor implements InfoCollectionInputBoundary {
                 }
             }
 
-            // Validate inputs
             int currentYear = java.time.LocalDate.now().getYear();
             int age = currentYear - infoCollectionInputData.getBirthDate().getYear();
             if (age < 13 || age > 120) {

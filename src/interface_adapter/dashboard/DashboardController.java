@@ -39,6 +39,6 @@ public class DashboardController {
     }
 
     public void onRecordMeal() {
-        dashboardUseCaseInteractor.switchToMealRecorder();
+        dashboardUseCaseInteractor.switchToCustomize();
     }
 }

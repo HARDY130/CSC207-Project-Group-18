@@ -39,7 +39,6 @@ public class DashboardInputData {
         this.consumedFat = consumedFat;
     }
 
-    // Getters
     public String getUsername() { return username; }
     public LocalDate getBirthDate() { return birthDate; }
     public String getGender() { return gender; }

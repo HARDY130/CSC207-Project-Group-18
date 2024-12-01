@@ -35,7 +35,6 @@ public class InfoCollectionOutputData {
         this.errorMessage = errorMessage;
     }
 
-    // Getters
     public String getUsername() { return username; }
     public LocalDate getBirthDate() { return birthDate; }
     public String getGender() { return gender; }

@@ -64,7 +64,7 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         ));
     }
 
-    // Helper class to store nutrition progress
+    // Class to store nutrition progress
     private static class NutritionProgress {
         double calories, carbs, protein, fat;
 

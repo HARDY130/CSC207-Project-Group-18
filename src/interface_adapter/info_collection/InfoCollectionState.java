@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class InfoCollectionState {
-    // User data fields
     private String username = "";
     private String password = "";
     private int yearOfBirth = LocalDate.now().getYear() - 25; // default age 25
@@ -16,14 +15,12 @@ public class InfoCollectionState {
     private double activityMultiplier = 1.2; // default to sedentary
     private Set<Allergy> allergies = new HashSet<>();
 
-    // Error message fields
     private String yearOfBirthError = "";
     private String weightError = "";
     private String heightError = "";
     private String genderError = "";
     private String allegySelectionError = "";
 
-    // Copy constructor
     public InfoCollectionState(InfoCollectionState copy) {
         this.username = copy.username;
         this.password = copy.password;
@@ -40,10 +37,8 @@ public class InfoCollectionState {
         this.allegySelectionError = copy.allegySelectionError;
     }
 
-    // Default constructor
     public InfoCollectionState() {}
 
-    // Getters
     public String getUsername() { return username; }
     public String getPassword() { return password; }
     public int getYearOfBirth() { return yearOfBirth; }
@@ -53,14 +48,12 @@ public class InfoCollectionState {
     public double getActivityMultiplier() { return activityMultiplier; }
     public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
 
-    // Error getters
     public String getYearOfBirthError() { return yearOfBirthError; }
     public String getWeightError() { return weightError; }
     public String getHeightError() { return heightError; }
     public String getGenderError() { return genderError; }
     public String getAllergySelectionError() { return allegySelectionError; }
 
-    // Setters
     public void setUsername(String username) {
         this.username = username;
     }
@@ -93,7 +86,6 @@ public class InfoCollectionState {
         this.allergies = new HashSet<>(allergies);
     }
 
-    // Error setters
     public void setYearOfBirthError(String error) {
         this.yearOfBirthError = error;
     }
@@ -114,7 +106,6 @@ public class InfoCollectionState {
         this.allegySelectionError = error;
     }
 
-    // Helper method to clear all error messages
     public void clearErrors() {
         this.yearOfBirthError = "";
         this.weightError = "";
@@ -123,7 +114,6 @@ public class InfoCollectionState {
         this.allegySelectionError = "";
     }
 
-    // Helper method to check if there are any error messages
     public boolean hasErrors() {
         return !yearOfBirthError.isEmpty()
                 || !weightError.isEmpty()
@@ -132,12 +122,10 @@ public class InfoCollectionState {
                 || !allegySelectionError.isEmpty();
     }
 
-    // Helper method to convert to LocalDate
     public LocalDate getBirthDate() {
         return LocalDate.of(yearOfBirth, 1, 1);
     }
 
-    // Helper method to check if all required fields are filled
     public boolean isComplete() {
         return !username.isEmpty()
                 && !password.isEmpty()
@@ -146,6 +134,5 @@ public class InfoCollectionState {
                 && weight > 0
                 && height > 0
                 && activityMultiplier > 0;
-        // Note: allergies can be empty as they're optional
     }
 }
