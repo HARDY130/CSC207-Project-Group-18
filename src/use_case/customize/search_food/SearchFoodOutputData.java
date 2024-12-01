@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SearchFoodOutputData {
-
     private final Food[] foods;
+    private static final int LENGTHOFFOODS = 3;
 
     public SearchFoodOutputData(JSONObject jsonObject) {
-        this.foods = new Food[Constant.LENGTHOFFOODS];
+        this.foods = new Food[LENGTHOFFOODS];
         JSONArray hints = jsonObject.getJSONArray("hints");
         int length = hints.length();
-        for (int i = 0; i < Math.min(length, Constant.LENGTHOFFOODS); i++) {
+        for (int i = 0; i < Math.min(length, LENGTHOFFOODS); i++) {
             JSONObject obj = hints.getJSONObject(i);
             JSONObject fff = obj.getJSONObject("food");
             // chuli

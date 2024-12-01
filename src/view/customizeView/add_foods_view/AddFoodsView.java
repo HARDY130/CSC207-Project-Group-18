@@ -2,7 +2,6 @@ package view.customizeView.add_foods_view;
 
 import entity.Food;
 import interface_adapter.customize.search_foods.SearchFoodState;
-import use_case.customize.search_food.Constant;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,9 +17,10 @@ public class AddFoodsView extends JPanel implements PropertyChangeListener {
     private final JTextArea textArea3;
     private Food[] food_in_box;
     private cacheMap added;
+    private static final int LENGTHOFFOODS = 3;
 
     public AddFoodsView() {
-        this.food_in_box = new Food[Constant.LENGTHOFFOODS];
+        this.food_in_box = new Food[LENGTHOFFOODS];
         this.added = new cacheMap();
 
         JLabel label = new JLabel("Type (B/L/S)");
@@ -157,7 +157,7 @@ public class AddFoodsView extends JPanel implements PropertyChangeListener {
         final Food[] foods = searchFoodState.getFoods();
         this.food_in_box = foods;
         System.out.println(Arrays.toString(foods));
-        for (int i = 0; i < Constant.LENGTHOFFOODS; i++) {
+        for (int i = 0; i < LENGTHOFFOODS; i++) {
             if (foods[i] != null) {
                 String food = "1. Your option is " + foods[i].getLabel() + "." + "\n" + "2. Its category: "
                         + foods[i].getCategory() + "." + "\n" + "3. Its nutrients are " + foods[i].getNutrients() + ".";
