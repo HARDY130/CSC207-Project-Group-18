@@ -11,10 +11,12 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import static interface_adapter.customize.CustomizeViewModel.*;
+
 public class CustomizeView extends JPanel implements ActionListener, PropertyChangeListener {
     private final String viewName = "customize";
     private final CustomizeViewModel customizeViewModel;
-    private final CustomizeController customizeController;
+    private CustomizeController customizeController;
 
     private final JTextField searchField;
     private final JButton searchButton;
@@ -25,19 +27,18 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
     private final JButton addToMealButton;
     private final JLabel errorLabel;
 
-    public CustomizeView(CustomizeViewModel viewModel, CustomizeController controller) {
+    public CustomizeView(CustomizeViewModel viewModel) {
         this.customizeViewModel = viewModel;
-        this.customizeController = controller;
         this.customizeViewModel.addPropertyChangeListener(this);
 
         // Initialize components
         searchField = new JTextField(20);
-        searchButton = new JButton("Search");
-        returnButton = new JButton("Return to Dashboard");
+        searchButton = new JButton(SEARCH_BUTTON_LABEL);
+        returnButton = new JButton(RETURN_BUTTON_LABEL);
         mealTypeComboBox = new JComboBox<>(MealType.values());
         listModel = new DefaultListModel<>();
         searchResultsList = new JList<>(listModel);
-        addToMealButton = new JButton("Add to Meal");
+        addToMealButton = new JButton(ADD_BUTTON_LABEL);
         errorLabel = new JLabel();
         errorLabel.setForeground(Color.RED);
 
@@ -147,6 +148,9 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
         }
     }
 
+    public void setCustomizeController(CustomizeController customizeController) {
+        this.customizeController = customizeController;
+    }
     public String getViewName() {
         return viewName;
     }

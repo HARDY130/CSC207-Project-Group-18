@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="add .idea">
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardViewModel.java" afterDir="false" />
+    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="Finish customize">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Meal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CustomizeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CustomizeView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/data_access/DBUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/DBUserDataAccessObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/data_access/FileUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/FileUserDataAccessObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" afterDir="false" />
@@ -28,7 +30,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionState.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionViewModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginState.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginViewModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutController.class" afterDir="false" />
@@ -92,6 +94,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -102,7 +105,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="merge-3-4" />
+        <entry key="$PROJECT_DIR$" value="Zihan-test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -113,12 +116,12 @@
     &quot;assignee&quot;: &quot;Chuxuan-a&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/HARDY130/CSC207-Project-Group-18.git&quot;,
-    &quot;accountId&quot;: &quot;cb543040-83d9-4b98-9e8b-34123cdbef69&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/HARDY130/CSC207-Project-Group-18.git",
+    "accountId": "4f9bb43d-ba80-414a-a7f8-d84faeaf686c"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -130,25 +133,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "JUnit.SignupInteractorTest.executor": "Coverage",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "Zihan-new",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/IdeaProjects/CSC207-Project-Group-18/src/interface_adapter/dashboard",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SignupInteractorTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Zihan-new&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/IdeaProjects/CSC207-Project-Group-18/src/interface_adapter/dashboard&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\IdeaProjects\CSC207-Project-Group-18\src\interface_adapter\dashboard" />
@@ -192,7 +195,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
@@ -202,8 +205,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -229,6 +232,7 @@
       <workItem from="1732516347472" duration="134000" />
       <workItem from="1732516487250" duration="63000" />
       <workItem from="1732541316435" duration="5154000" />
+      <workItem from="1733034050696" duration="19173000" />
     </task>
     <task id="LOCAL-00001" summary="Dashboard Version update">
       <option name="closed" value="true" />
@@ -254,7 +258,39 @@
       <option name="project" value="LOCAL" />
       <updated>1732845771205</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add customize">
+      <option name="closed" value="true" />
+      <created>1733034174278</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733034174278</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add customize view">
+      <option name="closed" value="true" />
+      <created>1733034239350</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733034239350</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Redo customize">
+      <option name="closed" value="true" />
+      <created>1733038864987</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733038864987</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Finish customize">
+      <option name="closed" value="true" />
+      <created>1733043849913</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733043849913</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +312,12 @@
     <MESSAGE value="Dashboard Version update" />
     <MESSAGE value="Dashboard Version modified update" />
     <MESSAGE value="add .idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="add .idea" />
+    <MESSAGE value="modify" />
+    <MESSAGE value="Add customize" />
+    <MESSAGE value="Add customize view" />
+    <MESSAGE value="Redo customize" />
+    <MESSAGE value="Finish customize" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish customize" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

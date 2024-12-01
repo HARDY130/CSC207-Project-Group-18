@@ -319,13 +319,12 @@ public class AppBuilder {
 
     public AppBuilder addCustomizeView() {
         customizeViewModel = new CustomizeViewModel();
-        CustomizeController customizeController = createCustomizeUseCase();
-        CustomizeView customizeView = new CustomizeView(customizeViewModel, customizeController);
+        customizeView = new CustomizeView(customizeViewModel);
         cardPanel.add(customizeView, customizeView.getViewName());
         return this;
     }
 
-    private CustomizeController createCustomizeUseCase() {
+    public AppBuilder addCustomizeUseCase() {
         CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
                 customizeViewModel,
                 viewManagerModel,
@@ -338,7 +337,9 @@ public class AppBuilder {
                 userDataAccessObject
         );
 
-        return new CustomizeController(customizeInteractor);
+        CustomizeController customizeController = new CustomizeController(customizeInteractor);
+        customizeView.setCustomizeController(customizeController);
+        return this;
     }
 
 //    public AppBuilder addDashboardView() {
