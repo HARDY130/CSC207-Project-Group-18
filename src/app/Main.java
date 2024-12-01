@@ -25,6 +25,7 @@ public class Main {
                 .addLoginUseCase()
                 .addInfoCollectionUseCase()
                 .addDashboardUseCase()
+                .addCustomizeUseCase()
 //                .addChangePasswordUseCase()
                 .addLogoutUseCase()
                 .build();
