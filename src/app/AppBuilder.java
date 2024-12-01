@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import data_access.InMemoryUserDataAccessObject;
+import data_access.MealPlannerDataAccessObject;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
@@ -18,6 +19,9 @@ import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logout.LogoutController;
 import interface_adapter.logout.LogoutPresenter;
+import interface_adapter.mealplanner.MealPlannerController;
+import interface_adapter.mealplanner.MealPlannerPresenter;
+import interface_adapter.mealplanner.MealPlannerViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
@@ -34,6 +38,7 @@ import use_case.login.LoginOutputBoundary;
 import use_case.logout.LogoutInputBoundary;
 import use_case.logout.LogoutInteractor;
 import use_case.logout.LogoutOutputBoundary;
+import use_case.mealplanner.*;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
@@ -64,6 +69,7 @@ public class AppBuilder {
 
     // thought question: is the hard dependency below a problem?
     private final InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
+    private final MealPlannerDataAccessObject mealPlannerDataAccessObject;
 
     private SignupView signupView;
     private SignupViewModel signupViewModel;
@@ -76,9 +82,13 @@ public class AppBuilder {
     private DashboardView dashboardView;
     private DashboardViewModel dashboardViewModel;
     private DashboardController dashboardController;
+    private MealPlannerView mealPlannerView;
+    private MealPlannerViewModel mealPlannerViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
+
+        mealPlannerDataAccessObject = new MealPlannerDataAccessObject(userDataAccessObject);
     }
 
     /**
@@ -244,7 +254,8 @@ public class AppBuilder {
         DashboardOutputBoundary outputBoundary = new DashboardPresenter(
                 viewManagerModel,
                 dashboardViewModel,
-                infoCollectionViewModel
+                infoCollectionViewModel,
+                mealPlannerViewModel
         );
 
         DashboardDataAccessInterface userDataAccessObject =
@@ -257,6 +268,31 @@ public class AppBuilder {
 
         dashboardController = new DashboardController(interactor);
         dashboardView.setDashboardController(dashboardController);
+        return this;
+    }
+
+    public AppBuilder addMealPlannerView() {
+        mealPlannerViewModel = new MealPlannerViewModel();
+        mealPlannerView = new MealPlannerView(mealPlannerViewModel);
+        cardPanel.add(mealPlannerView, mealPlannerView.getViewName());
+        return this;
+    }
+
+    public AppBuilder addMealPlannerUseCase() {
+        MealPlannerOutputBoundary outputBoundary = new MealPlannerPresenter(
+                mealPlannerViewModel,
+                viewManagerModel,
+                dashboardViewModel
+                );
+
+        MealPlannerInputBoundary interactor = new MealPlannerInteractor(
+                userDataAccessObject,
+                mealPlannerDataAccessObject,
+                outputBoundary
+        );
+
+        MealPlannerController controller = new MealPlannerController(interactor);
+        mealPlannerView.setMealPlannerController(controller);
         return this;
     }
 

@@ -34,8 +34,8 @@ public class DashboardController {
         dashboardUseCaseInteractor.switchToUpdateProfile();
     }
 
-    public void onGenerateMeal() {
-        dashboardUseCaseInteractor.switchToMealPlanner();
+    public void onGenerateMeal(String username) {
+        dashboardUseCaseInteractor.switchToMealPlanner(username);
     }
 
     public void onRecordMeal() {

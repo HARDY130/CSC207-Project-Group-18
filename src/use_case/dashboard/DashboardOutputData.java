@@ -1,8 +1,6 @@
 package use_case.dashboard;
 
 import entity.Allergy;
-import entity.Food;
-import entity.MealType;
 
 import java.util.*;
 
@@ -109,13 +107,13 @@ public class DashboardOutputData {
     private final String activityLevel;
     private final Set<Allergy> allergies;
     private final boolean useCaseSuccess;
+//    private final boolean useCaseSuccess;
 
     public DashboardOutputData(String username, double bmr, double tdee,
                                double carbsGoal, double proteinGoal, double fatGoal,
                                double consumedCalories, double consumedCarbs,
                                double consumedProtein, double consumedFat,
-                               String activityLevel, Set<Allergy> allergies,
-                               boolean useCaseSuccess) {
+                               String activityLevel, Set<Allergy> allergies, boolean useCaseSuccess) {
         this.username = username;
         this.bmr = bmr;
         this.tdee = tdee;
@@ -144,6 +142,5 @@ public class DashboardOutputData {
     public double getConsumedFat() { return consumedFat; }
     public String getActivityLevel() { return activityLevel; }
     public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
-    public boolean isUseCaseSuccess() { return useCaseSuccess; }
-
+//    public boolean isUseCaseSuccess() { return useCaseSuccess; }
 }

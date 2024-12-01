@@ -1,0 +1,393 @@
+Index: src/app/AppBuilder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package app;\n\nimport java.awt.*;\n\nimport javax.swing.JFrame;\nimport javax.swing.JPanel;\nimport javax.swing.WindowConstants;\n\nimport data_access.InMemoryUserDataAccessObject;\nimport entity.CommonUserFactory;\nimport entity.UserFactory;\nimport interface_adapter.ViewManagerModel;\nimport interface_adapter.change_password.ChangePasswordController;\nimport interface_adapter.change_password.ChangePasswordPresenter;\nimport interface_adapter.change_password.LoggedInViewModel;\nimport interface_adapter.login.LoginController;\nimport interface_adapter.login.LoginPresenter;\nimport interface_adapter.login.LoginViewModel;\nimport interface_adapter.logout.LogoutController;\nimport interface_adapter.logout.LogoutPresenter;\nimport interface_adapter.signup.SignupController;\nimport interface_adapter.signup.SignupPresenter;\nimport interface_adapter.signup.SignupViewModel;\nimport use_case.change_password.ChangePasswordInputBoundary;\nimport use_case.change_password.ChangePasswordInteractor;\nimport use_case.change_password.ChangePasswordOutputBoundary;\nimport use_case.dashboard.DashboardDataAccessInterface;\nimport use_case.dashboard.DashboardInputBoundary;\nimport use_case.dashboard.DashboardInteractor;\nimport use_case.dashboard.DashboardOutputBoundary;\nimport use_case.login.LoginInputBoundary;\nimport use_case.login.LoginInteractor;\nimport use_case.login.LoginOutputBoundary;\nimport use_case.logout.LogoutInputBoundary;\nimport use_case.logout.LogoutInteractor;\nimport use_case.logout.LogoutOutputBoundary;\nimport use_case.signup.SignupInputBoundary;\nimport use_case.signup.SignupInteractor;\nimport use_case.signup.SignupOutputBoundary;\nimport view.*;\nimport interface_adapter.info_collection.*;\nimport interface_adapter.dashboard.*;\nimport use_case.info_collection.*;\n\n\n/**\n * The AppBuilder class is responsible for putting together the pieces of\n * our CA architecture; piece by piece.\n * <p/>\n * This is done by adding each View and then adding related Use Cases.\n */\n// Checkstyle note: you can ignore the \"Class Data Abstraction Coupling\"\n//                  and the \"Class Fan-Out Complexity\" issues for this lab; we encourage\n//                  your team to think about ways to refactor the code to resolve these\n//                  if your team decides to work with this as your starter code\n//                  for your final project this term.\npublic class AppBuilder {\n    private final JPanel cardPanel = new JPanel();\n    private final CardLayout cardLayout = new CardLayout();\n    // thought question: is the hard dependency below a problem?\n    private final UserFactory userFactory = new CommonUserFactory();\n    private final ViewManagerModel viewManagerModel = new ViewManagerModel();\n    private final ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);\n\n    // thought question: is the hard dependency below a problem?\n    private final InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();\n\n    private SignupView signupView;\n    private SignupViewModel signupViewModel;\n    private LoginViewModel loginViewModel;\n    private LoggedInViewModel loggedInViewModel;\n    private LoggedInView loggedInView;\n    private LoginView loginView;\n    private InfoCollectionView infoCollectionView;\n    private InfoCollectionViewModel infoCollectionViewModel;\n    private DashboardView dashboardView;\n    private DashboardViewModel dashboardViewModel;\n    private DashboardController dashboardController;\n\n    public AppBuilder() {\n        cardPanel.setLayout(cardLayout);\n    }\n\n    /**\n     * Adds the Signup View to the application.\n     * @return this builder\n     */\n    public AppBuilder addSignupView() {\n        signupViewModel = new SignupViewModel();\n        signupView = new SignupView(signupViewModel);\n        cardPanel.add(signupView, signupView.getViewName());\n        return this;\n    }\n\n    /**\n     * Adds the Login View to the application.\n     * @return this builder\n     */\n    public AppBuilder addLoginView() {\n        loginViewModel = new LoginViewModel();\n        loginView = new LoginView(loginViewModel, viewManagerModel);\n        cardPanel.add(loginView, loginView.getViewName());\n        return this;\n    }\n\n    /**\n     * Adds the LoggedIn View to the application.\n     * @return this builder\n     */\n    public AppBuilder addLoggedInView() {\n        loggedInViewModel = new LoggedInViewModel();\n        loggedInView = new LoggedInView(loggedInViewModel);\n        cardPanel.add(loggedInView, loggedInView.getViewName());\n        return this;\n    }\n\n    /**\n     * Adds the Signup Use Case to the application.\n     * @return this builder\n     */\n    public AppBuilder addSignupUseCase() {\n        final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,\n                signupViewModel, loginViewModel, infoCollectionViewModel);\n        final SignupInputBoundary userSignupInteractor = new SignupInteractor(\n                userDataAccessObject, signupOutputBoundary, userFactory);\n\n\n        SignupController controller = new SignupController(userSignupInteractor);\n        signupView.setSignupController(controller);\n        return this;\n    }\n\n    /**\n     * Adds the Login Use Case to the application.\n     * @return this builder\n     */\n//    public AppBuilder addLoginUseCase() {\n//        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,\n//                loggedInViewModel, loginViewModel, infoCollectionViewModel);\n//\n//        final LoginInputBoundary loginInteractor = new LoginInteractor(\n//                userDataAccessObject, loginOutputBoundary);\n//\n//        final LoginController loginController = new LoginController(loginInteractor);\n//        loginView.setLoginController(loginController);\n//        return this;\n//    }\n    public AppBuilder addLoginUseCase() {\n        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(\n                viewManagerModel,\n                loggedInViewModel,\n                loginViewModel,\n                infoCollectionViewModel,\n                dashboardViewModel  // Add this parameter\n        );\n\n        final LoginInputBoundary loginInteractor = new LoginInteractor(\n                userDataAccessObject,\n                loginOutputBoundary\n        );\n\n        final LoginController loginController = new LoginController(loginInteractor);\n        loginView.setLoginController(loginController);\n        return this;\n    }\n\n    /**\n     * Adds the Change Password Use Case to the application.\n     * @return this builder\n     */\n//    public AppBuilder addChangePasswordUseCase() {\n//        final ChangePasswordOutputBoundary changePasswordOutputBoundary =\n//                new ChangePasswordPresenter(loggedInViewModel);\n//\n//        final ChangePasswordInputBoundary changePasswordInteractor =\n//                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);\n//\n//        final ChangePasswordController changePasswordController =\n//                new ChangePasswordController(changePasswordInteractor);\n//        loggedInView.setChangePasswordController(changePasswordController);\n//        return this;\n//    }\n\n    /**\n     * Adds the Logout Use Case to the application.\n     * @return this builder\n     */\n    public AppBuilder addLogoutUseCase() {\n        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(viewManagerModel,\n                loggedInViewModel, loginViewModel);\n\n        LogoutInputBoundary logoutInteractor = new LogoutInteractor(userDataAccessObject, logoutOutputBoundary);\n\n        LogoutController logoutController = new LogoutController(logoutInteractor);\n        loggedInView.setLogoutController(logoutController);\n        dashboardView.setLogoutController(logoutController); // Add this line to connect logout to dashboard\n\n        return this;\n    }\n\n    public AppBuilder addInfoCollectionView() {\n        infoCollectionViewModel = new InfoCollectionViewModel();\n        dashboardViewModel = new DashboardViewModel();  // Initialize dashboard view model\n        infoCollectionView = new InfoCollectionView(infoCollectionViewModel, viewManagerModel);\n        cardPanel.add(infoCollectionView, infoCollectionView.getViewName());\n        return this;\n    }\n\n\n    /**\n     * Creates the JFrame for the application and initially sets the SignupView to be displayed.\n     * @return the application\n     */\n//    public JFrame build() {\n//        final JFrame application = new JFrame(\"Login Example\");\n//        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\n//\n//        application.add(cardPanel);\n//\n//        viewManagerModel.setState(signupView.getViewName());\n//        viewManagerModel.firePropertyChanged();\n//\n//        return application;\n//    }\n\n//    public JFrame build() {\n//        final JFrame application = new JFrame(\"Meal Planner\");\n//        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\n//        application.add(cardPanel);\n//        application.setMinimumSize(new Dimension(800, 600));  // Set minimum window size\n//        viewManagerModel.setActiveView(signupView.getViewName());\n//        viewManagerModel.firePropertyChanged();\n//        return application;\n//    }\n\n    public AppBuilder addDashboardView() {\n        dashboardViewModel = new DashboardViewModel();\n        dashboardView = new DashboardView(dashboardViewModel);\n        cardPanel.add(dashboardView, dashboardView.getViewName());\n        return this;\n    }\n\n    public AppBuilder addDashboardUseCase() {\n        DashboardOutputBoundary outputBoundary = new DashboardPresenter(\n                viewManagerModel,\n                dashboardViewModel,\n                infoCollectionViewModel\n        );\n\n        DashboardDataAccessInterface userDataAccessObject =\n                (DashboardDataAccessInterface) this.userDataAccessObject;\n\n        DashboardInputBoundary interactor = new DashboardInteractor(\n                userDataAccessObject,\n                outputBoundary\n        );\n\n        dashboardController = new DashboardController(interactor);\n        dashboardView.setDashboardController(dashboardController);\n        return this;\n    }\n\n    // Make sure InfoCollectionView can transition to Dashboard\n    public AppBuilder addInfoCollectionUseCase() {\n        InfoCollectionOutputBoundary outputBoundary = new InfoCollectionPresenter(\n                viewManagerModel,\n                infoCollectionViewModel,\n                dashboardViewModel  // Pass dashboardViewModel\n        );\n\n        InfoCollectionInputBoundary infoCollectionInteractor = new InfoCollectionInteractor(\n                (InfoCollectionUserDataAccessInterface) userDataAccessObject,\n                outputBoundary,\n                userFactory\n        );\n\n        InfoCollectionController controller = new InfoCollectionController(infoCollectionInteractor);\n        infoCollectionView.setInfoCollectionController(controller);\n        return this;\n    }\n\n\n    // Update the build method to support the new sizing\n    public JFrame build() {\n        JFrame application = new JFrame(\"Food Planner\");\n        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\n        application.add(cardPanel);\n\n        // Set minimum size to accommodate the dashboard\n        application.setMinimumSize(new Dimension(800, 600));\n\n        viewManagerModel.setActiveView(signupView.getViewName());\n        viewManagerModel.firePropertyChanged();\n\n        return application;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/AppBuilder.java b/src/app/AppBuilder.java
+--- a/src/app/AppBuilder.java	(revision d6861fad112e70554f96f74f6a8770a86cdcf124)
++++ b/src/app/AppBuilder.java	(date 1732873530382)
+@@ -6,6 +6,7 @@
+ import javax.swing.JPanel;
+ import javax.swing.WindowConstants;
+ 
++import data_access.FoodDatabaseAccessObject;
+ import data_access.InMemoryUserDataAccessObject;
+ import entity.CommonUserFactory;
+ import entity.UserFactory;
+@@ -13,6 +14,9 @@
+ import interface_adapter.change_password.ChangePasswordController;
+ import interface_adapter.change_password.ChangePasswordPresenter;
+ import interface_adapter.change_password.LoggedInViewModel;
++import interface_adapter.customize.CustomizeController;
++import interface_adapter.customize.CustomizePresenter;
++import interface_adapter.customize.CustomizeViewModel;
+ import interface_adapter.login.LoginController;
+ import interface_adapter.login.LoginPresenter;
+ import interface_adapter.login.LoginViewModel;
+@@ -24,6 +28,9 @@
+ import use_case.change_password.ChangePasswordInputBoundary;
+ import use_case.change_password.ChangePasswordInteractor;
+ import use_case.change_password.ChangePasswordOutputBoundary;
++import use_case.customize.CustomizeInputBoundary;
++import use_case.customize.CustomizeInteractor;
++import use_case.customize.CustomizeOutputBoundary;
+ import use_case.dashboard.DashboardDataAccessInterface;
+ import use_case.dashboard.DashboardInputBoundary;
+ import use_case.dashboard.DashboardInteractor;
+@@ -76,9 +83,12 @@
+     private DashboardView dashboardView;
+     private DashboardViewModel dashboardViewModel;
+     private DashboardController dashboardController;
++    private CustomizeView customizeView;
++    private CustomizeViewModel customizeViewModel;
+ 
+     public AppBuilder() {
+         cardPanel.setLayout(cardLayout);
++        customizeViewModel = new CustomizeViewModel();
+     }
+ 
+     /**
+@@ -244,7 +254,8 @@
+         DashboardOutputBoundary outputBoundary = new DashboardPresenter(
+                 viewManagerModel,
+                 dashboardViewModel,
+-                infoCollectionViewModel
++                infoCollectionViewModel,
++                customizeViewModel
+         );
+ 
+         DashboardDataAccessInterface userDataAccessObject =
+@@ -278,6 +289,31 @@
+         infoCollectionView.setInfoCollectionController(controller);
+         return this;
+     }
++
++    public AppBuilder addCustomizeView() {
++        customizeViewModel = new CustomizeViewModel();
++        customizeView = new CustomizeView(customizeViewModel);
++        cardPanel.add(customizeView, customizeView.getViewName());
++        return this;
++    }
++
++    public AppBuilder addCustomizeUseCase() {
++        CustomizeOutputBoundary outputBoundary = new CustomizePresenter(
++                customizeViewModel,
++                viewManagerModel
++        );
++
++        FoodDatabaseAccessObject foodDatabaseAccessObject = new FoodDatabaseAccessObject();
++
++        CustomizeInputBoundary interactor = new CustomizeInteractor(
++                foodDatabaseAccessObject,
++                outputBoundary
++        );
++
++        CustomizeController controller = new CustomizeController(interactor);
++        customizeView.setCustomizeController(controller);
++        return this;
++    }
+ 
+ 
+     // Update the build method to support the new sizing
+Index: src/app/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package app;\n\nimport javax.swing.JFrame;\nimport java.awt.*;\n\n/**\n * The Main class of our application.\n */\npublic class Main {\n    /**\n     * Builds and runs the CA architecture of the application.\n     * @param args unused arguments\n     */\n    public static void main(String[] args) {\n        final AppBuilder appBuilder = new AppBuilder();\n        final JFrame application = appBuilder\n                .addSignupView()\n                .addLoginView()\n                .addInfoCollectionView()\n                .addDashboardView()\n                .addLoggedInView()\n\n                .addSignupUseCase()\n                .addLoginUseCase()\n                .addInfoCollectionUseCase()\n                .addDashboardUseCase()\n//                .addChangePasswordUseCase()\n                .addLogoutUseCase()\n                .build();\n\n        application.setMinimumSize(new Dimension(800, 600));\n        application.pack();\n        application.setLocationRelativeTo(null);\n        application.setVisible(true);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/Main.java b/src/app/Main.java
+--- a/src/app/Main.java	(revision d6861fad112e70554f96f74f6a8770a86cdcf124)
++++ b/src/app/Main.java	(date 1732873400977)
+@@ -18,6 +18,8 @@
+                 .addLoginView()
+                 .addInfoCollectionView()
+                 .addDashboardView()
++                .addCustomizeView()
++                .addCustomizeUseCase()
+                 .addLoggedInView()
+ 
+                 .addSignupUseCase()
+@@ -25,6 +27,7 @@
+                 .addInfoCollectionUseCase()
+                 .addDashboardUseCase()
+ //                .addChangePasswordUseCase()
++
+                 .addLogoutUseCase()
+                 .build();
+ 
+Index: src/util/ApiConfig.java
+===================================================================
+diff --git a/src/util/ApiConfig.java b/src/util/ApiConfig.java
+new file mode 100644
+--- /dev/null	(date 1732872308681)
++++ b/src/util/ApiConfig.java	(date 1732872308681)
+@@ -0,0 +1,92 @@
++//package util;
++//
++//import java.io.IOException;
++//import java.io.InputStream;
++//import java.nio.file.Files;
++//import java.nio.file.Paths;
++//import java.util.Properties;
++//
++//public class ApiConfig {
++//    private static Properties properties;
++//    private static final String CONFIG_FILE = "src/res/config.properties";
++//
++//    static {
++//        properties = new Properties();
++//        try {
++//            // Load using direct file path instead of classpath
++//            properties.load(Files.newInputStream(Paths.get(CONFIG_FILE)));
++//        } catch (IOException e) {
++////            throw new RuntimeException("Error loading configuration", e);
++////        }
++////    }
++//
++//    public static String getEdamamAppId() {
++//        return properties.getProperty("edamam.app.id");
++//    }
++//
++//    public static String getEdamamAppKey() {
++//        return properties.getProperty("edamam.app.key");
++//    }
++//}
++
++// ApiConfig.java - Place in src/util directory
++//package util;
++//
++//import java.io.IOException;
++//import java.io.InputStream;
++//import java.util.Properties;
++//
++//public class ApiConfig {
++//    private static final Properties properties = new Properties();
++//
++//    static {
++//        try (InputStream input = ApiConfig.class.getClassLoader()
++//                .getResourceAsStream("config.properties")) {
++//            if (input == null) {
++//                throw new RuntimeException("Unable to find config.properties");
++//            }
++//            properties.load(input);
++//        } catch (IOException ex) {
++//            throw new RuntimeException("Error loading configuration", ex);
++//        }
++//    }
++//
++//    public static String getEdamamAppId() {
++//        return properties.getProperty("edamam.app.id");
++//    }
++//
++//    public static String getEdamamAppKey() {
++//        return properties.getProperty("edamam.app.key");
++//    }
++//}
++
++
++package util;
++
++import java.io.IOException;
++import java.nio.file.Files;
++import java.nio.file.Paths;
++import java.util.Properties;
++
++public class ApiConfig {
++    private static Properties properties;
++    private static final String CONFIG_FILE = "src/res/config.properties";
++
++    static {
++        properties = new Properties();
++        try {
++            // Load using direct file path instead of classpath
++            properties.load(Files.newInputStream(Paths.get(CONFIG_FILE)));
++        } catch (IOException e) {
++            throw new RuntimeException("Error loading configuration", e);
++        }
++    }
++
++    public static String getEdamamAppId() {
++        return properties.getProperty("edamam.app.id");
++    }
++
++    public static String getEdamamAppKey() {
++        return properties.getProperty("edamam.app.key");
++    }
++}
+\ No newline at end of file
+Index: src/res/config.properties
+===================================================================
+diff --git a/src/res/config.properties b/src/res/config.properties
+new file mode 100644
+--- /dev/null	(date 1732872167214)
++++ b/src/res/config.properties	(date 1732872167214)
+@@ -0,0 +1,3 @@
++# config.properties - Place in src/main/resources directory
++edamam.app.id=f4d052b7
++edamam.app.key=46cfeab6f40ed5e084106e0870f61131
+\ No newline at end of file
+Index: src/view/CustomizeView.java
+===================================================================
+diff --git a/src/view/CustomizeView.java b/src/view/CustomizeView.java
+new file mode 100644
+--- /dev/null	(date 1732871164387)
++++ b/src/view/CustomizeView.java	(date 1732871164387)
+@@ -0,0 +1,154 @@
++package view;
++
++import entity.Food;
++import interface_adapter.customize.CustomizeController;
++import interface_adapter.customize.CustomizeState;
++import interface_adapter.customize.CustomizeViewModel;
++
++import javax.swing.*;
++import java.awt.*;
++import java.beans.PropertyChangeEvent;
++import java.beans.PropertyChangeListener;
++import java.util.*;
++import java.util.List;
++
++public class CustomizeView extends JPanel implements PropertyChangeListener {
++    private final String viewName = "customize food";
++    private final CustomizeViewModel customizeViewModel;
++    private CustomizeController customizeController;
++
++    // UI Components
++    private final JTextField searchField;
++    private final JTextField mealTypeField;
++    private final JTextArea[] foodDisplayAreas;
++    private final JButton[] addButtons;
++    private final JButton searchButton;
++    private final JButton readyButton;
++    private Food[] foodInBox;
++    private final Map<String, List<Food>> mealTypeToFoods;
++
++    public CustomizeView(CustomizeViewModel viewModel) {
++        this.customizeViewModel = viewModel;
++//        this.searchButton = searchButton;
++        this.customizeViewModel.addPropertyChangeListener(this);
++        this.foodInBox = new Food[3];
++        this.mealTypeToFoods = new HashMap<>();
++        mealTypeToFoods.put("B", new ArrayList<>());
++        mealTypeToFoods.put("L", new ArrayList<>());
++        mealTypeToFoods.put("S", new ArrayList<>());
++
++        searchField = new JTextField(20);
++        mealTypeField = new JTextField(20);
++        searchButton = new JButton("Search");
++        searchButton.addActionListener(e -> {
++            String searchQuery = searchField.getText();
++            String mealType = mealTypeField.getText();
++            if (customizeController != null && !searchQuery.isEmpty()) {
++                customizeController.searchFood(searchQuery, mealType);
++            }
++        });
++
++
++        // Set up layout
++        setLayout(new BorderLayout(10, 10));
++        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
++
++        // Search Panel
++        JPanel searchPanel = new JPanel(new BorderLayout(10, 0));
++        searchPanel.add(new JLabel("Food Keywords"), BorderLayout.WEST);
++        searchPanel.add(searchField, BorderLayout.CENTER);
++        searchPanel.add(searchButton, BorderLayout.EAST);
++
++        // Meal Type Panel
++        JPanel mealTypePanel = new JPanel(new BorderLayout(10, 0));
++        mealTypePanel.add(new JLabel("Type (B/L/S)"), BorderLayout.WEST);
++        mealTypePanel.add(mealTypeField, BorderLayout.CENTER);
++
++        // Results Panel
++        JPanel resultsPanel = new JPanel(new GridLayout(3, 1, 0, 10));
++        foodDisplayAreas = new JTextArea[3];
++        addButtons = new JButton[3];
++
++        for (int i = 0; i < 3; i++) {
++            JPanel foodItemPanel = new JPanel(new BorderLayout(10, 0));
++            foodDisplayAreas[i] = new JTextArea(2, 30);
++            foodDisplayAreas[i].setEditable(false);
++            addButtons[i] = new JButton("ADD");
++
++            JScrollPane scrollPane = new JScrollPane(foodDisplayAreas[i]);
++            foodItemPanel.add(scrollPane, BorderLayout.CENTER);
++            foodItemPanel.add(addButtons[i], BorderLayout.EAST);
++
++            resultsPanel.add(foodItemPanel);
++        }
++
++        // Ready Button
++        readyButton = new JButton("Ready to go");
++
++        // Add everything to main panel
++        JPanel topPanel = new JPanel(new GridLayout(2, 1, 0, 10));
++        topPanel.add(searchPanel);
++        topPanel.add(mealTypePanel);
++
++        add(topPanel, BorderLayout.NORTH);
++        add(resultsPanel, BorderLayout.CENTER);
++        add(readyButton, BorderLayout.SOUTH);
++
++        // Add listeners
++        setupActionListeners();
++    }
++
++    private void setupActionListeners() {
++        for (int i = 0; i < addButtons.length; i++) {
++            final int index = i;
++            addButtons[i].addActionListener(e -> addFoodToMeal(foodInBox[index]));
++        }
++
++        readyButton.addActionListener(e -> {
++            System.out.println(mealTypeToFoods);
++            mealTypeToFoods.clear();
++            mealTypeToFoods.put("B", new ArrayList<Food>());
++            mealTypeToFoods.put("L", new ArrayList<Food>());
++            mealTypeToFoods.put("S", new ArrayList<Food>());
++        });
++    }
++
++    private void addFoodToMeal(Food food) {
++        if (food == null) return;
++
++        String mealType = mealTypeField.getText().toUpperCase();
++        if (mealTypeToFoods.containsKey(mealType)) {
++            mealTypeToFoods.get(mealType).add(food);
++        }
++    }
++
++    @Override
++    public void propertyChange(PropertyChangeEvent evt) {
++        if ("state".equals(evt.getPropertyName())) {
++            CustomizeState state = (CustomizeState) evt.getNewValue();
++            this.foodInBox = state.getFoods();
++
++            for (int i = 0; i < foodInBox.length; i++) {
++                if (foodInBox[i] != null) {
++                    String displayText = String.format("Food: %s\nCategory: %s\nNutrients: %s",
++                            foodInBox[i].getLabel(),
++                            foodInBox[i].getCategory(),
++                            foodInBox[i].getNutrients());
++                    foodDisplayAreas[i].setText(displayText);
++                }
++            }
++        }
++    }
++
++    public String getSearchText() {
++        return searchField.getText();
++    }
++
++    public void setCustomizeController(CustomizeController controller) {
++        this.customizeController = controller;
++    }
++
++    public String getViewName() {
++        return viewName;
++    }
++}
+\ No newline at end of file

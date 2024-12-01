@@ -2,22 +2,26 @@ package interface_adapter.dashboard;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.info_collection.InfoCollectionViewModel;
+import interface_adapter.mealplanner.MealPlannerState;
+import interface_adapter.mealplanner.MealPlannerViewModel;
 import use_case.dashboard.DashboardOutputBoundary;
 import use_case.dashboard.DashboardOutputData;
-
-import java.util.EnumMap;
+import use_case.mealplanner.MealPlannerOutputData;
 
 public class DashboardPresenter implements DashboardOutputBoundary {
     private final DashboardViewModel dashboardViewModel;
     private final ViewManagerModel viewManagerModel;
     private final InfoCollectionViewModel infoCollectionViewModel;
+    private final MealPlannerViewModel mealPlannerViewModel;
 
     public DashboardPresenter(ViewManagerModel viewManagerModel,
                               DashboardViewModel dashboardViewModel,
-                              InfoCollectionViewModel infoCollectionViewModel) {
+                              InfoCollectionViewModel infoCollectionViewModel,
+                              MealPlannerViewModel mealPlannerViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.dashboardViewModel = dashboardViewModel;
-        this.infoCollectionViewModel = new InfoCollectionViewModel();
+        this.mealPlannerViewModel = mealPlannerViewModel;
+        this.infoCollectionViewModel = infoCollectionViewModel;
     }
 
     @Override
@@ -56,6 +60,25 @@ public class DashboardPresenter implements DashboardOutputBoundary {
     public void prepareSwitchToInfoCollection() {
         // Switch to info collection view
         viewManagerModel.setActiveView(infoCollectionViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void prepareSwitchToMealPlanner(DashboardOutputData outputData) {
+        // Switch to meal planner view
+//        MealPlannerState mealPlannerState = (MealPlannerState) mealPlannerViewModel.getState();
+//
+//        mealPlannerState.setUsername(outputData.getUsername());
+
+        MealPlannerState mealPlannerState = new MealPlannerState();
+        mealPlannerState.setUsername(outputData.getUsername());
+        mealPlannerState.setDailyCalorieGoal(outputData.getTdee());
+        mealPlannerState.setAllergies(outputData.getAllergies());
+
+        mealPlannerViewModel.setState(mealPlannerState);
+        mealPlannerViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(mealPlannerViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

@@ -1,0 +1,211 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2024-11-29,_4_19 p_m__[Changes]2" date="1732915199512" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29,_4_19 p_m__[Changes]2/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2024-11-29, 4:19 p.m. [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/login/LoginUserDataAccessInterface.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/login/LoginState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/SignupView$4.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/change_password/LoggedInViewModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/signup/SignupInteractor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/signup/SignupViewModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/info_collection/InfoCollectionInputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/logout/LogoutInputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/data_access/DBUserDataAccessObject.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/entity/Allergy.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/signup/SignupPresenter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/LoginView$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/login/LoginInputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/login/LoginViewModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/ViewManager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/info_collection/InfoCollectionUserDataAccessInterface.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/change_password/ChangePasswordUserDataAccessInterface.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/app/AppBuilder.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/change_password/ChangePasswordInputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/login/LoginInputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/logout/LogoutInteractor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/logout/LogoutPresenter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/logout/LogoutOutputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/SignupView$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/data_access/FileUserDataAccessObject.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/signup/SignupInputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/entity/User.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/app/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/signup/SignupInputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/LabelTextPanel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/SignupView$3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/login/LoginController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/logout/LogoutController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/entity/UserFactory.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/login/LoginInteractor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/SignupView$5.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/logout/LogoutUserDataAccessInterface.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/ViewModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/change_password/LoggedInState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/info_collection/InfoCollectionController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/info_collection/InfoCollectionInputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/ViewManagerModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/data_access/InMemoryUserDataAccessObject.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/change_password/ChangePasswordPresenter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/LoginView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/LoginView$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/signup/SignupUserDataAccessInterface.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/login/LoginOutputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/logout/LogoutOutputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/signup/SignupOutputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/signup/SignupController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/login/LoginOutputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/change_password/ChangePasswordController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/LoggedInView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/change_password/ChangePasswordOutputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/change_password/ChangePasswordOutputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/signup/SignupState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/logout/LogoutInputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/info_collection/InfoCollectionState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/LoggedInView$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/login/LoginPresenter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/change_password/ChangePasswordInteractor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/entity/CommonUser.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/interface_adapter/info_collection/InfoCollectionViewModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/SignupView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/view/SignupView$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/entity/CommonUserFactory.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/change_password/ChangePasswordInputBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/use_case/signup/SignupOutputData.class" />
+  </binary>
+</changelist>

@@ -19,11 +19,13 @@ public class Main {
                 .addInfoCollectionView()
                 .addDashboardView()
                 .addLoggedInView()
+                .addMealPlannerView()
 
                 .addSignupUseCase()
                 .addLoginUseCase()
                 .addInfoCollectionUseCase()
                 .addDashboardUseCase()
+                .addMealPlannerUseCase()
 //                .addChangePasswordUseCase()
                 .addLogoutUseCase()
                 .build();
