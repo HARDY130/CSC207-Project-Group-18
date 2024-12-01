@@ -6,15 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import data_access.FoodDatabaseAccessObject;
 import data_access.InMemoryUserDataAccessObject;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.LoggedInViewModel;
-import interface_adapter.customize.CustomizeWindowViewModel;
-import interface_adapter.customize.SearchFoodController;
-import interface_adapter.customize.SearchFoodPresenter;
-import interface_adapter.customize.SearchFoodViewModel;
+import interface_adapter.customize.CustomizeController;
+import interface_adapter.customize.CustomizePresenter;
+import interface_adapter.customize.CustomizeViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -23,10 +23,9 @@ import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
-import use_case.customize.SearchFoodInputBoundary;
-import use_case.customize.SearchFoodInterator;
-import use_case.customize.SearchFoodOutputBoundary;
-import use_case.dashboard.DashboardDataAccessInterface;
+import use_case.customize.CustomizeInputBoundary;
+import use_case.customize.CustomizeInteractor;
+import use_case.customize.CustomizeOutputBoundary;;
 import use_case.dashboard.DashboardInputBoundary;
 import use_case.dashboard.DashboardInteractor;
 import use_case.dashboard.DashboardOutputBoundary;
@@ -43,8 +42,6 @@ import view.*;
 import interface_adapter.info_collection.*;
 import interface_adapter.dashboard.*;
 import use_case.info_collection.*;
-import view.FoodSearchView.customize_view.CustomizeWindowView;
-import view.FoodSearchView.search_foods_view.SearchFoodView;
 
 
 /**
@@ -68,6 +65,7 @@ public class AppBuilder {
 
     // thought question: is the hard dependency below a problem?
     private final InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
+    private final FoodDatabaseAccessObject foodDatabaseAccessObject;
 
     private SignupView signupView;
     private SignupViewModel signupViewModel;
@@ -80,13 +78,12 @@ public class AppBuilder {
     private DashboardView dashboardView;
     private DashboardViewModel dashboardViewModel;
     private DashboardController dashboardController;
-    private SearchFoodViewModel searchFoodViewModel;
-    private SearchFoodView searchFoodView;
-    private CustomizeWindowView customizeWindowView;
-    private CustomizeWindowViewModel customizeWindowViewModel;
+    private CustomizeView customizeView;
+    private CustomizeViewModel customizeViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
+        foodDatabaseAccessObject = new FoodDatabaseAccessObject();
     }
 
     /**
@@ -214,11 +211,29 @@ public class AppBuilder {
         return this;
     }
 
-    public AppBuilder addCustomizeWindowView() {
-        customizeWindowViewModel = new CustomizeWindowViewModel();
-        dashboardViewModel = new DashboardViewModel();
-        customizeWindowView = new CustomizeWindowView();
-        cardPanel.add(customizeWindowView, customizeWindowView.getViewName());
+
+
+    public AppBuilder addCustomizeUseCase() {
+        FoodDatabaseAccessObject foodDatabaseAccessObject = new FoodDatabaseAccessObject();
+
+        CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
+                customizeViewModel,
+                viewManagerModel,
+                dashboardViewModel
+        );
+
+        CustomizeInputBoundary customizeInteractor = new CustomizeInteractor(
+                foodDatabaseAccessObject,
+                customizePresenter,
+                userDataAccessObject
+        );
+
+        CustomizeController customizeController = new CustomizeController(customizeInteractor);
+
+        // Update the view with the controller
+        CustomizeView customizeView = new CustomizeView(customizeViewModel, customizeController);
+        cardPanel.add(customizeView, customizeView.getViewName());
+
         return this;
     }
 
@@ -275,6 +290,34 @@ public class AppBuilder {
 //        return application;
 //    }
 
+//    public AppBuilder addDashboardView() {
+//        dashboardViewModel = new DashboardViewModel();
+//        dashboardView = new DashboardView(dashboardViewModel);
+//        cardPanel.add(dashboardView, dashboardView.getViewName());
+//        return this;
+//    }
+//
+//    public AppBuilder addDashboardUseCase() {
+//        DashboardOutputBoundary outputBoundary = new DashboardPresenter(
+//                viewManagerModel,
+//                dashboardViewModel,
+//                infoCollectionViewModel,
+//                customizeViewModel
+//        );
+//
+//        DashboardDataAccessInterface userDataAccessObject =
+//                (DashboardDataAccessInterface) this.userDataAccessObject;
+//
+//        DashboardInputBoundary interactor = new DashboardInteractor(
+//                userDataAccessObject,
+//                outputBoundary
+//        );
+//
+//        dashboardController = new DashboardController(interactor);
+//        dashboardView.setDashboardController(dashboardController);
+//        return this;
+//    }
+
     public AppBuilder addDashboardView() {
         dashboardViewModel = new DashboardViewModel();
         dashboardView = new DashboardView(dashboardViewModel);
@@ -287,21 +330,91 @@ public class AppBuilder {
                 viewManagerModel,
                 dashboardViewModel,
                 infoCollectionViewModel,
-                customizeWindowViewModel
+                customizeViewModel  // Pass the customizeViewModel for navigation
         );
-
-        DashboardDataAccessInterface userDataAccessObject =
-                (DashboardDataAccessInterface) this.userDataAccessObject;
 
         DashboardInputBoundary interactor = new DashboardInteractor(
                 userDataAccessObject,
                 outputBoundary
         );
 
-        dashboardController = new DashboardController(interactor);
-        dashboardView.setDashboardController(dashboardController);
+        DashboardController controller = new DashboardController(interactor);
+        dashboardView.setDashboardController(controller);
         return this;
     }
+
+    public AppBuilder addCustomizeView() {
+        customizeViewModel = new CustomizeViewModel();
+        CustomizeController customizeController = createCustomizeUseCase();
+        CustomizeView customizeView = new CustomizeView(customizeViewModel, customizeController);
+        cardPanel.add(customizeView, customizeView.getViewName());
+        return this;
+    }
+
+    private CustomizeController createCustomizeUseCase() {
+        CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
+                customizeViewModel,
+                viewManagerModel,
+                dashboardViewModel
+        );
+
+        CustomizeInputBoundary customizeInteractor = new CustomizeInteractor(
+                foodDatabaseAccessObject,
+                customizePresenter,
+                userDataAccessObject
+        );
+
+        return new CustomizeController(customizeInteractor);
+    }
+
+//    public AppBuilder addDashboardView() {
+//        dashboardViewModel = new DashboardViewModel();
+//        dashboardView = new DashboardView(dashboardViewModel);
+//        cardPanel.add(dashboardView, dashboardView.getViewName());
+//        return this;
+//    }
+//
+//    public AppBuilder addCustomizeView() {
+//        customizeViewModel = new CustomizeViewModel();
+//        CustomizeController customizeController = addCustomizeUseCase();
+//        CustomizeView customizeView = new CustomizeView(customizeViewModel, customizeController);
+//        cardPanel.add(customizeView, customizeView.getViewName());
+//        return this;
+//    }
+//
+//    private CustomizeController addCustomizeUseCase() {
+//        CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
+//                customizeViewModel,
+//                viewManagerModel,
+//                dashboardViewModel
+//        );
+//
+//        CustomizeInputBoundary customizeInteractor = new CustomizeInteractor(
+//                foodDatabaseAccessObject,
+//                customizePresenter,
+//                userDataAccessObject
+//        );
+//
+//        return new CustomizeController(customizeInteractor);
+//    }
+//
+//    public AppBuilder addDashboardUseCase() {
+//        DashboardOutputBoundary outputBoundary = new DashboardPresenter(
+//                viewManagerModel,
+//                dashboardViewModel,
+//                infoCollectionViewModel,
+//                customizeViewModel
+//        );
+//
+//        DashboardInputBoundary interactor = new DashboardInteractor(
+//                userDataAccessObject,
+//                outputBoundary
+//        );
+//
+//        DashboardController controller = new DashboardController(interactor);
+//        dashboardView.setDashboardController(controller);
+//        return this;
+//    }
 
     // Make sure InfoCollectionView can transition to Dashboard
     public AppBuilder addInfoCollectionUseCase() {

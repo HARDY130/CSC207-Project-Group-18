@@ -1,10 +1,8 @@
 package interface_adapter.dashboard;
 
-import entity.Allergy;
-import entity.Food;
-import entity.MealType;
 import use_case.dashboard.DashboardInputBoundary;
 import use_case.dashboard.DashboardInputData;
+import entity.Allergy;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -18,14 +16,11 @@ public class DashboardController {
 
     public void execute(String username, LocalDate birthDate, String gender,
                         int weight, int height, double activityMultiplier,
-                        Set<Allergy> allergies, double consumedCalories,
-                        double consumedCarbs, double consumedProtein,
-                        double consumedFat) {
+                        Set<Allergy> allergies) {
 
         DashboardInputData dashboardInputData = new DashboardInputData(
-                username, birthDate, gender, weight, height, activityMultiplier,
-                allergies, consumedCalories, consumedCarbs, consumedProtein, consumedFat
-        );
+                username, birthDate, gender, weight, height,
+                activityMultiplier, allergies);
 
         dashboardUseCaseInteractor.execute(dashboardInputData);
     }
