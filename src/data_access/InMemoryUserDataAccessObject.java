@@ -1,17 +1,21 @@
 package data_access;
 
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import entity.CommonUser;
 import entity.Food;
 import entity.MealType;
 import entity.User;
-import java.util.HashMap;
-import java.util.Map;
+import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.dashboard.DashboardDataAccessInterface;
 import use_case.info_collection.InfoCollectionUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
-import use_case.meal_planner.MealStorageDataAccessInterface;
+import use_case.mealplanner.MealPlannerDataAccessInterface;
+import use_case.mealplanner.MealStorageDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 /**
@@ -19,11 +23,12 @@ import use_case.signup.SignupUserDataAccessInterface;
  * NOT persist data between runs of the program.
  */
 public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface,
-    LoginUserDataAccessInterface,
-    LogoutUserDataAccessInterface,
-    InfoCollectionUserDataAccessInterface,
-    DashboardDataAccessInterface,
-    MealStorageDataAccessInterface {
+        LoginUserDataAccessInterface,
+        LogoutUserDataAccessInterface,
+        InfoCollectionUserDataAccessInterface,
+        DashboardDataAccessInterface,
+//        MealPlannerDataAccessInterface,
+        MealStorageDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
     private final Map<String, Map<MealType, Map<String, Food>>> userMeals = new HashMap<>();
@@ -45,14 +50,15 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         return users.get(username);
     }
 
-    @Override
-    public String getCurrentUsername() {
-        return currentUsername;
-    }
 
     @Override
     public void setCurrentUsername(String name) {
         this.currentUsername = name;
+    }
+
+    @Override
+    public String getCurrentUsername() {
+        return currentUsername;
     }
 
     @Override
@@ -62,42 +68,11 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
                                         double consumedProtein,
                                         double consumedFat) {
         userProgress.put(username, new NutritionProgress(
-            consumedCalories, consumedCarbs, consumedProtein, consumedFat
+                consumedCalories, consumedCarbs, consumedProtein, consumedFat
         ));
     }
 
-    @Override
-    public void addMealToUser(String username, String mealType, Food food) {
-        User user = users.get(username);
-        if (user instanceof CommonUser) {
-            ((CommonUser) user).addMeal(MealType.valueOf(mealType.toUpperCase()), food.getLabel(), food);
-            updateUserNutritionProgress(username);
-        }
-    }
-
-    private void updateUserNutritionProgress(String username) {
-        CommonUser user = (CommonUser) users.get(username);
-        if (user != null) {
-            double totalCalories = 0;
-            double totalCarbs = 0;
-            double totalProtein = 0;
-            double totalFat = 0;
-
-            Map<MealType, Map<String, Food>> meals = user.getAllMeals();
-            for (Map<String, Food> mealFoods : meals.values()) {
-                for (Food food : mealFoods.values()) {
-                    Map<String, Double> nutrients = food.getNutrients();
-                    totalCalories += nutrients.getOrDefault("ENERC_KCAL", 0.0);
-                    totalCarbs += nutrients.getOrDefault("CHOCDF", 0.0);
-                    totalProtein += nutrients.getOrDefault("PROCNT", 0.0);
-                    totalFat += nutrients.getOrDefault("FAT", 0.0);
-                }
-            }
-
-            updateNutritionProgress(username, totalCalories, totalCarbs, totalProtein, totalFat);
-        }
-    }
-
+    // Class to store nutrition progress
     private static class NutritionProgress {
         double calories, carbs, protein, fat;
 
@@ -106,6 +81,26 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
             this.carbs = carbs;
             this.protein = protein;
             this.fat = fat;
+        }
+    }
+
+    @Override
+    public Map<MealType, Map<String, Food>> getUserMeals(String username) {
+        return userMeals.getOrDefault(username, new EnumMap<>(MealType.class));
+    }
+
+//    @Override
+//    public Map<MealType, List<Food>> generateMealPlan(CommonUser user, List<String> selectedDiets) throws Exception {
+//        // This should actually be in a separate MealPlannerDataAccessObject
+//        // that handles API calls to the meal planning service
+//        throw new UnsupportedOperationException("Meal planning should be handled by MealPlannerDataAccessObject");
+//    }
+
+    @Override
+    public void addMealToUser(String username, String mealType, Food food) {
+        User user = users.get(username);
+        if (user instanceof CommonUser) {
+            ((CommonUser) user).addMeal(MealType.valueOf(mealType.toUpperCase()), food.getLabel(), food);
         }
     }
 }

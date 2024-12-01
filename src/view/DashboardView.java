@@ -1,23 +1,9 @@
 package view;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
-import interface_adapter.dashboard.DashboardController;
-import interface_adapter.dashboard.DashboardState;
-import interface_adapter.dashboard.DashboardViewModel;
+import interface_adapter.dashboard.*;
 import interface_adapter.logout.LogoutController;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -26,6 +12,9 @@ import java.beans.PropertyChangeListener;
 public class DashboardView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "dashboard";
     private final DashboardViewModel dashboardViewModel;
+    private DashboardController dashboardController;
+    private LogoutController logoutController;
+
     private final JLabel titleLabel;
     private final JLabel welcomeLabel;
     private final JLabel activityLabel;
@@ -35,8 +24,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
     private final JButton recordMealButton;
     private final JButton logoutButton;
     private final JLabel errorLabel;
-    private DashboardController dashboardController;
-    private LogoutController logoutController;
 
     public DashboardView(DashboardViewModel viewModel) {
         this.dashboardViewModel = viewModel;
@@ -45,6 +32,7 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
+        // Initialize components
         titleLabel = new JLabel(DashboardViewModel.TITLE_LABEL);
         welcomeLabel = new JLabel();
         activityLabel = new JLabel();
@@ -52,11 +40,13 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         updateProfileButton = new JButton(DashboardViewModel.UPDATE_PROFILE_BUTTON_LABEL);
         generateMealButton = new JButton(DashboardViewModel.GENERATE_MEAL_BUTTON_LABEL);
         recordMealButton = new JButton(DashboardViewModel.RECORD_MEAL_BUTTON_LABEL);
-        logoutButton = new JButton(DashboardViewModel.LOGOUT_BUTTON_LABEL);
+        logoutButton = new JButton("Logout");
         errorLabel = new JLabel();
 
         styleComponents();
+
         layoutComponents();
+
         addListeners();
     }
 
@@ -65,7 +55,9 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         welcomeLabel.setFont(new Font(welcomeLabel.getFont().getName(), Font.BOLD, 18));
+
         activityLabel.setFont(new Font(activityLabel.getFont().getName(), Font.PLAIN, 14));
+
         errorLabel.setForeground(Color.RED);
         errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -79,11 +71,9 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
     private void layoutComponents() {
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
-
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         activityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         headerPanel.add(titleLabel);
         headerPanel.add(Box.createVerticalStrut(10));
         headerPanel.add(welcomeLabel);
@@ -97,6 +87,7 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         buttonPanel.add(recordMealButton);
         buttonPanel.add(logoutButton);
 
+        // Add all the components of the panel
         add(headerPanel, BorderLayout.NORTH);
         add(nutritionPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
@@ -111,40 +102,85 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        DashboardState state = dashboardViewModel.getState();
-
         if (evt.getSource() == updateProfileButton) {
             dashboardController.onUpdateProfile();
         } else if (evt.getSource() == generateMealButton) {
-            dashboardController.onGenerateMeal(state.getUsername());
+            dashboardController.onGenerateMeal(((DashboardState) dashboardViewModel.getState()).getUsername());
         } else if (evt.getSource() == recordMealButton) {
-            dashboardController.onCustomize();
+            dashboardController.onCustomize();  // Changed from onRecordMeal to onCustomize
         } else if (evt.getSource() == logoutButton && logoutController != null) {
-            logoutController.execute(state.getUsername());
+            String username = welcomeLabel.getText().replace("Welcome, ", "");
+            logoutController.execute(username);
         }
     }
+
+//    @Override
+//    public void propertyChange(PropertyChangeEvent evt) {
+//        if (evt.getPropertyName().equals("state")) {
+//            updateFromViewModel();
+//        }
+//    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("state")) {
-            DashboardState state = (DashboardState) evt.getNewValue();
-            if (state != null) {
-                welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
-                activityLabel.setText("Activity Level: " + state.getActivityLevel());
-                errorLabel.setText(state.getError());
-
-                nutritionPanel.updateProgress(
-                    state.getCaloriePercentage(),
-                    state.getCarbsPercentage(),
-                    state.getProteinPercentage(),
-                    state.getFatPercentage(),
-                    state.getFormattedCalorieProgress(),
-                    state.getFormattedCarbsProgress(),
-                    state.getFormattedProteinProgress(),
-                    state.getFormattedFatProgress()
-                );
-            }
+            DashboardState state = (DashboardState) dashboardViewModel.getState();
+            updateFromViewModel(state);
         }
+    }
+
+//    private void updateFromViewModel() {
+//        DashboardState state = (DashboardState) dashboardViewModel.getState();
+//
+//        if (state != null) {
+//            welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
+//            activityLabel.setText("Activity Level: " + state.getActivityLevel());
+//            errorLabel.setText(state.getError());
+//            nutritionPanel.updateProgress(
+//                    state.getCaloriePercentage(),
+//                    state.getCarbsPercentage(),
+//                    state.getProteinPercentage(),
+//                    state.getFatPercentage(),
+//                    state.getFormattedCalorieProgress(),
+//                    state.getFormattedCarbsProgress(),
+//                    state.getFormattedProteinProgress(),
+//                    state.getFormattedFatProgress()
+//            );
+//        }
+//    }
+
+    private void updateFromViewModel(DashboardState state) {
+        if (state != null) {
+            // Update welcome and activity labels
+            welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
+            activityLabel.setText("Activity Level: " + state.getActivityLevel());
+
+            // Calculate percentages based on goals and consumed values
+            double caloriePercent = calculatePercentage(state.getConsumedCalories(), state.getDailyCalorieGoal());
+            double carbsPercent = calculatePercentage(state.getConsumedCarbs(), state.getCarbsGoalGrams());
+            double proteinPercent = calculatePercentage(state.getConsumedProtein(), state.getProteinGoalGrams());
+            double fatPercent = calculatePercentage(state.getConsumedFat(), state.getFatGoalGrams());
+
+            // Format progress text
+            String calorieText = String.format("%.0f / %.0f kcal",
+                    state.getConsumedCalories(), state.getDailyCalorieGoal());
+            String carbsText = String.format("%.1f / %.1f g",
+                    state.getConsumedCarbs(), state.getCarbsGoalGrams());
+            String proteinText = String.format("%.1f / %.1f g",
+                    state.getConsumedProtein(), state.getProteinGoalGrams());
+            String fatText = String.format("%.1f / %.1f g",
+                    state.getConsumedFat(), state.getFatGoalGrams());
+
+            // Update progress rings
+            nutritionPanel.updateProgress(
+                    (int)caloriePercent, (int)carbsPercent,
+                    (int)proteinPercent, (int)fatPercent,
+                    calorieText, carbsText, proteinText, fatText);
+        }
+    }
+
+    private double calculatePercentage(double current, double goal) {
+        return goal > 0 ? Math.min(100, (current / goal) * 100) : 0;
     }
 
     public void setDashboardController(DashboardController controller) {
