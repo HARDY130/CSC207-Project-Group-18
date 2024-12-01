@@ -184,8 +184,13 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class DashboardState {
-    // User information
+    // User profile information
     private String username = "";
+    private LocalDate birthDate;
+    private String gender = "";
+    private int weight = 0;
+    private int height = 0;
+    private double activityMultiplier = 1.2;
     private String activityLevel = "";
     private Set<Allergy> allergies = new HashSet<>();
 
@@ -213,21 +218,43 @@ public class DashboardState {
     private String successMessage = "";
     private boolean isLoading = false;
 
+    // Default constructor
+    public DashboardState() {
+        // Initialize empty meals lists for each meal type
+        for (MealType type : MealType.values()) {
+            meals.put(type, new ArrayList<>());
+        }
+    }
+
     // Copy constructor
     public DashboardState(DashboardState copy) {
+        // User profile information
         this.username = copy.username;
+        this.birthDate = copy.birthDate;
+        this.gender = copy.gender;
+        this.weight = copy.weight;
+        this.height = copy.height;
+        this.activityMultiplier = copy.activityMultiplier;
         this.activityLevel = copy.activityLevel;
         this.allergies = new HashSet<>(copy.allergies);
+
+        // Calculated values
         this.bmr = copy.bmr;
         this.tdee = copy.tdee;
+
+        // Nutrition goals
         this.dailyCalorieGoal = copy.dailyCalorieGoal;
         this.carbsGoalGrams = copy.carbsGoalGrams;
         this.proteinGoalGrams = copy.proteinGoalGrams;
         this.fatGoalGrams = copy.fatGoalGrams;
+
+        // Current progress
         this.consumedCalories = copy.consumedCalories;
         this.consumedCarbs = copy.consumedCarbs;
         this.consumedProtein = copy.consumedProtein;
         this.consumedFat = copy.consumedFat;
+
+        // UI state
         this.error = copy.error;
         this.successMessage = copy.successMessage;
         this.isLoading = copy.isLoading;
@@ -239,21 +266,53 @@ public class DashboardState {
         }
     }
 
-    // Default constructor
-    public DashboardState() {
-        // Initialize empty meals lists for each meal type
-        for (MealType type : MealType.values()) {
-            meals.put(type, new ArrayList<>());
-        }
-    }
-
-    // Getters and setters for user information
+    // Getters and setters for user profile information
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public double getActivityMultiplier() {
+        return activityMultiplier;
+    }
+
+    public void setActivityMultiplier(double activityMultiplier) {
+        this.activityMultiplier = activityMultiplier;
     }
 
     public String getActivityLevel() {
@@ -432,37 +491,5 @@ public class DashboardState {
 
     public String getFormattedFatProgress() {
         return String.format("%.1f / %.1f g", consumedFat, fatGoalGrams);
-    }
-
-    // Meal management helper methods
-    public void addFoodToMeal(MealType mealType, Food food) {
-        meals.computeIfAbsent(mealType, k -> new ArrayList<>()).add(food);
-        updateNutritionProgress();
-    }
-
-    public void removeFoodFromMeal(MealType mealType, Food food) {
-        if (meals.containsKey(mealType)) {
-            meals.get(mealType).remove(food);
-            updateNutritionProgress();
-        }
-    }
-
-    private void updateNutritionProgress() {
-        // Reset progress
-        consumedCalories = 0;
-        consumedCarbs = 0;
-        consumedProtein = 0;
-        consumedFat = 0;
-
-        // Calculate totals from all meals
-        for (List<Food> mealFoods : meals.values()) {
-            for (Food food : mealFoods) {
-                Map<String, Double> nutrients = food.getNutrients();
-                consumedCalories += nutrients.getOrDefault("ENERC_KCAL", 0.0);
-                consumedCarbs += nutrients.getOrDefault("CHOCDF", 0.0);
-                consumedProtein += nutrients.getOrDefault("PROCNT", 0.0);
-                consumedFat += nutrients.getOrDefault("FAT", 0.0);
-            }
-        }
     }
 }

@@ -5,6 +5,7 @@ import entity.MealType;
 import interface_adapter.customize.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -73,25 +74,40 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
     }
 
     private void setupListeners() {
-        searchButton.addActionListener(e -> {
-            String searchQuery = searchField.getText().trim();
-            CustomizeState state = customizeViewModel.getState();
-            customizeController.searchFood(state.getUsername(), searchQuery);
-        });
+        searchButton.setActionCommand("search");
+        addToMealButton.setActionCommand("add_meal");
+        returnButton.setActionCommand("return");
 
-        addToMealButton.addActionListener(e -> {
-            Food selectedFood = searchResultsList.getSelectedValue();
-            if (selectedFood != null) {
-                MealType selectedMealType = (MealType) mealTypeComboBox.getSelectedItem();
-                CustomizeState state = customizeViewModel.getState();
-                customizeController.addFoodToMeal(state.getUsername(), selectedFood, selectedMealType);
-            }
-        });
+        searchButton.addActionListener(this);
+        addToMealButton.addActionListener(this);
+        returnButton.addActionListener(this);
+    }
 
-        returnButton.addActionListener(e -> {
-            CustomizeState state = customizeViewModel.getState();
-            customizeController.returnToDashboard(state.getUsername());
-        });
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+        CustomizeState state = customizeViewModel.getState();
+
+        switch (command) {
+            case "search":
+                String searchQuery = searchField.getText().trim();
+                if (!searchQuery.isEmpty()) {
+                    customizeController.searchFood(state.getUsername(), searchQuery);
+                }
+                break;
+
+            case "add_meal":
+                Food selectedFood = searchResultsList.getSelectedValue();
+                if (selectedFood != null) {
+                    MealType selectedMealType = (MealType) mealTypeComboBox.getSelectedItem();
+                    customizeController.addFoodToMeal(state.getUsername(), selectedFood, selectedMealType);
+                }
+                break;
+
+            case "return":
+                customizeController.returnToDashboard(state.getUsername());
+                break;
+        }
     }
 
     @Override
@@ -105,15 +121,29 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
     private void updateView(CustomizeState state) {
         if (state.getError() != null) {
             errorLabel.setText(state.getError());
+            errorLabel.setForeground(Color.RED);
+        } else if (state.getSuccessMessage() != null) {
+            errorLabel.setText(state.getSuccessMessage());
+            errorLabel.setForeground(new Color(0, 128, 0)); // Dark green
         } else {
             errorLabel.setText("");
-            listModel.clear();
-            List<Food> searchResults = state.getSearchResults();
-            if (searchResults != null) {
-                for (Food food : searchResults) {
-                    listModel.addElement(food);
-                }
+        }
+
+        listModel.clear();
+        List<Food> searchResults = state.getSearchResults();
+        if (searchResults != null && !searchResults.isEmpty()) {
+            for (Food food : searchResults) {
+                listModel.addElement(food);
             }
+        }
+
+        // Handle loading state
+        if (state.isLoading()) {
+            searchButton.setEnabled(false);
+            searchButton.setText("Searching...");
+        } else {
+            searchButton.setEnabled(true);
+            searchButton.setText("Search");
         }
     }
 

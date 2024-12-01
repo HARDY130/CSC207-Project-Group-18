@@ -107,7 +107,7 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         } else if (evt.getSource() == generateMealButton) {
             dashboardController.onGenerateMeal();
         } else if (evt.getSource() == recordMealButton) {
-            dashboardController.onRecordMeal();
+            dashboardController.onCustomize();  // Changed from onRecordMeal to onCustomize
         } else if (evt.getSource() == logoutButton && logoutController != null) {
             String username = welcomeLabel.getText().replace("Welcome, ", "");
             logoutController.execute(username);

@@ -3,7 +3,6 @@ package interface_adapter.dashboard;
 import use_case.dashboard.DashboardInputBoundary;
 import use_case.dashboard.DashboardInputData;
 import entity.Allergy;
-
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -33,7 +32,8 @@ public class DashboardController {
         dashboardUseCaseInteractor.switchToMealPlanner();
     }
 
-    public void onRecordMeal() {
+    // This is the method called when "Record Meal" button is clicked
+    public void onCustomize() {
         dashboardUseCaseInteractor.switchToCustomize();
     }
 }

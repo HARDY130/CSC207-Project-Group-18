@@ -84,6 +84,7 @@ public class AppBuilder {
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
         foodDatabaseAccessObject = new FoodDatabaseAccessObject();
+        customizeViewModel = new CustomizeViewModel();
     }
 
     /**
@@ -210,33 +211,6 @@ public class AppBuilder {
         cardPanel.add(infoCollectionView, infoCollectionView.getViewName());
         return this;
     }
-
-
-
-    public AppBuilder addCustomizeUseCase() {
-        FoodDatabaseAccessObject foodDatabaseAccessObject = new FoodDatabaseAccessObject();
-
-        CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
-                customizeViewModel,
-                viewManagerModel,
-                dashboardViewModel
-        );
-
-        CustomizeInputBoundary customizeInteractor = new CustomizeInteractor(
-                foodDatabaseAccessObject,
-                customizePresenter,
-                userDataAccessObject
-        );
-
-        CustomizeController customizeController = new CustomizeController(customizeInteractor);
-
-        // Update the view with the controller
-        CustomizeView customizeView = new CustomizeView(customizeViewModel, customizeController);
-        cardPanel.add(customizeView, customizeView.getViewName());
-
-        return this;
-    }
-
 //    public AppBuilder addCustomizeUseCase() {
 //        SearchFoodInputBoundary interactor = new SearchFoodInterator(searchFoodViewModel);
 //        SearchFoodController searchFoodController = new SearchFoodController(interactor);

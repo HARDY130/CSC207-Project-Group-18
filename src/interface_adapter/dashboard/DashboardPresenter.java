@@ -148,12 +148,13 @@ public class DashboardPresenter implements DashboardOutputBoundary {
 
     @Override
     public void prepareSwitchToCustomize() {
-        // Transfer relevant state to customize view
+        // Transfer current user data to customize view
         CustomizeState customizeState = customizeViewModel.getState();
         DashboardState dashboardState = dashboardViewModel.getState();
         customizeState.setUsername(dashboardState.getUsername());
         customizeViewModel.setState(customizeState);
 
+        // Switch to customize view
         viewManagerModel.setActiveView(customizeViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
