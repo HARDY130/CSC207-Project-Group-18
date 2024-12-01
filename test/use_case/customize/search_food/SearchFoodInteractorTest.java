@@ -90,5 +90,32 @@ class SearchFoodInteractorTest {
 
         interactor.execute(inputData);
     }
-}
 
+    @Test
+    void errorTest() {
+        SearchFoodInputData inputData = new SearchFoodInputData("Apple");
+
+        FoodDatabaseAccessObject databaseAccessObject = new FoodDatabaseAccessObject() {
+            @Override
+            public JSONObject searchFoodWithIngredient(String ingredient) {
+                throw new RuntimeException("Mock database error");
+            }
+        };
+
+        SearchFoodOutputBoundary errorPresenter = new SearchFoodOutputBoundary() {
+            @Override
+            public void prepareSuccessView(SearchFoodOutputData outputData) {
+                fail("Use case should not succeed in this scenario.");
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                assertEquals("Mock database error", error, "Error message should match the exception thrown.");
+            }
+        };
+
+        SearchFoodInteractor interactor = new SearchFoodInteractor(databaseAccessObject, errorPresenter);
+
+        assertThrows(RuntimeException.class, () -> interactor.execute(inputData));
+    }
+}
