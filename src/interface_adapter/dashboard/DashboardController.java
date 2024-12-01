@@ -13,13 +13,10 @@ public class DashboardController {
         this.dashboardUseCaseInteractor = dashboardUseCaseInteractor;
     }
 
-    public void execute(String username, LocalDate birthDate, String gender,
-                        int weight, int height, double activityMultiplier,
-                        Set<Allergy> allergies) {
+    public void execute(String username) {
 
         DashboardInputData dashboardInputData = new DashboardInputData(
-                username, birthDate, gender, weight, height,
-                activityMultiplier, allergies);
+                username);
 
         dashboardUseCaseInteractor.execute(dashboardInputData);
     }

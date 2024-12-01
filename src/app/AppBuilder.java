@@ -293,9 +293,32 @@ public class AppBuilder {
 //    }
 
     public AppBuilder addDashboardView() {
+//        dashboardViewModel = new DashboardViewModel();
+//        dashboardView = new DashboardView(dashboardViewModel);
+//        cardPanel.add(dashboardView, dashboardView.getViewName());
+//        return this;
         dashboardViewModel = new DashboardViewModel();
+
+        // Create the dashboard controller first
+        DashboardOutputBoundary outputBoundary = new DashboardPresenter(
+                viewManagerModel,
+                dashboardViewModel,
+                infoCollectionViewModel,
+                customizeViewModel
+        );
+
+        DashboardInputBoundary interactor = new DashboardInteractor(
+                userDataAccessObject,
+                outputBoundary
+        );
+
+        dashboardController = new DashboardController(interactor);  // Save this as class field
+
+        // Then create the view and wire the controller
         dashboardView = new DashboardView(dashboardViewModel);
+        dashboardView.setDashboardController(dashboardController);
         cardPanel.add(dashboardView, dashboardView.getViewName());
+
         return this;
     }
 
@@ -319,16 +342,18 @@ public class AppBuilder {
 
     public AppBuilder addCustomizeView() {
         customizeViewModel = new CustomizeViewModel();
-        customizeView = new CustomizeView(customizeViewModel);
+        CustomizeController customizeController = createCustomizeUseCase();
+        CustomizeView customizeView = new CustomizeView(customizeViewModel, customizeController, viewManagerModel);
         cardPanel.add(customizeView, customizeView.getViewName());
         return this;
     }
 
-    public AppBuilder addCustomizeUseCase() {
+    private CustomizeController createCustomizeUseCase() {
         CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
                 customizeViewModel,
                 viewManagerModel,
-                dashboardViewModel
+                dashboardViewModel,
+                dashboardController
         );
 
         CustomizeInputBoundary customizeInteractor = new CustomizeInteractor(
@@ -337,9 +362,7 @@ public class AppBuilder {
                 userDataAccessObject
         );
 
-        CustomizeController customizeController = new CustomizeController(customizeInteractor);
-        customizeView.setCustomizeController(customizeController);
-        return this;
+        return new CustomizeController(customizeInteractor);
     }
 
 //    public AppBuilder addDashboardView() {

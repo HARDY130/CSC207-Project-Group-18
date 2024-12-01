@@ -70,7 +70,7 @@ public class DashboardOutputData {
     private final double carbsGoal;
     private final double proteinGoal;
     private final double fatGoal;
-    private final Map<MealType, List<Food>> meals;
+    private final Map<MealType, Map<String, Food>> meals;
     private final double consumedCalories;
     private final double consumedCarbs;
     private final double consumedProtein;
@@ -82,7 +82,7 @@ public class DashboardOutputData {
 
     public DashboardOutputData(String username, double bmr, double tdee,
                                double carbsGoal, double proteinGoal, double fatGoal,
-                               Map<MealType, List<Food>> meals,
+                               Map<MealType, Map<String, Food>> meals,
                                double consumedCalories, double consumedCarbs,
                                double consumedProtein, double consumedFat,
                                String activityLevel, Set<Allergy> allergies,
@@ -111,7 +111,7 @@ public class DashboardOutputData {
     public double getCarbsGoal() { return carbsGoal; }
     public double getProteinGoal() { return proteinGoal; }
     public double getFatGoal() { return fatGoal; }
-    public Map<MealType, List<Food>> getMeals() { return meals; }
+    public Map<MealType, Map<String, Food>> getMeals() { return meals; }
     public double getConsumedCalories() { return consumedCalories; }
     public double getConsumedCarbs() { return consumedCarbs; }
     public double getConsumedProtein() { return consumedProtein; }
