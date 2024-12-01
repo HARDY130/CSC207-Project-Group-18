@@ -105,7 +105,7 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         if (evt.getSource() == updateProfileButton) {
             dashboardController.onUpdateProfile();
         } else if (evt.getSource() == generateMealButton) {
-            dashboardController.onGenerateMeal();
+            dashboardController.onGenerateMeal(((DashboardState) dashboardViewModel.getState()).getUsername());
         } else if (evt.getSource() == recordMealButton) {
             dashboardController.onCustomize();  // Changed from onRecordMeal to onCustomize
         } else if (evt.getSource() == logoutButton && logoutController != null) {

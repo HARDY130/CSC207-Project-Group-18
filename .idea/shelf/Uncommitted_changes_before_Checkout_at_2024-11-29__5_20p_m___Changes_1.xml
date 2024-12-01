@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2024-11-29,_5_20 p_m__[Changes]1" date="1732918860405" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29,_5_20 p_m__[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2024-11-29, 5:20 p.m. [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/app/AppBuilder.class" />
+    <option name="AFTER_PATH" value="target/classes/app/AppBuilder.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29,_5_20 p_m__[Changes]1/AppBuilder.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/app/Main.class" />
+    <option name="AFTER_PATH" value="target/classes/app/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29,_5_20 p_m__[Changes]1/Main.class" />
+  </binary>
+</changelist>
