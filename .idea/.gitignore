@@ -1,17 +1,8 @@
-# Build artifacts
-target/
-
-# IntelliJ IDEA
-.idea/
-.idea/shelf/
-*.iml
-
-# Logs and temporary files
-*.log
-*.tmp
-
-# macOS system files #
-.DS_Store
-
-# Windows system files
-Thumbs.db
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
