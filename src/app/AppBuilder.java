@@ -37,6 +37,11 @@ import view.LoggedInView;
 import view.LoginView;
 import view.SignupView;
 import view.ViewManager;
+import interface_adapter.info_collection.*;
+import interface_adapter.dashboard.*;
+import use_case.info_collection.*;
+import view.InfoCollectionView;
+
 
 /**
  * The AppBuilder class is responsible for putting together the pieces of
@@ -66,6 +71,9 @@ public class AppBuilder {
     private LoggedInViewModel loggedInViewModel;
     private LoggedInView loggedInView;
     private LoginView loginView;
+    private InfoCollectionView infoCollectionView;
+    private InfoCollectionViewModel infoCollectionViewModel;
+    private DashboardViewModel dashboardViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -110,11 +118,12 @@ public class AppBuilder {
      */
     public AppBuilder addSignupUseCase() {
         final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
-                signupViewModel, loginViewModel);
+                signupViewModel, loginViewModel, infoCollectionViewModel);
         final SignupInputBoundary userSignupInteractor = new SignupInteractor(
                 userDataAccessObject, signupOutputBoundary, userFactory);
 
-        final SignupController controller = new SignupController(userSignupInteractor);
+
+        SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
         return this;
     }
@@ -125,7 +134,8 @@ public class AppBuilder {
      */
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loggedInViewModel, loginViewModel);
+                loggedInViewModel, loginViewModel, infoCollectionViewModel);
+
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
@@ -164,6 +174,27 @@ public class AppBuilder {
 
         final LogoutController logoutController = new LogoutController(logoutInteractor);
         loggedInView.setLogoutController(logoutController);
+        return this;
+    }
+
+    public AppBuilder addInfoCollectionView() {
+        infoCollectionViewModel = new InfoCollectionViewModel();
+        dashboardViewModel = new DashboardViewModel();  // Initialize dashboard view model
+        infoCollectionView = new InfoCollectionView(infoCollectionViewModel, viewManagerModel);
+        cardPanel.add(infoCollectionView, infoCollectionView.getViewName());
+        return this;
+    }
+
+    public AppBuilder addInfoCollectionUseCase() {
+        InfoCollectionOutputBoundary outputBoundary = new InfoCollectionPresenter(
+                viewManagerModel, infoCollectionViewModel, dashboardViewModel);
+
+        InfoCollectionInputBoundary infoCollectionInteractor = new InfoCollectionInteractor(
+                (InfoCollectionUserDataAccessInterface) userDataAccessObject, outputBoundary, userFactory);
+
+        //123233333333 cast
+        InfoCollectionController controller = new InfoCollectionController(infoCollectionInteractor);
+        infoCollectionView.setInfoCollectionController(controller);
         return this;
     }
 
