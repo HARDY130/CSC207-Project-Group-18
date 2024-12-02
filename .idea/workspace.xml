@@ -4,36 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/entity/CommonUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/CommonUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/ViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/info_collection/InfoCollectionOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/info_collection/InfoCollectionOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/Allergy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Allergy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoggedInView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoggedInView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/login/LoginInteractorTest$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/login/LoginInteractorTest$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/login/LoginInteractorTest$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/login/LoginInteractorTest$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/login/LoginInteractorTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +57,7 @@
     "JUnit.SignupInteractorTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "InfoCollection__merge__test",
+    "git-widget-placeholder": "MealPlanneriP",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
