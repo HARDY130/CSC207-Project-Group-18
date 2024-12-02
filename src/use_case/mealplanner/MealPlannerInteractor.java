@@ -36,17 +36,6 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
                 return;
             }
 
-//            // Generate meal options based on dietary preferences
-//            List<Food> breakfastOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "breakfast"
-//            );
-//            List<Food> lunchOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "lunch"
-//            );
-//            List<Food> dinnerOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "dinner"
-//            );
-
             CommonUser user = (CommonUser) mealStorageDataAccessInterface.get(currentUsername);
             Map<MealType, List<Food>> mealPlan = mealPlannerDataAccessObject.generateMealPlan(
                     user,
