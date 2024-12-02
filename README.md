@@ -114,16 +114,11 @@ Replace ``Main`` with the actual name of your main class.
 We highly value your feedback to improve いただきます. Here’s how you can share your thoughts with us: Please use the Google Form, https://forms.gle/WFM5E3Kqt7yRt9ZDA, to send us your feedback. The following two parts are some instructions for your feedback. 
 
 1.	Rules for valid feedback:
-
 •	Your answer should be specific and better with examples.
-
 •	Avoid just rushing into the survey.
-
 •	Feedback for a proposed change should recommend a change that benefits ALL users.
 
-
-
-3.	What to expect after submitting feedback:
+2.	What to expect after submitting feedback:
 •	Normally, you will not receive an announcement from us. Unless your feedback leads to an update, you will be acknowledged in our thank-you email.
 
 
