@@ -68,11 +68,6 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         ));
     }
 
-//    @Override
-//    public Map<MealType, Map<String, Food>> getUserMeals(String username) {
-//        return userMeals.getOrDefault(username, new EnumMap<>(MealType.class));
-//    }
-
     @Override
     public void addMealToUser(String username, String mealType, Food food) {
         User user = users.get(username);
