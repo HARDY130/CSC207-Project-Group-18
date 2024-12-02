@@ -1,13 +1,15 @@
 
 # **いただきます Nutritional Assistant**
 
-(I-ta-da-ki-ma-su Nutritional assistant)
+Pronounced as (I-ta-da-ki-ma-su Nutritional assistant)
 
 **Contributors: Hao Hu, Zihan Jin, Jeffrey Shen, Chuxuan Ai**
 
 ## **The What**
 
 Our program is a Nutritional Assistant, which was designed to help users figure out and manage their recommended macronutrient and calorie levels. The program determines a recommended nutritional threshold, allows the user to search up recipes and nutritional information about the dishes they prepare, and can generate a recommended comprehensive meal plan for the entire day, based on user specification.
+
+The nomenclature of our program's name, Romanized: (itadakimasu) comes from Japanese culture, where "いただきます" is a phrase said before eating to express gratitude for the food, the people who prepared it, and the ingredients. It conveys mindfulness and respect toward the act of eating. 
 
 ## **The Purpose**
 
@@ -45,19 +47,25 @@ We wanted to promote simple wellbeing and health to all demographics, regardless
 
 ## **Feedback**
 
-We highly value your feedback to improve ありがとう. Here’s how you can share your thoughts with us: Please use the Google Form, https://forms.gle/WFM5E3Kqt7yRt9ZDA, to send us your feedback. The following two parts are some instructions for your feedback. 
+We highly value your feedback to improve いただきます. Here’s how you can share your thoughts with us: Please use the Google Form, https://forms.gle/WFM5E3Kqt7yRt9ZDA, to send us your feedback. The following two parts are some instructions for your feedback. 
 
 1.	Rules for valid feedback:
+
 •	Your answer should be specific and better with examples.
+
 •	Avoid just rushing into the survey.
 
-2.	What to expect after submitting feedback:
+•	Feedback for a proposed change should recommend a change that benefits ALL users.
+
+
+
+3.	What to expect after submitting feedback:
 •	Normally, you will not receive an announcement from us. Unless your feedback leads to an update, you will be acknowledged in our thank-you email.
 
 
 ## **Contributions**
 
-We welcome contributions to enhance ありがとう. Whether you're fixing bugs, adding new features, or improving documentation, we will appreciate your help! Here’s how you can contribute:
+We welcome contributions to enhance いただきます. Whether you're fixing bugs, adding new features, or improving documentation, we will appreciate your help! Here’s how you can contribute:
 
 1.	Fork the repository in our link: https://github.com/HARDY130/CSC207-Project-Group-18.
 2.	Clone the forked repository to your local machine.
