@@ -1,21 +1,37 @@
-## CSC207-Project-Group-18
-Team name: ありがとう (Arigatou)
 
-Members: Zihan Jin, Hao Hu, Chuxuan Ai, Jeffrey Shen
+# **いただきます Nutritional Assistant**
 
-Github names: JeromeJinzh (Zihan), HARDY130 (Hao), Chuxuan-a (Chuxuan), jeffreyshen0 (Jeffrey)
+(I-ta-da-ki-ma-su Nutritional assistant)
 
-User stories:
+**Contributors: Hao Hu, Zihan Jin, Jeffrey Shen, Chuxuan Ai**
 
-Chuxuan -- As a user, I want agit  personal account to record my health data and provide a nutritional analysis. From a user interaction perspective, this app should have a signup page, a login page, and a display page for personal analysis.
+## **The What**
 
-Jeffrey -- As a user, I would like this app to offer me a daily meal plan based on my health data. In terms of user interaction, it is to show the daily meal schedule through a clear window.
+Our program is a Nutritional Assistant, which was designed to help users figure out and manage their recommended macronutrient and calorie levels. The program determines a recommended nutritional threshold, allows the user to search up recipes and nutritional information about the dishes they prepare, and can generate a recommended comprehensive meal plan for the entire day, based on user specification.
 
-Hao -- As a user, I hope to be able to customize the diet plan provided by our app. From the point of user interaction, there must be a sub-setting page for users to modify and update the existing plan.
+## **The Purpose**
 
-Zihan -- As a user, I want to understand the nutrition of the foods I have. From the user interaction view, our application should provide a search function and display analyzed results im the main window.
+We wanted to promote simple wellbeing and health to all demographics, regardless of allergies, personal health goals, or dietary restrictions. Making use of the EDAMAM api, we wanted to make the various processes of healthy living more accessible by combining these elements into a single program. Whether it was meal-prepping, or tracking macronutrients to maximize weight loss, these tasks can become arduous due to the different sources of information required to adhere to these tasks. Our program aims to simplify this process.
 
-App views:
 
-![All Views](images/Views 1.0.jpg)
-The main views are finished. Some core functions are implemented, and other parts are on their way (waiting for the feedback data).
+## Table of contents:
+
+- Software features
+
+
+- Installation instructions
+
+
+- Usage guide
+
+
+- Licensing
+
+
+- User feedback
+
+
+- Contributing 
+
+
+
