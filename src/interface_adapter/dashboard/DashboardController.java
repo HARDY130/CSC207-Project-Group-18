@@ -2,9 +2,6 @@ package interface_adapter.dashboard;
 
 import use_case.dashboard.DashboardInputBoundary;
 import use_case.dashboard.DashboardInputData;
-import entity.Allergy;
-import java.time.LocalDate;
-import java.util.Set;
 
 public class DashboardController {
     private final DashboardInputBoundary dashboardUseCaseInteractor;
@@ -14,10 +11,7 @@ public class DashboardController {
     }
 
     public void execute(String username) {
-
-        DashboardInputData dashboardInputData = new DashboardInputData(
-                username);
-
+        DashboardInputData dashboardInputData = new DashboardInputData(username);
         dashboardUseCaseInteractor.execute(dashboardInputData);
     }
 
@@ -25,11 +19,10 @@ public class DashboardController {
         dashboardUseCaseInteractor.switchToUpdateProfile();
     }
 
-    public void onGenerateMeal() {
-        dashboardUseCaseInteractor.switchToMealPlanner();
+    public void onGenerateMeal(String username) {
+        dashboardUseCaseInteractor.switchToMealPlanner(username);
     }
 
-    // This is the method called when "Record Meal" button is clicked
     public void onCustomize() {
         dashboardUseCaseInteractor.switchToCustomize();
     }

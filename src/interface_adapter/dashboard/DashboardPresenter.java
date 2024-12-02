@@ -76,6 +76,8 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.customize.CustomizeState;
 import interface_adapter.customize.CustomizeViewModel;
 import interface_adapter.info_collection.InfoCollectionViewModel;
+import interface_adapter.meal_planner.MealPlannerState;
+import interface_adapter.meal_planner.MealPlannerViewModel;
 import use_case.dashboard.DashboardOutputBoundary;
 import use_case.dashboard.DashboardOutputData;
 import entity.Food;
@@ -89,15 +91,18 @@ public class DashboardPresenter implements DashboardOutputBoundary {
     private final ViewManagerModel viewManagerModel;
     private final InfoCollectionViewModel infoCollectionViewModel;
     private final CustomizeViewModel customizeViewModel;
+    private final MealPlannerViewModel mealPlannerViewModel;
 
     public DashboardPresenter(ViewManagerModel viewManagerModel,
                               DashboardViewModel dashboardViewModel,
                               InfoCollectionViewModel infoCollectionViewModel,
-                              CustomizeViewModel customizeViewModel) {
+                              CustomizeViewModel customizeViewModel,
+                              MealPlannerViewModel mealPlannerViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.dashboardViewModel = dashboardViewModel;
         this.infoCollectionViewModel = infoCollectionViewModel;
         this.customizeViewModel = customizeViewModel;
+        this.mealPlannerViewModel = mealPlannerViewModel;
     }
 
     @Override
@@ -156,6 +161,21 @@ public class DashboardPresenter implements DashboardOutputBoundary {
 
         // Switch to customize view
         viewManagerModel.setActiveView(customizeViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void prepareSwitchToMealPlanner(DashboardOutputData outputData) {
+        // Initialize meal planner state with user data
+        MealPlannerState mealPlannerState = new MealPlannerState();
+        mealPlannerState.setUsername(outputData.getUsername());
+        mealPlannerState.setDailyCalorieGoal(outputData.getTdee());
+        mealPlannerState.setAllergies(outputData.getAllergies());
+
+        mealPlannerViewModel.setState(mealPlannerState);
+        mealPlannerViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(mealPlannerViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
