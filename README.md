@@ -35,3 +35,35 @@ We wanted to promote simple wellbeing and health to all demographics, regardless
 
 
 
+
+
+
+
+
+
+
+
+## **Feedback**
+
+We highly value your feedback to improve ありがとう. Here’s how you can share your thoughts with us: Please use the Google Form, https://forms.gle/WFM5E3Kqt7yRt9ZDA, to send us your feedback. The following two parts are some instructions for your feedback. 
+
+1.	Rules for valid feedback:
+•	Your answer should be specific and better with examples.
+•	Avoid just rushing into the survey.
+
+2.	What to expect after submitting feedback:
+•	Normally, you will not receive an announcement from us. Unless your feedback leads to an update, you will be acknowledged in our thank-you email.
+
+
+## **Contributions**
+
+We welcome contributions to enhance ありがとう. Whether you're fixing bugs, adding new features, or improving documentation, we will appreciate your help! Here’s how you can contribute:
+
+1.	Fork the repository in our link: https://github.com/HARDY130/CSC207-Project-Group-18.
+2.	Clone the forked repository to your local machine.
+3.	Make any reasonable changes in your IDE.
+4.	Push your work back with useful commit information and create a pull request.
+5.	Ensure your code has a good style, like following the clean architecture and SOLID principles.
+6.	Provide a clear title and description for the merge request.
+7.	All pull requests are reviewed by at least one project owner.
+8.	Once we approved, your changes will be merged into the main branch.
