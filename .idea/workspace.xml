@@ -4,24 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="1.Replace the label text for button in DashboardView with the label instance in DashboardViewModel&#10;2.Delete the label instance that are not used in DashboardViewModel">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -32,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Zihan-test" />
+        <entry key="$PROJECT_DIR$" value="merge-3-4" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,7 +37,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/HARDY130/CSC207-Project-Group-18.git&quot;,
-    &quot;accountId&quot;: &quot;4f9bb43d-ba80-414a-a7f8-d84faeaf686c&quot;
+    &quot;accountId&quot;: &quot;cb543040-83d9-4b98-9e8b-34123cdbef69&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -66,10 +57,8 @@
     "JUnit.SignupInteractorTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "#7 on Zihan-new",
+    "git-widget-placeholder": "MealPlanneriP",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/IdeaProjects/CSC207-Project-Group-18/src/interface_adapter/dashboard",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,11 +68,6 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\user\IdeaProjects\CSC207-Project-Group-18\src\interface_adapter\dashboard" />
-    </key>
-  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
@@ -122,7 +106,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.SignupInteractorTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
@@ -132,8 +116,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -159,65 +143,7 @@
       <workItem from="1732516347472" duration="134000" />
       <workItem from="1732516487250" duration="63000" />
       <workItem from="1732541316435" duration="5154000" />
-      <workItem from="1733034050696" duration="19173000" />
     </task>
-    <task id="LOCAL-00001" summary="Dashboard Version update">
-      <option name="closed" value="true" />
-      <created>1732844749018</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1732844749018</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Dashboard Version modified update">
-      <option name="closed" value="true" />
-      <created>1732844887004</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1732844887004</updated>
-    </task>
-    <task id="LOCAL-00003" summary="add .idea">
-      <option name="closed" value="true" />
-      <created>1732845771205</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732845771205</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Add customize">
-      <option name="closed" value="true" />
-      <created>1733034174278</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1733034174278</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Add customize view">
-      <option name="closed" value="true" />
-      <created>1733034239350</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1733034239350</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Redo customize">
-      <option name="closed" value="true" />
-      <created>1733038864987</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1733038864987</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Finish customize">
-      <option name="closed" value="true" />
-      <created>1733043849913</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1733043849913</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,19 +159,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="update gitgnore" />
-    <MESSAGE value="Dashboard Version update" />
-    <MESSAGE value="Dashboard Version modified update" />
-    <MESSAGE value="add .idea" />
-    <MESSAGE value="modify" />
-    <MESSAGE value="Add customize" />
-    <MESSAGE value="Add customize view" />
-    <MESSAGE value="Redo customize" />
-    <MESSAGE value="Finish customize" />
-    <MESSAGE value="1.Replace the label text for button in DashboardView with the label instance in DashboardViewModel&#10;2.Delete the label instance that are not used in DashboardViewModel" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.Replace the label text for button in DashboardView with the label instance in DashboardViewModel&#10;2.Delete the label instance that are not used in DashboardViewModel" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,3 +1,148 @@
+////package data_access;
+////
+////import entity.Allergy;
+////import entity.Food;
+////import entity.MealType;
+////import entity.CommonUser;
+////import org.json.JSONArray;
+////import org.json.JSONObject;
+////import java.net.URI;
+////import java.net.http.HttpClient;
+////import java.net.http.HttpRequest;
+////import java.net.http.HttpResponse;
+////import java.util.*;
+////
+////public class MealPlannerDataAccessObject {
+////    private static final String APP_ID = "=db5fb0da";
+////    private static final String APP_KEY = "4bdcc547ac16ae072b5c9207f264f7e1";
+////    private static final String BASE_URL = "https://api.edamam.com/api/meal-planner/v1";
+////    private final HttpClient httpClient;
+////
+////    // Valid diet labels from API
+////    public static final Set<String> VALID_DIETS = Set.of(
+////            "balanced", "high-protein", "high-fiber", "low-fat", "low-carb", "low-sodium",
+////            "keto", "paleo", "mediterranean", "dash", "vegetarian", "vegan"
+////    );
+////
+////    public MealPlannerDataAccessObject() {
+////        this.httpClient = HttpClient.newHttpClient();
+////    }
+////
+////    /**
+////     * Generates a meal plan based on user preferences and requirements
+////     * @param user Current user with stored preferences
+////     * @param selectedDiets Diet preferences selected in UI
+////     * @return Map of MealType to List of Food options
+////     */
+////    public Map<MealType, List<Food>> generateMealPlan(CommonUser user, List<String> selectedDiets)
+////            throws Exception {
+////        JSONObject requestBody = new JSONObject();
+////
+////        // Add diet preferences
+////        requestBody.put("diet", new JSONArray(selectedDiets));
+////
+////        // Add calories range based on user's TDEE
+////        double tdee = user.calculateTDEE();
+////        JSONObject calories = new JSONObject();
+////        calories.put("min", tdee - 100);  // Allow small range around TDEE
+////        calories.put("max", tdee + 100);
+////        requestBody.put("calories", calories);
+////
+////        // Add user's allergies as health filters
+////        JSONArray health = new JSONArray();
+////        for (Allergy allergy : user.getAllergies()) {
+////            health.put(allergy.getDisplayName());
+////        }
+////        requestBody.put("health", health);
+////
+////        // Set meals for full day
+////        requestBody.put("meals_per_day", 3);
+////        JSONArray slots = new JSONArray();
+////        slots.put("breakfast");
+////        slots.put("lunch");
+////        slots.put("dinner");
+////        requestBody.put("slots", slots);
+////
+////        String endpoint = String.format("%s/planner/plans?app_id=%s&app_key=%s",
+////                BASE_URL, APP_ID, APP_KEY);
+////
+////        HttpRequest request = HttpRequest.newBuilder()
+////                .uri(URI.create(endpoint))
+////                .header("Content-Type", "application/json")
+////                .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
+////                .build();
+////
+////        HttpResponse<String> response = httpClient.send(request,
+////                HttpResponse.BodyHandlers.ofString());
+////
+////        if (response.statusCode() != 200) {
+////            throw new Exception("Meal plan generation failed with status: " + response.statusCode());
+////        }
+////
+////        return parseMealPlanResponse(new JSONObject(response.body()));
+////    }
+////
+////    /**
+////     * Parses API response into domain objects
+////     */
+////    private Map<MealType, List<Food>> parseMealPlanResponse(JSONObject response) {
+////        Map<MealType, List<Food>> mealPlan = new EnumMap<>(MealType.class);
+////        JSONArray meals = response.getJSONArray("meals");
+////
+////        for (int i = 0; i < meals.length(); i++) {
+////            JSONObject meal = meals.getJSONObject(i);
+////            MealType type = getMealTypeFromSlot(meal.getString("slot"));
+////
+////            List<Food> foods = new ArrayList<>();
+////            JSONArray recipes = meal.getJSONArray("recipes");
+////
+////            for (int j = 0; j < recipes.length(); j++) {
+////                JSONObject recipe = recipes.getJSONObject(j);
+////
+////                // Extract detailed nutrition information
+////                JSONObject nutrients = recipe.getJSONObject("nutrients");
+////                Map<String, Double> nutrientMap = new HashMap<>();
+////
+////                // Store essential macronutrients
+////                nutrientMap.put("ENERC_KCAL", nutrients.optDouble("ENERC_KCAL", 0.0));
+////                nutrientMap.put("PROCNT", nutrients.optDouble("PROCNT", 0.0)); // Protein
+////                nutrientMap.put("FAT", nutrients.optDouble("FAT", 0.0));
+////                nutrientMap.put("CHOCDF", nutrients.optDouble("CHOCDF", 0.0)); // Carbs
+////                nutrientMap.put("FIBTG", nutrients.optDouble("FIBTG", 0.0)); // Fiber
+////
+////                Food food = new Food(
+////                        recipe.getString("id"),
+////                        recipe.getString("label"),
+////                        recipe.optString("cuisineType", "General"), // Use cuisineType as category
+////                        nutrientMap
+////                );
+////                foods.add(food);
+////            }
+////
+////            mealPlan.put(type, foods);
+////        }
+////
+////        return mealPlan;
+////    }
+////
+////    private MealType getMealTypeFromSlot(String slot) {
+////        return switch (slot.toLowerCase()) {
+////            case "breakfast" -> MealType.BREAKFAST;
+////            case "lunch" -> MealType.LUNCH;
+////            case "dinner" -> MealType.DINNER;
+////            default -> throw new IllegalArgumentException("Unknown meal slot: " + slot);
+////        };
+////    }
+////
+////    /**
+////     * Validates if a diet preference is supported by the API
+////     */
+////    public boolean isValidDiet(String diet) {
+////        return VALID_DIETS.contains(diet.toLowerCase());
+////    }
+////}
+//
+//
 package data_access;
 
 import entity.Allergy;
