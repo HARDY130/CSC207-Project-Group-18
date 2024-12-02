@@ -3,9 +3,12 @@ package interface_adapter.dashboard;
 import entity.Allergy;
 import entity.Food;
 import entity.MealType;
-
 import java.time.LocalDate;
-import java.util.*;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class DashboardState {
     // User profile information
@@ -82,63 +85,151 @@ public class DashboardState {
     }
 
     // Getters and setters
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public LocalDate getBirthDate() { return birthDate; }
-    public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getGender() { return gender; }
-    public void setGender(String gender) { this.gender = gender; }
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
 
-    public int getWeight() { return weight; }
-    public void setWeight(int weight) { this.weight = weight; }
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
 
-    public int getHeight() { return height; }
-    public void setHeight(int height) { this.height = height; }
+    public String getGender() {
+        return gender;
+    }
 
-    public double getActivityMultiplier() { return activityMultiplier; }
-    public void setActivityMultiplier(double activityMultiplier) { this.activityMultiplier = activityMultiplier; }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-    public String getActivityLevel() { return activityLevel; }
-    public void setActivityLevel(String activityLevel) { this.activityLevel = activityLevel; }
+    public int getWeight() {
+        return weight;
+    }
 
-    public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
-    public void setAllergies(Set<Allergy> allergies) { this.allergies = new HashSet<>(allergies); }
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
 
-    public double getBmr() { return bmr; }
-    public void setBmr(double bmr) { this.bmr = bmr; }
+    public int getHeight() {
+        return height;
+    }
 
-    public double getTdee() { return tdee; }
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public double getActivityMultiplier() {
+        return activityMultiplier;
+    }
+
+    public void setActivityMultiplier(double activityMultiplier) {
+        this.activityMultiplier = activityMultiplier;
+    }
+
+    public String getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(String activityLevel) {
+        this.activityLevel = activityLevel;
+    }
+
+    public Set<Allergy> getAllergies() {
+        return new HashSet<>(allergies);
+    }
+
+    public void setAllergies(Set<Allergy> allergies) {
+        this.allergies = new HashSet<>(allergies);
+    }
+
+    public double getBmr() {
+        return bmr;
+    }
+
+    public void setBmr(double bmr) {
+        this.bmr = bmr;
+    }
+
+    public double getTdee() {
+        return tdee;
+    }
+
     public void setTdee(double tdee) {
         this.tdee = tdee;
         this.dailyCalorieGoal = tdee;
         updateNutritionGoals();
     }
 
-    public double getDailyCalorieGoal() { return dailyCalorieGoal; }
-    public void setDailyCalorieGoal(double dailyCalorieGoal) { this.dailyCalorieGoal = dailyCalorieGoal; }
+    public double getDailyCalorieGoal() {
+        return dailyCalorieGoal;
+    }
 
-    public double getCarbsGoalGrams() { return carbsGoalGrams; }
-    public void setCarbsGoalGrams(double carbsGoalGrams) { this.carbsGoalGrams = carbsGoalGrams; }
+    public void setDailyCalorieGoal(double dailyCalorieGoal) {
+        this.dailyCalorieGoal = dailyCalorieGoal;
+    }
 
-    public double getProteinGoalGrams() { return proteinGoalGrams; }
-    public void setProteinGoalGrams(double proteinGoalGrams) { this.proteinGoalGrams = proteinGoalGrams; }
+    public double getCarbsGoalGrams() {
+        return carbsGoalGrams;
+    }
 
-    public double getFatGoalGrams() { return fatGoalGrams; }
-    public void setFatGoalGrams(double fatGoalGrams) { this.fatGoalGrams = fatGoalGrams; }
+    public void setCarbsGoalGrams(double carbsGoalGrams) {
+        this.carbsGoalGrams = carbsGoalGrams;
+    }
 
-    public double getConsumedCalories() { return consumedCalories; }
-    public void setConsumedCalories(double consumedCalories) { this.consumedCalories = consumedCalories; }
+    public double getProteinGoalGrams() {
+        return proteinGoalGrams;
+    }
 
-    public double getConsumedCarbs() { return consumedCarbs; }
-    public void setConsumedCarbs(double consumedCarbs) { this.consumedCarbs = consumedCarbs; }
+    public void setProteinGoalGrams(double proteinGoalGrams) {
+        this.proteinGoalGrams = proteinGoalGrams;
+    }
 
-    public double getConsumedProtein() { return consumedProtein; }
-    public void setConsumedProtein(double consumedProtein) { this.consumedProtein = consumedProtein; }
+    public double getFatGoalGrams() {
+        return fatGoalGrams;
+    }
 
-    public double getConsumedFat() { return consumedFat; }
-    public void setConsumedFat(double consumedFat) { this.consumedFat = consumedFat; }
+    public void setFatGoalGrams(double fatGoalGrams) {
+        this.fatGoalGrams = fatGoalGrams;
+    }
+
+    public double getConsumedCalories() {
+        return consumedCalories;
+    }
+
+    public void setConsumedCalories(double consumedCalories) {
+        this.consumedCalories = consumedCalories;
+    }
+
+    public double getConsumedCarbs() {
+        return consumedCarbs;
+    }
+
+    public void setConsumedCarbs(double consumedCarbs) {
+        this.consumedCarbs = consumedCarbs;
+    }
+
+    public double getConsumedProtein() {
+        return consumedProtein;
+    }
+
+    public void setConsumedProtein(double consumedProtein) {
+        this.consumedProtein = consumedProtein;
+    }
+
+    public double getConsumedFat() {
+        return consumedFat;
+    }
+
+    public void setConsumedFat(double consumedFat) {
+        this.consumedFat = consumedFat;
+    }
 
     public Map<MealType, Map<String, Food>> getMeals() {
         Map<MealType, Map<String, Food>> mealsCopy = new EnumMap<>(MealType.class);
@@ -155,14 +246,29 @@ public class DashboardState {
         }
     }
 
-    public String getError() { return error; }
-    public void setError(String error) { this.error = error; }
+    public String getError() {
+        return error;
+    }
 
-    public String getSuccessMessage() { return successMessage; }
-    public void setSuccessMessage(String successMessage) { this.successMessage = successMessage; }
+    public void setError(String error) {
+        this.error = error;
+    }
 
-    public boolean isLoading() { return isLoading; }
-    public void setLoading(boolean loading) { isLoading = loading; }
+    public String getSuccessMessage() {
+        return successMessage;
+    }
+
+    public void setSuccessMessage(String successMessage) {
+        this.successMessage = successMessage;
+    }
+
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    public void setLoading(boolean loading) {
+        isLoading = loading;
+    }
 
     // Helper methods
     private void updateNutritionGoals() {
@@ -188,7 +294,7 @@ public class DashboardState {
     }
 
     private int calculatePercentage(double current, double goal) {
-        return goal > 0 ? Math.min(100, (int)((current / goal) * 100)) : 0;
+        return goal > 0 ? Math.min(100, (int) ((current / goal) * 100)) : 0;
     }
 
     public String getFormattedCalorieProgress() {

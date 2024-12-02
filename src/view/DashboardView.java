@@ -1,12 +1,23 @@
 package view;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import interface_adapter.dashboard.DashboardController;
 import interface_adapter.dashboard.DashboardState;
 import interface_adapter.dashboard.DashboardViewModel;
 import interface_adapter.logout.LogoutController;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -15,9 +26,6 @@ import java.beans.PropertyChangeListener;
 public class DashboardView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "dashboard";
     private final DashboardViewModel dashboardViewModel;
-    private DashboardController dashboardController;
-    private LogoutController logoutController;
-
     private final JLabel titleLabel;
     private final JLabel welcomeLabel;
     private final JLabel activityLabel;
@@ -27,6 +35,8 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
     private final JButton recordMealButton;
     private final JButton logoutButton;
     private final JLabel errorLabel;
+    private DashboardController dashboardController;
+    private LogoutController logoutController;
 
     public DashboardView(DashboardViewModel viewModel) {
         this.dashboardViewModel = viewModel;
@@ -102,7 +112,7 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        DashboardState state = (DashboardState) dashboardViewModel.getState();
+        DashboardState state = dashboardViewModel.getState();
 
         if (evt.getSource() == updateProfileButton) {
             dashboardController.onUpdateProfile();
@@ -125,14 +135,14 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
                 errorLabel.setText(state.getError());
 
                 nutritionPanel.updateProgress(
-                        state.getCaloriePercentage(),
-                        state.getCarbsPercentage(),
-                        state.getProteinPercentage(),
-                        state.getFatPercentage(),
-                        state.getFormattedCalorieProgress(),
-                        state.getFormattedCarbsProgress(),
-                        state.getFormattedProteinProgress(),
-                        state.getFormattedFatProgress()
+                    state.getCaloriePercentage(),
+                    state.getCarbsPercentage(),
+                    state.getProteinPercentage(),
+                    state.getFatPercentage(),
+                    state.getFormattedCalorieProgress(),
+                    state.getFormattedCarbsProgress(),
+                    state.getFormattedProteinProgress(),
+                    state.getFormattedFatProgress()
                 );
             }
         }

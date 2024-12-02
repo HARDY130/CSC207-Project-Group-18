@@ -2,7 +2,6 @@ package interface_adapter.meal_planner;
 
 import entity.Allergy;
 import entity.Food;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,42 +30,71 @@ public class MealPlannerState {
     }
 
     // Default constructor
-    public MealPlannerState() {}
+    public MealPlannerState() {
+    }
 
     // Getters and setters
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public List<Food> getBreakfastOptions() { return new ArrayList<>(breakfastOptions); }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Food> getBreakfastOptions() {
+        return new ArrayList<>(breakfastOptions);
+    }
+
     public void setBreakfastOptions(List<Food> options) {
         this.breakfastOptions = new ArrayList<>(options);
     }
 
-    public List<Food> getLunchOptions() { return new ArrayList<>(lunchOptions); }
+    public List<Food> getLunchOptions() {
+        return new ArrayList<>(lunchOptions);
+    }
+
     public void setLunchOptions(List<Food> options) {
         this.lunchOptions = new ArrayList<>(options);
     }
 
-    public List<Food> getDinnerOptions() { return new ArrayList<>(dinnerOptions); }
+    public List<Food> getDinnerOptions() {
+        return new ArrayList<>(dinnerOptions);
+    }
+
     public void setDinnerOptions(List<Food> options) {
         this.dinnerOptions = new ArrayList<>(options);
     }
 
-    public Set<String> getSelectedDiets() { return new HashSet<>(selectedDiets); }
+    public Set<String> getSelectedDiets() {
+        return new HashSet<>(selectedDiets);
+    }
+
     public void setSelectedDiets(Set<String> diets) {
         this.selectedDiets = new HashSet<>(diets);
     }
 
-    public double getDailyCalorieGoal() { return dailyCalorieGoal; }
+    public double getDailyCalorieGoal() {
+        return dailyCalorieGoal;
+    }
+
     public void setDailyCalorieGoal(double dailyCalorieGoal) {
         this.dailyCalorieGoal = dailyCalorieGoal;
     }
 
-    public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
+    public Set<Allergy> getAllergies() {
+        return new HashSet<>(allergies);
+    }
+
     public void setAllergies(Set<Allergy> allergies) {
         this.allergies = new HashSet<>(allergies);
     }
 
-    public String getError() { return error; }
-    public void setError(String error) { this.error = error; }
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 }

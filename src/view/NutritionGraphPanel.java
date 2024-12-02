@@ -1,7 +1,11 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class NutritionGraphPanel extends JPanel {
     private int carbsProgress = 30; // Percentage of carbs consumed

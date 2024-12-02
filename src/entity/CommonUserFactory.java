@@ -15,7 +15,8 @@ public class CommonUserFactory implements UserFactory {
     }
 
     public User createWithInfo(String name, String password, LocalDate birthDate,
-                               String gender, int weight, int height, double activityMultiplier, Set<Allergy> allergies) {
+                               String gender, int weight, int height, double activityMultiplier,
+                               Set<Allergy> allergies) {
         return new CommonUser(name, password, birthDate, gender, weight, height, activityMultiplier, allergies);
     }
 }

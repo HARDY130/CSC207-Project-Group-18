@@ -1,7 +1,5 @@
 package app;
 
-import java.awt.*;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -16,6 +14,12 @@ import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.customize.CustomizeController;
 import interface_adapter.customize.CustomizePresenter;
 import interface_adapter.customize.CustomizeViewModel;
+import interface_adapter.dashboard.DashboardController;
+import interface_adapter.dashboard.DashboardPresenter;
+import interface_adapter.dashboard.DashboardViewModel;
+import interface_adapter.info_collection.InfoCollectionController;
+import interface_adapter.info_collection.InfoCollectionPresenter;
+import interface_adapter.info_collection.InfoCollectionViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -27,12 +31,17 @@ import interface_adapter.meal_planner.MealPlannerViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import use_case.customize.CustomizeInputBoundary;
 import use_case.customize.CustomizeInteractor;
-import use_case.customize.CustomizeOutputBoundary;;
+import use_case.customize.CustomizeOutputBoundary;
 import use_case.dashboard.DashboardInputBoundary;
 import use_case.dashboard.DashboardInteractor;
 import use_case.dashboard.DashboardOutputBoundary;
+import use_case.info_collection.InfoCollectionInputBoundary;
+import use_case.info_collection.InfoCollectionInteractor;
+import use_case.info_collection.InfoCollectionOutputBoundary;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
@@ -45,10 +54,16 @@ import use_case.meal_planner.MealPlannerOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
-import view.*;
-import interface_adapter.info_collection.*;
-import interface_adapter.dashboard.*;
-import use_case.info_collection.*;
+import view.CustomizeView;
+import view.DashboardView;
+import view.InfoCollectionView;
+import view.LoggedInView;
+import view.LoginView;
+import view.MealPlannerView;
+import view.SignupView;
+import view.ViewManager;
+
+;
 
 
 /**
@@ -124,16 +139,16 @@ public class AppBuilder {
         dashboardViewModel = new DashboardViewModel();
 
         DashboardOutputBoundary outputBoundary = new DashboardPresenter(
-                viewManagerModel,
-                dashboardViewModel,
-                infoCollectionViewModel,
-                customizeViewModel,
-                mealPlannerViewModel
+            viewManagerModel,
+            dashboardViewModel,
+            infoCollectionViewModel,
+            customizeViewModel,
+            mealPlannerViewModel
         );
 
         DashboardInputBoundary interactor = new DashboardInteractor(
-                userDataAccessObject,
-                outputBoundary
+            userDataAccessObject,
+            outputBoundary
         );
 
         dashboardController = new DashboardController(interactor);
@@ -155,16 +170,16 @@ public class AppBuilder {
 
     private CustomizeController createCustomizeUseCase() {
         CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
-                customizeViewModel,
-                viewManagerModel,
-                dashboardViewModel,
-                dashboardController
+            customizeViewModel,
+            viewManagerModel,
+            dashboardViewModel,
+            dashboardController
         );
 
         CustomizeInputBoundary customizeInteractor = new CustomizeInteractor(
-                foodDatabaseAccessObject,
-                customizePresenter,
-                userDataAccessObject
+            foodDatabaseAccessObject,
+            customizePresenter,
+            userDataAccessObject
         );
 
         return new CustomizeController(customizeInteractor);
@@ -179,16 +194,16 @@ public class AppBuilder {
 
     public AppBuilder addDashboardUseCase() {
         DashboardOutputBoundary outputBoundary = new DashboardPresenter(
-                viewManagerModel,
-                dashboardViewModel,
-                infoCollectionViewModel,
-                customizeViewModel,
-                mealPlannerViewModel
+            viewManagerModel,
+            dashboardViewModel,
+            infoCollectionViewModel,
+            customizeViewModel,
+            mealPlannerViewModel
         );
 
         DashboardInputBoundary interactor = new DashboardInteractor(
-                userDataAccessObject,
-                outputBoundary
+            userDataAccessObject,
+            outputBoundary
         );
 
         DashboardController controller = new DashboardController(interactor);
@@ -198,15 +213,15 @@ public class AppBuilder {
 
     public AppBuilder addMealPlannerUseCase() {
         MealPlannerOutputBoundary outputBoundary = new MealPlannerPresenter(
-                mealPlannerViewModel,
-                viewManagerModel,
-                dashboardViewModel
+            mealPlannerViewModel,
+            viewManagerModel,
+            dashboardViewModel
         );
 
         MealPlannerInputBoundary interactor = new MealPlannerInteractor(
-                userDataAccessObject,
-                mealPlannerDataAccessObject,
-                outputBoundary
+            userDataAccessObject,
+            mealPlannerDataAccessObject,
+            outputBoundary
         );
 
         MealPlannerController controller = new MealPlannerController(interactor);
@@ -216,16 +231,16 @@ public class AppBuilder {
 
     public AppBuilder addSignupUseCase() {
         SignupOutputBoundary signupOutputBoundary = new SignupPresenter(
-                viewManagerModel,
-                signupViewModel,
-                loginViewModel,
-                infoCollectionViewModel
+            viewManagerModel,
+            signupViewModel,
+            loginViewModel,
+            infoCollectionViewModel
         );
 
         SignupInputBoundary userSignupInteractor = new SignupInteractor(
-                userDataAccessObject,
-                signupOutputBoundary,
-                userFactory
+            userDataAccessObject,
+            signupOutputBoundary,
+            userFactory
         );
 
         SignupController controller = new SignupController(userSignupInteractor);
@@ -235,16 +250,16 @@ public class AppBuilder {
 
     public AppBuilder addLoginUseCase() {
         LoginOutputBoundary loginOutputBoundary = new LoginPresenter(
-                viewManagerModel,
-                loggedInViewModel,
-                loginViewModel,
-                infoCollectionViewModel,
-                dashboardViewModel
+            viewManagerModel,
+            loggedInViewModel,
+            loginViewModel,
+            infoCollectionViewModel,
+            dashboardViewModel
         );
 
         LoginInputBoundary loginInteractor = new LoginInteractor(
-                userDataAccessObject,
-                loginOutputBoundary
+            userDataAccessObject,
+            loginOutputBoundary
         );
 
         LoginController loginController = new LoginController(loginInteractor);
@@ -254,15 +269,15 @@ public class AppBuilder {
 
     public AppBuilder addInfoCollectionUseCase() {
         InfoCollectionOutputBoundary outputBoundary = new InfoCollectionPresenter(
-                viewManagerModel,
-                infoCollectionViewModel,
-                dashboardViewModel
+            viewManagerModel,
+            infoCollectionViewModel,
+            dashboardViewModel
         );
 
         InfoCollectionInputBoundary infoCollectionInteractor = new InfoCollectionInteractor(
-                userDataAccessObject,
-                outputBoundary,
-                userFactory
+            userDataAccessObject,
+            outputBoundary,
+            userFactory
         );
 
         InfoCollectionController controller = new InfoCollectionController(infoCollectionInteractor);
@@ -272,14 +287,14 @@ public class AppBuilder {
 
     public AppBuilder addLogoutUseCase() {
         LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(
-                viewManagerModel,
-                loggedInViewModel,
-                loginViewModel
+            viewManagerModel,
+            loggedInViewModel,
+            loginViewModel
         );
 
         LogoutInputBoundary logoutInteractor = new LogoutInteractor(
-                userDataAccessObject,
-                logoutOutputBoundary
+            userDataAccessObject,
+            logoutOutputBoundary
         );
 
         LogoutController logoutController = new LogoutController(logoutInteractor);

@@ -19,9 +19,8 @@ package interface_adapter.dashboard;
 //    }
 //}
 
-import interface_adapter.ViewModel;
 import entity.MealType;
-
+import interface_adapter.ViewModel;
 import java.util.Map;
 
 public class DashboardViewModel extends ViewModel<DashboardState> {
@@ -41,9 +40,9 @@ public class DashboardViewModel extends ViewModel<DashboardState> {
 
     // Meal type labels
     public static final Map<MealType, String> MEAL_LABELS = Map.of(
-            MealType.BREAKFAST, "Breakfast",
-            MealType.LUNCH, "Lunch",
-            MealType.DINNER, "Dinner"
+        MealType.BREAKFAST, "Breakfast",
+        MealType.LUNCH, "Lunch",
+        MealType.DINNER, "Dinner"
     );
 
     public DashboardViewModel() {

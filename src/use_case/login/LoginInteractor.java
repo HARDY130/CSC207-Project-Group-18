@@ -1,7 +1,7 @@
 package use_case.login;
 
-import entity.User;
 import entity.CommonUser;
+import entity.User;
 
 public class LoginInteractor implements LoginInputBoundary {
     private final LoginUserDataAccessInterface userDataAccessObject;
@@ -40,9 +40,9 @@ public class LoginInteractor implements LoginInputBoundary {
         }
 
         LoginOutputData loginOutputData = new LoginOutputData(
-                username,
-                commonUser,
-                isProfileComplete
+            username,
+            commonUser,
+            isProfileComplete
         );
 
         loginPresenter.prepareSuccessView(loginOutputData);
@@ -53,9 +53,9 @@ public class LoginInteractor implements LoginInputBoundary {
             return false;
         }
         return user.getBirthDate() != null &&
-                !user.getGender().isEmpty() &&
-                user.getWeight() > 0 &&
-                user.getHeight() > 0 &&
-                user.getActivityMultiplier() > 0;
+            !user.getGender().isEmpty() &&
+            user.getWeight() > 0 &&
+            user.getHeight() > 0 &&
+            user.getActivityMultiplier() > 0;
     }
 }

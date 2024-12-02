@@ -37,69 +37,107 @@ public class InfoCollectionState {
         this.allegySelectionError = copy.allegySelectionError;
     }
 
-    public InfoCollectionState() {}
+    public InfoCollectionState() {
+    }
 
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public int getYearOfBirth() { return yearOfBirth; }
-    public String getGender() { return gender; }
-    public int getWeight() { return weight; }
-    public int getHeight() { return height; }
-    public double getActivityMultiplier() { return activityMultiplier; }
-    public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
-
-    public String getYearOfBirthError() { return yearOfBirthError; }
-    public String getWeightError() { return weightError; }
-    public String getHeightError() { return heightError; }
-    public String getGenderError() { return genderError; }
-    public String getAllergySelectionError() { return allegySelectionError; }
+    public String getUsername() {
+        return username;
+    }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public int getYearOfBirth() {
+        return yearOfBirth;
+    }
+
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public void setHeight(int height) {
         this.height = height;
     }
 
+    public double getActivityMultiplier() {
+        return activityMultiplier;
+    }
+
     public void setActivityMultiplier(double activityMultiplier) {
         this.activityMultiplier = activityMultiplier;
+    }
+
+    public Set<Allergy> getAllergies() {
+        return new HashSet<>(allergies);
     }
 
     public void setAllergies(Set<Allergy> allergies) {
         this.allergies = new HashSet<>(allergies);
     }
 
+    public String getYearOfBirthError() {
+        return yearOfBirthError;
+    }
+
     public void setYearOfBirthError(String error) {
         this.yearOfBirthError = error;
+    }
+
+    public String getWeightError() {
+        return weightError;
     }
 
     public void setWeightError(String error) {
         this.weightError = error;
     }
 
+    public String getHeightError() {
+        return heightError;
+    }
+
     public void setHeightError(String error) {
         this.heightError = error;
     }
 
+    public String getGenderError() {
+        return genderError;
+    }
+
     public void setGenderError(String error) {
         this.genderError = error;
+    }
+
+    public String getAllergySelectionError() {
+        return allegySelectionError;
     }
 
     public void setAllergySelectionError(String error) {
@@ -116,10 +154,10 @@ public class InfoCollectionState {
 
     public boolean hasErrors() {
         return !yearOfBirthError.isEmpty()
-                || !weightError.isEmpty()
-                || !heightError.isEmpty()
-                || !genderError.isEmpty()
-                || !allegySelectionError.isEmpty();
+            || !weightError.isEmpty()
+            || !heightError.isEmpty()
+            || !genderError.isEmpty()
+            || !allegySelectionError.isEmpty();
     }
 
     public LocalDate getBirthDate() {
@@ -128,11 +166,11 @@ public class InfoCollectionState {
 
     public boolean isComplete() {
         return !username.isEmpty()
-                && !password.isEmpty()
-                && yearOfBirth > 0
-                && !gender.isEmpty()
-                && weight > 0
-                && height > 0
-                && activityMultiplier > 0;
+            && !password.isEmpty()
+            && yearOfBirth > 0
+            && !gender.isEmpty()
+            && weight > 0
+            && height > 0
+            && activityMultiplier > 0;
     }
 }

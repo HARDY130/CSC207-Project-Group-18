@@ -77,14 +77,19 @@ package data_access;
 //    }
 //}
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import entity.Food;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import org.json.JSONObject;
-import org.json.JSONArray;
-import java.util.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FoodDatabaseAccessObject {
     private final String APP_ID = "f4d052b7";
@@ -98,6 +103,7 @@ public class FoodDatabaseAccessObject {
 
     /**
      * Searches for foods and returns them as Food entities
+     *
      * @param ingredient The ingredient to search for
      * @return List of Food entities matching the search
      * @throws Exception if the API request fails
@@ -108,18 +114,18 @@ public class FoodDatabaseAccessObject {
     }
 
     private JSONObject searchFoodWithIngredient(String ingredient) throws Exception {
-        String encodedIngredient = java.net.URLEncoder.encode(ingredient, "UTF-8");
+        String encodedIngredient = java.net.URLEncoder.encode(ingredient, StandardCharsets.UTF_8);
         String endpoint = String.format("%s/parser?app_id=%s&app_key=%s&nutrition-type=logging&ingr=%s",
-                BASE_URL, APP_ID, APP_KEY, encodedIngredient);
+            BASE_URL, APP_ID, APP_KEY, encodedIngredient);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("accept", "application/json")
-                .GET()
-                .build();
+            .uri(URI.create(endpoint))
+            .header("accept", "application/json")
+            .GET()
+            .build();
 
         HttpResponse<String> response = httpClient.send(request,
-                HttpResponse.BodyHandlers.ofString());
+            HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() != 200) {
             throw new Exception("API request failed with status: " + response.statusCode());
@@ -144,11 +150,11 @@ public class FoodDatabaseAccessObject {
 
             // Extract common nutrients
             String[] nutrientKeys = {
-                    "ENERC_KCAL",  // Calories
-                    "PROCNT",      // Protein
-                    "FAT",         // Fat
-                    "CHOCDF",      // Carbohydrates
-                    "FIBTG"        // Fiber
+                "ENERC_KCAL",  // Calories
+                "PROCNT",      // Protein
+                "FAT",         // Fat
+                "CHOCDF",      // Carbohydrates
+                "FIBTG"        // Fiber
             };
 
             for (String key : nutrientKeys) {

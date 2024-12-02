@@ -1,5 +1,6 @@
 package interface_adapter.login;
 
+import entity.CommonUser;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.dashboard.DashboardState;
@@ -8,7 +9,6 @@ import interface_adapter.info_collection.InfoCollectionState;
 import interface_adapter.info_collection.InfoCollectionViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
-import entity.CommonUser;
 
 public class LoginPresenter implements LoginOutputBoundary {
     private final ViewManagerModel viewManagerModel;

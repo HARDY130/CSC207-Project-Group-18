@@ -51,10 +51,10 @@ public class Food {
     @Override
     public String toString() {
         return "Food{" +
-                "foodId='" + foodId + '\'' +
-                ", label='" + label + '\'' +
-                ", category='" + category + '\'' +
-                ", nutrients=" + nutrients +
-                '}';
+            "foodId='" + foodId + '\'' +
+            ", label='" + label + '\'' +
+            ", category='" + category + '\'' +
+            ", nutrients=" + nutrients +
+            '}';
     }
 }

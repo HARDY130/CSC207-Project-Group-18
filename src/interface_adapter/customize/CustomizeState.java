@@ -33,26 +33,60 @@ public class CustomizeState {
     }
 
     // Getters
-    public String getUsername() { return username; }
-    public List<Food> getSearchResults() { return new ArrayList<>(searchResults); }
-    public MealType getSelectedMealType() { return selectedMealType; }
-    public String getError() { return error; }
-    public String getSuccessMessage() { return successMessage; }
-    public String getSearchQuery() { return searchQuery; }
-    public boolean isLoading() { return isLoading; }
+    public String getUsername() {
+        return username;
+    }
 
     // Setters
-    public void setUsername(String username) { this.username = username; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Food> getSearchResults() {
+        return new ArrayList<>(searchResults);
+    }
+
     public void setSearchResults(List<Food> searchResults) {
         this.searchResults = new ArrayList<>(searchResults);
     }
+
+    public MealType getSelectedMealType() {
+        return selectedMealType;
+    }
+
     public void setSelectedMealType(MealType selectedMealType) {
         this.selectedMealType = selectedMealType;
     }
-    public void setError(String error) { this.error = error; }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getSuccessMessage() {
+        return successMessage;
+    }
+
     public void setSuccessMessage(String successMessage) {
         this.successMessage = successMessage;
     }
-    public void setSearchQuery(String searchQuery) { this.searchQuery = searchQuery; }
-    public void setLoading(boolean loading) { isLoading = loading; }
+
+    public String getSearchQuery() {
+        return searchQuery;
+    }
+
+    public void setSearchQuery(String searchQuery) {
+        this.searchQuery = searchQuery;
+    }
+
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    public void setLoading(boolean loading) {
+        isLoading = loading;
+    }
 }

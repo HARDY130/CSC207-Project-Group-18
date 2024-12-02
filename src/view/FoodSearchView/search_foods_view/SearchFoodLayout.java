@@ -1,8 +1,7 @@
 package view.FoodSearchView.search_foods_view;
 
+import java.awt.Container;
 import view.FoodSearchView.LayoutAdapter;
-
-import java.awt.*;
 
 public class SearchFoodLayout extends LayoutAdapter {
 

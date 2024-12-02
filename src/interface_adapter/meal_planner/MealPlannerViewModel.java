@@ -10,8 +10,8 @@ public class MealPlannerViewModel extends ViewModel<MealPlannerState> {
     public static final String BACK_BUTTON_LABEL = "Back";
 
     public static final String[] DIET_OPTIONS = {
-            "Balanced", "High-Fiber", "High-Protein", "Low-Carb",
-            "Low-Fat", "Low-Sodium", "Mediterranean", "Vegan", "Vegetarian"
+        "Balanced", "High-Fiber", "High-Protein", "Low-Carb",
+        "Low-Fat", "Low-Sodium", "Mediterranean", "Vegan", "Vegetarian"
     };
 
     public MealPlannerViewModel() {

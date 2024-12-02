@@ -1,19 +1,26 @@
 package data_access;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import entity.Allergy;
 import entity.CommonUser;
 import entity.Food;
 import entity.MealType;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import use_case.meal_planner.MealPlannerDataAccessInterface;
-import use_case.meal_planner.MealStorageDataAccessInterface;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import use_case.meal_planner.MealPlannerDataAccessInterface;
+import use_case.meal_planner.MealStorageDataAccessInterface;
 
 public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterface {
     private static final String APP_ID = "db5fb0da";
@@ -63,7 +70,7 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
 
     @Override
     public Map<MealType, List<Food>> generateMealPlan(CommonUser user, List<String> selectedDiets)
-            throws Exception {
+        throws Exception {
         JSONObject requestBody = new JSONObject();
         requestBody.put("size", 7);
 
@@ -111,23 +118,23 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
 
         // Breakfast section
         sections.put("Breakfast", createMealSection(
-                "breakfast",
-                tdee * BREAKFAST_MIN_RATIO,
-                tdee * BREAKFAST_MAX_RATIO
+            "breakfast",
+            tdee * BREAKFAST_MIN_RATIO,
+            tdee * BREAKFAST_MAX_RATIO
         ));
 
         // Lunch section
         sections.put("Lunch", createMealSection(
-                "lunch/dinner",
-                tdee * LUNCH_MIN_RATIO,
-                tdee * LUNCH_MAX_RATIO
+            "lunch/dinner",
+            tdee * LUNCH_MIN_RATIO,
+            tdee * LUNCH_MAX_RATIO
         ));
 
         // Dinner section
         sections.put("Dinner", createMealSection(
-                "lunch/dinner",
-                tdee * DINNER_MIN_RATIO,
-                tdee * DINNER_MAX_RATIO
+            "lunch/dinner",
+            tdee * DINNER_MIN_RATIO,
+            tdee * DINNER_MAX_RATIO
         ));
 
         plan.put("sections", sections);
@@ -136,19 +143,19 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         String endpoint = String.format("%s/%s/select?beta=true", BASE_URL, APP_ID);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .header("Edamam-Account-User", ACCOUNT_USER)
-                .header("Authorization", "Basic " + Base64.getEncoder().encodeToString((APP_ID + ":" + APP_KEY).getBytes()))
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
-                .build();
+            .uri(URI.create(endpoint))
+            .header("Accept", "application/json")
+            .header("Content-Type", "application/json")
+            .header("Edamam-Account-User", ACCOUNT_USER)
+            .header("Authorization", "Basic " + Base64.getEncoder().encodeToString((APP_ID + ":" + APP_KEY).getBytes()))
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
+            .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() != 200) {
             throw new Exception("Meal plan generation failed with status: " + response.statusCode()
-                    + "\nResponse: " + response.body());
+                + "\nResponse: " + response.body());
         }
 
         return parseMealPlanResponse(new JSONObject(response.body()));
@@ -204,11 +211,11 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
                     JSONObject mealSection = sections.getJSONObject(sectionName);
 
                     if (mealSection.has("_links") &&
-                            mealSection.getJSONObject("_links").has("self")) {
+                        mealSection.getJSONObject("_links").has("self")) {
 
                         String recipeUrl = mealSection.getJSONObject("_links")
-                                .getJSONObject("self")
-                                .getString("href");
+                            .getJSONObject("self")
+                            .getString("href");
 
                         try {
                             List<Food> foods = fetchRecipeDetails(recipeUrl);
@@ -230,25 +237,25 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         String recipeId = url.substring(url.lastIndexOf("/") + 1).split("\\?")[0];
 
         String fullUrl = String.format("https://api.edamam.com/api/recipes/v2/%s" +
-                        "?type=public" +
-                        "&beta=true" +
-                        "&app_id=%s" +
-                        "&app_key=%s" +
-                        "&field=uri" +
-                        "&field=label" +
-                        "&field=image" +
-                        "&field=calories" +
-                        "&field=totalWeight" +
-                        "&field=cuisineType" +
-                        "&field=mealType" +
-                        "&field=totalNutrients",
-                recipeId, RS_ID, RS_KEY);
+                "?type=public" +
+                "&beta=true" +
+                "&app_id=%s" +
+                "&app_key=%s" +
+                "&field=uri" +
+                "&field=label" +
+                "&field=image" +
+                "&field=calories" +
+                "&field=totalWeight" +
+                "&field=cuisineType" +
+                "&field=mealType" +
+                "&field=totalNutrients",
+            recipeId, RS_ID, RS_KEY);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(fullUrl))
-                .header("Accept", "application/json")
-                .GET()
-                .build();
+            .uri(URI.create(fullUrl))
+            .header("Accept", "application/json")
+            .GET()
+            .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -306,7 +313,7 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
             CommonUser user = (CommonUser) userDataAccess.get(username);
             Map<MealType, List<Food>> fullPlan = generateMealPlan(user, new ArrayList<>(dietaryPreferences));
 
-            return switch(mealType.toUpperCase()) {
+            return switch (mealType.toUpperCase()) {
                 case "BREAKFAST" -> fullPlan.get(MealType.BREAKFAST);
                 case "LUNCH" -> fullPlan.get(MealType.LUNCH);
                 case "DINNER" -> fullPlan.get(MealType.DINNER);

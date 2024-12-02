@@ -7,6 +7,7 @@ public interface InfoCollectionInputBoundary {
 
     /**
      * Executes the Logout use case.
+     *
      * @param infoCollectionInputData the input data
      */
     void execute(InfoCollectionInputData infoCollectionInputData);

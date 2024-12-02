@@ -1,7 +1,6 @@
 package interface_adapter.customize;
 
 import interface_adapter.ViewModel;
-import java.beans.PropertyChangeListener;
 
 public class CustomizeViewModel extends ViewModel<CustomizeState> {
     public static final String TITLE_LABEL = "Customize Meals";

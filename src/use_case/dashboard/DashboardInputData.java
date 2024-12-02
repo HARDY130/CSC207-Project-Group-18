@@ -52,10 +52,6 @@ package use_case.dashboard;
 //    public double getConsumedFat() { return consumedFat; }
 //}
 
-import entity.Allergy;
-import java.time.LocalDate;
-import java.util.Set;
-
 public class DashboardInputData {
     private final String username;
 //    private final LocalDate birthDate;
@@ -76,7 +72,9 @@ public class DashboardInputData {
     }
 
     // Getters
-    public String getUsername() { return username; }
+    public String getUsername() {
+        return username;
+    }
 //    public LocalDate getBirthDate() { return birthDate; }
 //    public String getGender() { return gender; }
 //    public int getWeight() { return weight; }

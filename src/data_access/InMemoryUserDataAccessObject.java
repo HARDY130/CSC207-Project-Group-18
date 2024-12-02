@@ -5,6 +5,8 @@ import entity.CommonUser;
 import entity.Food;
 import entity.MealType;
 import entity.User;
+import java.util.HashMap;
+import java.util.Map;
 import use_case.dashboard.DashboardDataAccessInterface;
 import use_case.info_collection.InfoCollectionUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
@@ -12,20 +14,16 @@ import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.meal_planner.MealStorageDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * In-memory implementation of the DAO for storing user data. This implementation does
  * NOT persist data between runs of the program.
  */
 public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface,
-        LoginUserDataAccessInterface,
-        LogoutUserDataAccessInterface,
-        InfoCollectionUserDataAccessInterface,
-        DashboardDataAccessInterface,
-        MealStorageDataAccessInterface {
+    LoginUserDataAccessInterface,
+    LogoutUserDataAccessInterface,
+    InfoCollectionUserDataAccessInterface,
+    DashboardDataAccessInterface,
+    MealStorageDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
     private final Map<String, Map<MealType, Map<String, Food>>> userMeals = new HashMap<>();
@@ -48,13 +46,13 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
     }
 
     @Override
-    public void setCurrentUsername(String name) {
-        this.currentUsername = name;
+    public String getCurrentUsername() {
+        return currentUsername;
     }
 
     @Override
-    public String getCurrentUsername() {
-        return currentUsername;
+    public void setCurrentUsername(String name) {
+        this.currentUsername = name;
     }
 
     @Override
@@ -64,7 +62,7 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
                                         double consumedProtein,
                                         double consumedFat) {
         userProgress.put(username, new NutritionProgress(
-                consumedCalories, consumedCarbs, consumedProtein, consumedFat
+            consumedCalories, consumedCarbs, consumedProtein, consumedFat
         ));
     }
 

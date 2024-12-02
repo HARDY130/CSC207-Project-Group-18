@@ -2,9 +2,26 @@ package entity;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.*;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class CommonUser implements User {
+    // Constants for activity multipliers
+    public static final double SEDENTARY = 1.2;
+    public static final double LIGHTLY_ACTIVE = 1.375;
+    public static final double MODERATELY_ACTIVE = 1.55;
+    public static final double VERY_ACTIVE = 1.725;
+    public static final double SUPER_ACTIVE = 1.9;
+    // Constants for macronutrient calculations
+    private static final double CARBS_PERCENT = 0.55;
+    private static final double PROTEIN_PERCENT = 0.225;
+    private static final double FAT_PERCENT = 0.275;
+    private static final double CARBS_CALORIES_PER_GRAM = 4.0;
+    private static final double PROTEIN_CALORIES_PER_GRAM = 4.0;
+    private static final double FAT_CALORIES_PER_GRAM = 9.0;
     private final String name;
     private final String password;
     private final LocalDate birthDate;
@@ -13,23 +30,6 @@ public class CommonUser implements User {
     private final int height;
     private final double activityMultiplier;
     private final Set<Allergy> allergies;
-
-    // Constants for activity multipliers
-    public static final double SEDENTARY = 1.2;
-    public static final double LIGHTLY_ACTIVE = 1.375;
-    public static final double MODERATELY_ACTIVE = 1.55;
-    public static final double VERY_ACTIVE = 1.725;
-    public static final double SUPER_ACTIVE = 1.9;
-
-    // Constants for macronutrient calculations
-    private static final double CARBS_PERCENT = 0.55;
-    private static final double PROTEIN_PERCENT = 0.225;
-    private static final double FAT_PERCENT = 0.275;
-
-    private static final double CARBS_CALORIES_PER_GRAM = 4.0;
-    private static final double PROTEIN_CALORIES_PER_GRAM = 4.0;
-    private static final double FAT_CALORIES_PER_GRAM = 9.0;
-
     private final Map<MealType, Map<String, Food>> dailyMeals;
 
     public CommonUser(String name, String password, LocalDate birthDate, String gender,
@@ -90,7 +90,9 @@ public class CommonUser implements User {
     public String getActivityLevel() {
         if (activityMultiplier == SEDENTARY) return "Sedentary (little or no exercise)";
         if (activityMultiplier == LIGHTLY_ACTIVE) return "Lightly active (light exercise/sports 1-3 days a week)";
-        if (activityMultiplier == MODERATELY_ACTIVE) return "Moderately active (moderate exercise/sports 3-5 days a week)";
+        if (activityMultiplier == MODERATELY_ACTIVE) {
+            return "Moderately active (moderate exercise/sports 3-5 days a week)";
+        }
         if (activityMultiplier == VERY_ACTIVE) return "Very active (hard exercise/sports 6-7 days a week)";
         if (activityMultiplier == SUPER_ACTIVE) return "Super active (very hard exercise/physical job)";
         return "Activity level not specified";

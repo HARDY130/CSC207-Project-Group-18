@@ -11,6 +11,11 @@ public class MealPlannerInputData {
         this.username = username;
     }
 
-    public String getUsername() { return username; }
-    public Set<String> getDietaryPreferences() { return dietaryPreferences; }
+    public String getUsername() {
+        return username;
+    }
+
+    public Set<String> getDietaryPreferences() {
+        return dietaryPreferences;
+    }
 }

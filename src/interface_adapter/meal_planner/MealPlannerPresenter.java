@@ -11,9 +11,9 @@ public class MealPlannerPresenter implements MealPlannerOutputBoundary {
     private final DashboardViewModel dashboardViewModel;
 
     public MealPlannerPresenter(
-            MealPlannerViewModel viewModel,
-            ViewManagerModel viewManagerModel,
-            DashboardViewModel dashboardViewModel) {
+        MealPlannerViewModel viewModel,
+        ViewManagerModel viewManagerModel,
+        DashboardViewModel dashboardViewModel) {
         this.mealPlannerViewModel = viewModel;
         this.viewManagerModel = viewManagerModel;
         this.dashboardViewModel = dashboardViewModel;

@@ -1,9 +1,9 @@
 package use_case.info_collection;
 
+import entity.CommonUser;
 import entity.CommonUserFactory;
 import entity.User;
 import entity.UserFactory;
-import entity.CommonUser;
 
 public class InfoCollectionInteractor implements InfoCollectionInputBoundary {
     final InfoCollectionUserDataAccessInterface userDataAccessObject;
@@ -11,9 +11,9 @@ public class InfoCollectionInteractor implements InfoCollectionInputBoundary {
     final CommonUserFactory userFactory;
 
     public InfoCollectionInteractor(
-            InfoCollectionUserDataAccessInterface userDataAccessInterface,
-            InfoCollectionOutputBoundary infoOutputBoundary,
-            UserFactory userFactory) {
+        InfoCollectionUserDataAccessInterface userDataAccessInterface,
+        InfoCollectionOutputBoundary infoOutputBoundary,
+        UserFactory userFactory) {
         this.userDataAccessObject = userDataAccessInterface;
         this.infoCollectionPresenter = infoOutputBoundary;
         this.userFactory = (CommonUserFactory) userFactory;
@@ -48,20 +48,20 @@ public class InfoCollectionInteractor implements InfoCollectionInputBoundary {
             }
 
             if (!infoCollectionInputData.getGender().equals("Male") &&
-                    !infoCollectionInputData.getGender().equals("Female")) {
+                !infoCollectionInputData.getGender().equals("Female")) {
                 infoCollectionPresenter.prepareFailView("Gender must be either 'Male' or 'Female'.");
                 return;
             }
 
             User user = userFactory.createWithInfo(
-                    infoCollectionInputData.getUsername(),
-                    infoCollectionInputData.getPassword(),
-                    infoCollectionInputData.getBirthDate(),
-                    infoCollectionInputData.getGender(),
-                    infoCollectionInputData.getWeight(),
-                    infoCollectionInputData.getHeight(),
-                    infoCollectionInputData.getActivityMultiplier(),
-                    infoCollectionInputData.getAllergies()
+                infoCollectionInputData.getUsername(),
+                infoCollectionInputData.getPassword(),
+                infoCollectionInputData.getBirthDate(),
+                infoCollectionInputData.getGender(),
+                infoCollectionInputData.getWeight(),
+                infoCollectionInputData.getHeight(),
+                infoCollectionInputData.getActivityMultiplier(),
+                infoCollectionInputData.getAllergies()
             );
 
             userDataAccessObject.save(user);
@@ -69,17 +69,17 @@ public class InfoCollectionInteractor implements InfoCollectionInputBoundary {
             CommonUser commonUser = (CommonUser) user;
 
             InfoCollectionOutputData infoCollectionOutputData = new InfoCollectionOutputData(
-                    user.getName(),
-                    infoCollectionInputData.getBirthDate(),
-                    infoCollectionInputData.getGender(),
-                    infoCollectionInputData.getWeight(),
-                    infoCollectionInputData.getHeight(),
-                    infoCollectionInputData.getActivityMultiplier(),
-                    infoCollectionInputData.getAllergies(),
-                    commonUser.calculateBMR(),
-                    commonUser.calculateTDEE(),
-                    true,
-                    null
+                user.getName(),
+                infoCollectionInputData.getBirthDate(),
+                infoCollectionInputData.getGender(),
+                infoCollectionInputData.getWeight(),
+                infoCollectionInputData.getHeight(),
+                infoCollectionInputData.getActivityMultiplier(),
+                infoCollectionInputData.getAllergies(),
+                commonUser.calculateBMR(),
+                commonUser.calculateTDEE(),
+                true,
+                null
             );
 
             infoCollectionPresenter.prepareSuccessView(infoCollectionOutputData);

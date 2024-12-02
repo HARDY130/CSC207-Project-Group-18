@@ -1,7 +1,6 @@
 package use_case.info_collection;
 
 import entity.Allergy;
-
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -21,7 +20,8 @@ public class InfoCollectionInputData {
     private final Set<Allergy> allergies;
 
     public InfoCollectionInputData(String username, String password, LocalDate birthDate,
-                                   String gender, int weight, int height, double activityMultiplier, Set<Allergy> allergies) {
+                                   String gender, int weight, int height, double activityMultiplier,
+                                   Set<Allergy> allergies) {
         this.username = username;
         this.password = password;
         this.birthDate = birthDate;
@@ -33,19 +33,35 @@ public class InfoCollectionInputData {
     }
 
 
-    public String getUsername() { return username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
-    public LocalDate getBirthDate() { return birthDate; }
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
 
-    public String getGender() { return gender; }
+    public String getGender() {
+        return gender;
+    }
 
-    public int getWeight() { return weight; }
+    public int getWeight() {
+        return weight;
+    }
 
-    public int getHeight() { return height; }
+    public int getHeight() {
+        return height;
+    }
 
-    public double getActivityMultiplier() { return activityMultiplier; }
+    public double getActivityMultiplier() {
+        return activityMultiplier;
+    }
 
-    public Set<Allergy> getAllergies() { return allergies; }
+    public Set<Allergy> getAllergies() {
+        return allergies;
+    }
 }

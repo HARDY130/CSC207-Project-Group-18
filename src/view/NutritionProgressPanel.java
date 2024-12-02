@@ -1,7 +1,20 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 
@@ -61,15 +74,15 @@ public class NutritionProgressPanel extends JPanel {
     }
 
     private static class ProgressRing extends JPanel {
+        private static final int ANIMATION_STEPS = 20;
+        private static final int ANIMATION_DELAY = 20;
         private final Color ringColor;
         private final Timer animationTimer;
+        private final int size;
         private int currentProgress = 0;
         private int targetProgress = 0;
         private String label = "";
         private String value = "";
-        private final int size;
-        private static final int ANIMATION_STEPS = 20;
-        private static final int ANIMATION_DELAY = 20;
 
         public ProgressRing(Color color, int size) {
             this.ringColor = color;
@@ -83,12 +96,12 @@ public class NutritionProgressPanel extends JPanel {
                         currentProgress = targetProgress;
                     } else {
                         currentProgress += (targetProgress > currentProgress) ?
-                                ANIMATION_STEPS : -ANIMATION_STEPS;
+                            ANIMATION_STEPS : -ANIMATION_STEPS;
                     }
                     repaint();
                 }
                 if (currentProgress == targetProgress) {
-                    ((Timer)e.getSource()).stop();
+                    ((Timer) e.getSource()).stop();
                 }
             });
         }
@@ -151,11 +164,11 @@ public class NutritionProgressPanel extends JPanel {
             g2d.setStroke(new BasicStroke(strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             g2d.setColor(new Color(230, 230, 230));
             g2d.draw(new Arc2D.Double(
-                    x + strokeWidth/2,
-                    y + strokeWidth/2,
-                    diameter - strokeWidth,
-                    diameter - strokeWidth,
-                    0, 360, Arc2D.OPEN
+                x + strokeWidth / 2,
+                y + strokeWidth / 2,
+                diameter - strokeWidth,
+                diameter - strokeWidth,
+                0, 360, Arc2D.OPEN
             ));
         }
 
@@ -163,11 +176,11 @@ public class NutritionProgressPanel extends JPanel {
             g2d.setColor(ringColor);
             float arcAngle = -360f * currentProgress / 100f;
             g2d.draw(new Arc2D.Double(
-                    x + strokeWidth/2,
-                    y + strokeWidth/2,
-                    diameter - strokeWidth,
-                    diameter - strokeWidth,
-                    90, arcAngle, Arc2D.OPEN
+                x + strokeWidth / 2,
+                y + strokeWidth / 2,
+                diameter - strokeWidth,
+                diameter - strokeWidth,
+                90, arcAngle, Arc2D.OPEN
             ));
         }
 
@@ -178,9 +191,9 @@ public class NutritionProgressPanel extends JPanel {
 
             // Create gradient for center circle
             GradientPaint gradient = new GradientPaint(
-                    innerX, innerY, Color.WHITE,
-                    innerX + innerDiameter, innerY + innerDiameter,
-                    new Color(245, 245, 245)
+                innerX, innerY, Color.WHITE,
+                innerX + innerDiameter, innerY + innerDiameter,
+                new Color(245, 245, 245)
             );
             g2d.setPaint(gradient);
             g2d.fill(new Ellipse2D.Double(innerX, innerY, innerDiameter, innerDiameter));
@@ -190,29 +203,29 @@ public class NutritionProgressPanel extends JPanel {
             g2d.setColor(Color.DARK_GRAY);
 
             // Draw label
-            Font labelFont = new Font("Segoe UI", Font.BOLD, diameter/10);
+            Font labelFont = new Font("Segoe UI", Font.BOLD, diameter / 10);
             g2d.setFont(labelFont);
             FontMetrics labelMetrics = g2d.getFontMetrics();
             g2d.drawString(label,
-                    x + (diameter - labelMetrics.stringWidth(label))/2,
-                    y + diameter/2 - diameter/8);
+                x + (diameter - labelMetrics.stringWidth(label)) / 2,
+                y + diameter / 2 - diameter / 8);
 
             // Draw value
-            Font valueFont = new Font("Segoe UI", Font.PLAIN, diameter/12);
+            Font valueFont = new Font("Segoe UI", Font.PLAIN, diameter / 12);
             g2d.setFont(valueFont);
             FontMetrics valueMetrics = g2d.getFontMetrics();
             g2d.drawString(value,
-                    x + (diameter - valueMetrics.stringWidth(value))/2,
-                    y + diameter/2 + diameter/8);
+                x + (diameter - valueMetrics.stringWidth(value)) / 2,
+                y + diameter / 2 + diameter / 8);
 
             // Draw percentage
-            Font percentFont = new Font("Segoe UI", Font.BOLD, diameter/8);
+            Font percentFont = new Font("Segoe UI", Font.BOLD, diameter / 8);
             g2d.setFont(percentFont);
             String percentText = currentProgress + "%";
             FontMetrics percentMetrics = g2d.getFontMetrics();
             g2d.drawString(percentText,
-                    x + (diameter - percentMetrics.stringWidth(percentText))/2,
-                    y + diameter/2);
+                x + (diameter - percentMetrics.stringWidth(percentText)) / 2,
+                y + diameter / 2);
         }
     }
 }

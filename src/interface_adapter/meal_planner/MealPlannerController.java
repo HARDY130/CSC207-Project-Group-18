@@ -1,10 +1,9 @@
 package interface_adapter.meal_planner;
 
 import entity.Food;
+import java.util.Set;
 import use_case.meal_planner.MealPlannerInputBoundary;
 import use_case.meal_planner.MealPlannerInputData;
-
-import java.util.Set;
 
 public class MealPlannerController {
     private final MealPlannerInputBoundary mealPlannerUseCaseInteractor;

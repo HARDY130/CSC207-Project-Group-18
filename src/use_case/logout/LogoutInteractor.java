@@ -56,10 +56,10 @@ public class LogoutInteractor implements LogoutInputBoundary {
 
         // Create output data with all required information
         final LogoutOutputData logoutOutputData = new LogoutOutputData(
-                username,    // username being logged out
-                commonUser, // user data if needed for view transition
-                isProfileComplete,  // profile status
-                false       // useCase didn't fail
+            username,    // username being logged out
+            commonUser, // user data if needed for view transition
+            isProfileComplete,  // profile status
+            false       // useCase didn't fail
         );
 
         logoutPresenter.prepareSuccessView(logoutOutputData);
@@ -67,10 +67,10 @@ public class LogoutInteractor implements LogoutInputBoundary {
 
     private boolean checkProfileComplete(CommonUser user) {
         return user.getBirthDate() != null &&
-                !user.getGender().isEmpty() &&
-                user.getWeight() > 0 &&
-                user.getHeight() > 0 &&
-                user.getActivityMultiplier() > 0;
+            !user.getGender().isEmpty() &&
+            user.getWeight() > 0 &&
+            user.getHeight() > 0 &&
+            user.getActivityMultiplier() > 0;
     }
 }
 

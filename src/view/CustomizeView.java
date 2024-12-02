@@ -1,11 +1,26 @@
 package view;
 
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+
 import entity.Food;
 import entity.MealType;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.customize.*;
-import javax.swing.*;
-import java.awt.*;
+import interface_adapter.customize.CustomizeController;
+import interface_adapter.customize.CustomizeState;
+import interface_adapter.customize.CustomizeViewModel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -42,8 +57,9 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
 //        searchButton = new JButton("Search");
 //        returnButton = new JButton("Return to Dashboard");
 //        mealTypeComboBox = new JComboBox<>(MealType.values());
-////        listModel = new DefaultListModel<>();
-////        searchResultsList = new JList<>(listModel);
+
+    /// /        listModel = new DefaultListModel<>();
+    /// /        searchResultsList = new JList<>(listModel);
 //        // Initialize list components with a more user-friendly display
 //        listModel = new DefaultListModel<>();
 //        searchResultsList = new JList<>(listModel);
@@ -99,9 +115,8 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
 //            }
 //        }
 //    }
-
-
-    public CustomizeView(CustomizeViewModel viewModel, CustomizeController controller, ViewManagerModel viewManagerModel) {
+    public CustomizeView(CustomizeViewModel viewModel, CustomizeController controller,
+                         ViewManagerModel viewManagerModel) {
         this.customizeViewModel = viewModel;
         this.customizeController = controller;
         this.customizeViewModel.addPropertyChangeListener(this);
@@ -193,11 +208,11 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
     private String formatFoodDisplay(Food food) {
         Map<String, Double> nutrients = food.getNutrients();
         return String.format("%s\nCalories: %.0f kcal | Protein: %.1fg | Carbs: %.1fg | Fat: %.1fg",
-                food.getLabel(),
-                nutrients.getOrDefault("ENERC_KCAL", 0.0),
-                nutrients.getOrDefault("PROCNT", 0.0),
-                nutrients.getOrDefault("CHOCDF", 0.0),
-                nutrients.getOrDefault("FAT", 0.0));
+            food.getLabel(),
+            nutrients.getOrDefault("ENERC_KCAL", 0.0),
+            nutrients.getOrDefault("PROCNT", 0.0),
+            nutrients.getOrDefault("CHOCDF", 0.0),
+            nutrients.getOrDefault("FAT", 0.0));
     }
 
     private void setupLayout() {

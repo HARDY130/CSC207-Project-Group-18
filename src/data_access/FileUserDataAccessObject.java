@@ -1,5 +1,7 @@
 package data_access;
 
+import entity.User;
+import entity.UserFactory;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,9 +11,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import entity.User;
-import entity.UserFactory;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -20,8 +19,8 @@ import use_case.signup.SignupUserDataAccessInterface;
  * DAO for user data implemented using a File to persist the data.
  */
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
-                                                 LoginUserDataAccessInterface,
-                                                 ChangePasswordUserDataAccessInterface {
+    LoginUserDataAccessInterface,
+    ChangePasswordUserDataAccessInterface {
 
     private static final String HEADER = "username,password";
 
@@ -38,8 +37,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
 
         if (csvFile.length() == 0) {
             save();
-        }
-        else {
+        } else {
 
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 final String header = reader.readLine();
@@ -69,15 +67,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
 
             for (User user : accounts.values()) {
                 final String line = String.format("%s,%s",
-                        user.getName(), user.getPassword());
+                    user.getName(), user.getPassword());
                 writer.write(line);
                 writer.newLine();
             }
 
             writer.close();
 
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -94,13 +91,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void setCurrentUsername(String name) {
-        this.currentUsername = name;
+    public String getCurrentUsername() {
+        return this.currentUsername;
     }
 
     @Override
-    public String getCurrentUsername() {
-        return this.currentUsername;
+    public void setCurrentUsername(String name) {
+        this.currentUsername = name;
     }
 
     @Override

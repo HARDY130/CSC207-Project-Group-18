@@ -35,15 +35,47 @@ public class InfoCollectionOutputData {
         this.errorMessage = errorMessage;
     }
 
-    public String getUsername() { return username; }
-    public LocalDate getBirthDate() { return birthDate; }
-    public String getGender() { return gender; }
-    public int getWeight() { return weight; }
-    public int getHeight() { return height; }
-    public double getActivityMultiplier() { return activityMultiplier; }
-    public Set<Allergy> getAllergies() { return allergies; }
-    public double getCalculatedBMR() { return calculatedBMR; }
-    public double getCalculatedTDEE() { return calculatedTDEE; }
-    public boolean isUseCaseSuccess() { return useCaseSuccess; }
-    public String getErrorMessage() { return errorMessage; }
+    public String getUsername() {
+        return username;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public double getActivityMultiplier() {
+        return activityMultiplier;
+    }
+
+    public Set<Allergy> getAllergies() {
+        return allergies;
+    }
+
+    public double getCalculatedBMR() {
+        return calculatedBMR;
+    }
+
+    public double getCalculatedTDEE() {
+        return calculatedTDEE;
+    }
+
+    public boolean isUseCaseSuccess() {
+        return useCaseSuccess;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

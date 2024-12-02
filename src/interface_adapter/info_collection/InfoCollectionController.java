@@ -1,10 +1,10 @@
 package interface_adapter.info_collection;
 
-import use_case.info_collection.InfoCollectionInputBoundary;
-import use_case.info_collection.InfoCollectionInputData;
+import entity.Allergy;
 import java.time.LocalDate;
 import java.util.Set;
-import entity.Allergy;
+import use_case.info_collection.InfoCollectionInputBoundary;
+import use_case.info_collection.InfoCollectionInputData;
 
 public class InfoCollectionController {
     final InfoCollectionInputBoundary infoCollectionUseCaseInteractor;
@@ -19,8 +19,8 @@ public class InfoCollectionController {
         LocalDate birthDate = LocalDate.of(yearOfBirth, 1, 1);
 
         InfoCollectionInputData inputData = new InfoCollectionInputData(
-                username, password, birthDate, gender, weight, height,
-                activityMultiplier, allergies);
+            username, password, birthDate, gender, weight, height,
+            activityMultiplier, allergies);
 
         infoCollectionUseCaseInteractor.execute(inputData);
     }

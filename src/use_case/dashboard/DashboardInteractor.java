@@ -3,7 +3,6 @@ package use_case.dashboard;
 import entity.CommonUser;
 import entity.Food;
 import entity.MealType;
-
 import java.util.Map;
 
 public class DashboardInteractor implements DashboardInputBoundary {
@@ -50,21 +49,21 @@ public class DashboardInteractor implements DashboardInputBoundary {
         }
 
         DashboardOutputData outputData = new DashboardOutputData(
-                user.getName(),
-                bmr,
-                tdee,
-                carbsGoal,
-                proteinGoal,
-                fatGoal,
-                meals,
-                consumedCalories,
-                consumedCarbs,
-                consumedProtein,
-                consumedFat,
-                user.getActivityLevel(),
-                user.getAllergies(),
-                true,
-                null
+            user.getName(),
+            bmr,
+            tdee,
+            carbsGoal,
+            proteinGoal,
+            fatGoal,
+            meals,
+            consumedCalories,
+            consumedCarbs,
+            consumedProtein,
+            consumedFat,
+            user.getActivityLevel(),
+            user.getAllergies(),
+            true,
+            null
         );
 
         dashboardPresenter.prepareSuccessView(outputData);
@@ -84,21 +83,21 @@ public class DashboardInteractor implements DashboardInputBoundary {
 
         CommonUser user = (CommonUser) userDataAccessObject.get(username);
         DashboardOutputData outputData = new DashboardOutputData(
-                user.getName(),
-                user.calculateBMR(),
-                user.calculateTDEE(),
-                user.calculateCarbsGrams(),
-                user.calculateProteinGrams(),
-                user.calculateFatGrams(),
-                user.getAllMeals(),
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                user.getActivityLevel(),
-                user.getAllergies(),
-                true,
-                null
+            user.getName(),
+            user.calculateBMR(),
+            user.calculateTDEE(),
+            user.calculateCarbsGrams(),
+            user.calculateProteinGrams(),
+            user.calculateFatGrams(),
+            user.getAllMeals(),
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            user.getActivityLevel(),
+            user.getAllergies(),
+            true,
+            null
         );
 
         dashboardPresenter.prepareSwitchToMealPlanner(outputData);

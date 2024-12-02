@@ -1,12 +1,14 @@
 package data_access;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
-import org.json.JSONObject;
-import org.json.JSONArray;
 
 public class RecipeSearchDataAccessObject {
     private final String APP_ID = "e4b60eb9";
@@ -20,18 +22,18 @@ public class RecipeSearchDataAccessObject {
 
     // General recipe search
     public JSONObject searchRecipes(String query) throws Exception {
-        String encodedQuery = java.net.URLEncoder.encode(query, "UTF-8");
+        String encodedQuery = java.net.URLEncoder.encode(query, StandardCharsets.UTF_8);
         String endpoint = String.format("%s?app_id=%s&app_key=%s&type=public&q=%s",
-                BASE_URL, APP_ID, APP_KEY, encodedQuery);
+            BASE_URL, APP_ID, APP_KEY, encodedQuery);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("accept", "application/json")
-                .GET()
-                .build();
+            .uri(URI.create(endpoint))
+            .header("accept", "application/json")
+            .GET()
+            .build();
 
         HttpResponse<String> response = httpClient.send(request,
-                HttpResponse.BodyHandlers.ofString());
+            HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() != 200) {
             throw new Exception("Recipe search failed with status: " + response.statusCode());
@@ -43,16 +45,16 @@ public class RecipeSearchDataAccessObject {
     // Get specific recipe by ID
     public JSONObject getRecipeById(String recipeId) throws Exception {
         String endpoint = String.format("%s/%s?app_id=%s&app_key=%s&type=public",
-                BASE_URL, recipeId, APP_ID, APP_KEY);
+            BASE_URL, recipeId, APP_ID, APP_KEY);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("accept", "application/json")
-                .GET()
-                .build();
+            .uri(URI.create(endpoint))
+            .header("accept", "application/json")
+            .GET()
+            .build();
 
         HttpResponse<String> response = httpClient.send(request,
-                HttpResponse.BodyHandlers.ofString());
+            HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() != 200) {
             throw new Exception("Recipe lookup failed with status: " + response.statusCode());
@@ -63,18 +65,18 @@ public class RecipeSearchDataAccessObject {
 
     // Lookup recipes by URIs
     public JSONObject getRecipesByUris(List<String> uris) throws Exception {
-        String encodedUris = java.net.URLEncoder.encode(String.join(",", uris), "UTF-8");
+        String encodedUris = java.net.URLEncoder.encode(String.join(",", uris), StandardCharsets.UTF_8);
         String endpoint = String.format("%s/by-uri?app_id=%s&app_key=%s&type=public&uri=%s",
-                BASE_URL, APP_ID, APP_KEY, encodedUris);
+            BASE_URL, APP_ID, APP_KEY, encodedUris);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("accept", "application/json")
-                .GET()
-                .build();
+            .uri(URI.create(endpoint))
+            .header("accept", "application/json")
+            .GET()
+            .build();
 
         HttpResponse<String> response = httpClient.send(request,
-                HttpResponse.BodyHandlers.ofString());
+            HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() != 200) {
             throw new Exception("Recipe URI lookup failed with status: " + response.statusCode());

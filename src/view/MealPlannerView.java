@@ -1,24 +1,38 @@
 package view;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+
 import entity.Food;
 import interface_adapter.meal_planner.MealPlannerController;
 import interface_adapter.meal_planner.MealPlannerState;
 import interface_adapter.meal_planner.MealPlannerViewModel;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class MealPlannerView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "meal planner";
     private final MealPlannerViewModel mealPlannerViewModel;
-    private MealPlannerController mealPlannerController;
-
     // UI Components
     private final JLabel titleLabel;
     private final JPanel dietFilterPanel;
@@ -27,6 +41,7 @@ public class MealPlannerView extends JPanel implements ActionListener, PropertyC
     private final JButton backButton;
     private final Map<String, JCheckBox> dietCheckboxes = new HashMap<>();
     private final JLabel errorLabel;
+    private MealPlannerController mealPlannerController;
 
     public MealPlannerView(MealPlannerViewModel viewModel) {
         this.mealPlannerViewModel = viewModel;
@@ -59,7 +74,7 @@ public class MealPlannerView extends JPanel implements ActionListener, PropertyC
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         dietFilterPanel.setBorder(BorderFactory.createTitledBorder(
-                MealPlannerViewModel.DIET_FILTER_LABEL));
+            MealPlannerViewModel.DIET_FILTER_LABEL));
 
         errorLabel.setForeground(Color.RED);
         errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -153,10 +168,10 @@ public class MealPlannerView extends JPanel implements ActionListener, PropertyC
         // Add nutrition info
         Map<String, Double> nutrients = food.getNutrients();
         String nutritionInfo = String.format("Calories: %.0f | Protein: %.1fg | Carbs: %.1fg | Fat: %.1fg",
-                nutrients.getOrDefault("ENERC_KCAL", 0.0),
-                nutrients.getOrDefault("PROCNT", 0.0),
-                nutrients.getOrDefault("CHOCDF", 0.0),
-                nutrients.getOrDefault("FAT", 0.0));
+            nutrients.getOrDefault("ENERC_KCAL", 0.0),
+            nutrients.getOrDefault("PROCNT", 0.0),
+            nutrients.getOrDefault("CHOCDF", 0.0),
+            nutrients.getOrDefault("FAT", 0.0));
         infoPanel.add(new JLabel(nutritionInfo));
 
         // Right side: Add button
@@ -165,9 +180,9 @@ public class MealPlannerView extends JPanel implements ActionListener, PropertyC
             if (mealPlannerController != null) {
                 MealPlannerState currentState = mealPlannerViewModel.getState();
                 mealPlannerController.addMealToUser(
-                        currentState.getUsername(),
-                        mealTypeCode,
-                        food
+                    currentState.getUsername(),
+                    mealTypeCode,
+                    food
                 );
             }
         });
@@ -190,8 +205,7 @@ public class MealPlannerView extends JPanel implements ActionListener, PropertyC
             }
 
             mealPlannerController.execute(username, selectedDiets);
-        }
-        else if (evt.getSource() == backButton && mealPlannerController != null) {
+        } else if (evt.getSource() == backButton && mealPlannerController != null) {
             mealPlannerController.goHome();
         }
     }
@@ -208,9 +222,9 @@ public class MealPlannerView extends JPanel implements ActionListener, PropertyC
         if (state != null) {
             errorLabel.setText(state.getError());
             updateMealsPanel(
-                    state.getBreakfastOptions(),
-                    state.getLunchOptions(),
-                    state.getDinnerOptions()
+                state.getBreakfastOptions(),
+                state.getLunchOptions(),
+                state.getDinnerOptions()
             );
         }
     }

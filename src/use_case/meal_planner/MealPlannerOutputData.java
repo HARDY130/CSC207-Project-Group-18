@@ -1,7 +1,6 @@
 package use_case.meal_planner;
 
 import entity.Food;
-
 import java.util.List;
 
 public class MealPlannerOutputData {
@@ -23,10 +22,27 @@ public class MealPlannerOutputData {
         this.errorMessage = errorMessage;
     }
 
-    public String getUsername() { return username; }
-    public List<Food> getBreakfastOptions() { return breakfastOptions; }
-    public List<Food> getLunchOptions() { return lunchOptions; }
-    public List<Food> getDinnerOptions() { return dinnerOptions; }
-    public boolean isUseCaseSuccess() { return useCaseSuccess; }
-    public String getErrorMessage() { return errorMessage; }
+    public String getUsername() {
+        return username;
+    }
+
+    public List<Food> getBreakfastOptions() {
+        return breakfastOptions;
+    }
+
+    public List<Food> getLunchOptions() {
+        return lunchOptions;
+    }
+
+    public List<Food> getDinnerOptions() {
+        return dinnerOptions;
+    }
+
+    public boolean isUseCaseSuccess() {
+        return useCaseSuccess;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }
