@@ -34,6 +34,6 @@ For the filters specified on the Meal Planner, we made the filters selectable th
 Principle 7: Size and Space for Approach and Use
 
 A Feature that we could implement in the future to provide an appropriate digital “space” for all users to interact with the API comfortably would be to implement responsive design, which would ensure that the app works well across all devices, whether it is screen readers, smartphones, tablets etc.
-Another feature we could implement would be a “lite” version, in which the data from the api can still be received, even in remote areas that may have weak access to internet connections, using minimal bandwidth.
+Another feature we could implement would be a “lite” version, in which the data from the api can still be received, even in remote areas that may have weak access to internet connections. 
 
 
