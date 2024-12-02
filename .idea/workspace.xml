@@ -4,97 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="Finish customize">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/AppBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Meal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CustomizeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CustomizeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/DBUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/DBUserDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/FileUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/FileUserDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/Allergy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Allergy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommonUserFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/CommonUserFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/UserFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/UserFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/ViewManagerModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/ViewManagerModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/ViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/ViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/ChangePasswordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/ChangePasswordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/ChangePasswordPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/ChangePasswordPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/LoggedInState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/LoggedInState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/LoggedInViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/change_password/LoggedInViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordInputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordInputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordInputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordOutputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordOutputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordOutputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordUserDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/change_password/ChangePasswordUserDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionInputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionInputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionInputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionUserDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionUserDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginOutputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginOutputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginOutputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginUserDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginUserDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutUserDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutUserDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupOutputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/signup/SignupOutputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/signup/SignupOutputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupUserDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/signup/SignupUserDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LabelTextPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LabelTextPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoggedInView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoggedInView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/ViewManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/ViewManager.class" afterDir="false" />
-    </list>
+    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -105,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Zihan-test" />
+        <entry key="$PROJECT_DIR$" value="merge-3-4" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -116,12 +34,12 @@
     &quot;assignee&quot;: &quot;Chuxuan-a&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/HARDY130/CSC207-Project-Group-18.git",
-    "accountId": "4f9bb43d-ba80-414a-a7f8-d84faeaf686c"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/HARDY130/CSC207-Project-Group-18.git&quot;,
+    &quot;accountId&quot;: &quot;cb543040-83d9-4b98-9e8b-34123cdbef69&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -133,30 +51,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SignupInteractorTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Zihan-new&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/IdeaProjects/CSC207-Project-Group-18/src/interface_adapter/dashboard&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.SignupInteractorTest.executor": "Coverage",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "MealPlanneriP",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\user\IdeaProjects\CSC207-Project-Group-18\src\interface_adapter\dashboard" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
@@ -195,7 +106,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.SignupInteractorTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
@@ -205,8 +116,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -232,65 +143,7 @@
       <workItem from="1732516347472" duration="134000" />
       <workItem from="1732516487250" duration="63000" />
       <workItem from="1732541316435" duration="5154000" />
-      <workItem from="1733034050696" duration="19173000" />
     </task>
-    <task id="LOCAL-00001" summary="Dashboard Version update">
-      <option name="closed" value="true" />
-      <created>1732844749018</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1732844749018</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Dashboard Version modified update">
-      <option name="closed" value="true" />
-      <created>1732844887004</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1732844887004</updated>
-    </task>
-    <task id="LOCAL-00003" summary="add .idea">
-      <option name="closed" value="true" />
-      <created>1732845771205</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732845771205</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Add customize">
-      <option name="closed" value="true" />
-      <created>1733034174278</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1733034174278</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Add customize view">
-      <option name="closed" value="true" />
-      <created>1733034239350</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1733034239350</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Redo customize">
-      <option name="closed" value="true" />
-      <created>1733038864987</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1733038864987</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Finish customize">
-      <option name="closed" value="true" />
-      <created>1733043849913</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1733043849913</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,18 +159,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="update gitgnore" />
-    <MESSAGE value="Dashboard Version update" />
-    <MESSAGE value="Dashboard Version modified update" />
-    <MESSAGE value="add .idea" />
-    <MESSAGE value="modify" />
-    <MESSAGE value="Add customize" />
-    <MESSAGE value="Add customize view" />
-    <MESSAGE value="Redo customize" />
-    <MESSAGE value="Finish customize" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish customize" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
