@@ -9,6 +9,8 @@ Pronounced as (I-ta-da-ki-ma-su Nutritional assistant)
 
 Our program is a Nutritional Assistant, which was designed to help users figure out and manage their recommended macronutrient and calorie levels. The program determines a recommended nutritional threshold, allows the user to search up recipes and nutritional information about the dishes they prepare, and can generate a recommended comprehensive meal plan for the entire day, based on user specification.
 
+
+
 The nomenclature of our program's name, Romanized: (itadakimasu) comes from Japanese culture, where "いただきます" is a phrase said before eating to express gratitude for the food, the people who prepared it, and the ingredients. It conveys mindfulness and respect toward the act of eating. 
 
 ## **The Purpose**
@@ -134,3 +136,4 @@ We welcome contributions to enhance いただきます. Whether you're fixing bu
 6.	Provide a clear title and description for the merge request.
 7.	All pull requests are reviewed by at least one project owner.
 8.	Once we approved, your changes will be merged into the main branch.
+
