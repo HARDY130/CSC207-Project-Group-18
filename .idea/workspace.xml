@@ -5,44 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data_access/MealPlannerDataAccessObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data_access/MealPlannerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/mealplanner/MealPlannerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/mealplanner/MealPlannerPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/mealplanner/MealPlannerState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/mealplanner/MealPlannerViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/mealplanner/MealPlannerDataAccessInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/mealplanner/MealPlannerInputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/mealplanner/MealPlannerInputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/mealplanner/MealPlannerInteractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/mealplanner/MealPlannerOutputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/mealplanner/MealPlannerOutputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/mealplanner/MealStorageDataAccessInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/ApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/MealPlannerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/AppBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/InMemoryUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/InMemoryUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/dashboard/DashboardPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/dashboard/DashboardDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/dashboard/DashboardDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/dashboard/DashboardInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/dashboard/DashboardInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/dashboard/DashboardInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/dashboard/DashboardInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/dashboard/DashboardOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/dashboard/DashboardOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/dashboard/DashboardOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/dashboard/DashboardOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/DashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/DashboardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/info_collection/InfoCollectionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/info_collection/InfoCollectionState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/logout/LogoutInteractorTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/use_case/signup/SignupInteractorTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/use_case/login/LoginInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/use_case/login/LoginInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/info_collection/InfoCollectionInputData.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -102,7 +70,7 @@
     "JUnit.SignupInteractorTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "dashboard->meal-planner",
+    "git-widget-placeholder": "#8 on dashboard->meal-planner",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -199,8 +167,6 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.MealPlannerTest" />
-        <item itemvalue="Application.test.MealPlannerTest" />
-        <item itemvalue="Application.test.MealPlannerTest" />
         <item itemvalue="JUnit.SignupInteractorTest" />
       </list>
     </recent_temporary>
@@ -235,6 +201,7 @@
       <workItem from="1732516347472" duration="134000" />
       <workItem from="1732516487250" duration="63000" />
       <workItem from="1732541316435" duration="5154000" />
+      <workItem from="1733248906477" duration="7610000" />
     </task>
     <servers />
   </component>
