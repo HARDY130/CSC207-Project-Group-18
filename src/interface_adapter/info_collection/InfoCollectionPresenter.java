@@ -20,49 +20,13 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
     }
 
     @Override
-//    public void prepareSuccessView(InfoCollectionOutputData response) {
-//        InfoCollectionState infoCollectionState = infoCollectionViewModel.getState();
-//        infoCollectionState.setUsername(response.getUsername());
-//        infoCollectionViewModel.setState(infoCollectionState);
-//        infoCollectionViewModel.firePropertyChanged();
-//
-//        DashboardState dashboardState = (DashboardState) dashboardViewModel.getState();
-//
-//        // Set user information
-//        dashboardState.setUsername(response.getUsername());
-//        dashboardState.setBirthDate(response.getBirthDate());
-//        dashboardState.setGender(response.getGender());
-//        dashboardState.setWeight(response.getWeight());
-//        dashboardState.setHeight(response.getHeight());
-//        dashboardState.setActivityMultiplier(response.getActivityMultiplier());
-//        dashboardState.setAllergies(response.getAllergies());
-//
-//        // Set calculated values
-//        dashboardState.setBmr(response.getCalculatedBMR());
-//        dashboardState.setTdee(response.getCalculatedTDEE());
-//
-//        // Set activity level
-//        dashboardState.setActivityLevel(getActivityLevelDescription(response.getActivityMultiplier()));
-//
-//        // Reset
-//        dashboardState.setConsumedCalories(0.0);
-//        dashboardState.setConsumedCarbs(0.0);
-//        dashboardState.setConsumedProtein(0.0);
-//        dashboardState.setConsumedFat(0.0);
-//
-//        dashboardState.setError("");
-//        dashboardState.setSuccessMessage("Profile created successfully!");
-//        dashboardState.setLoading(false);
-//
-//        dashboardViewModel.setState(dashboardState);
-//        dashboardViewModel.firePropertyChanged();
-//
-//        viewManagerModel.setActiveView(dashboardViewModel.getViewName());
-//        viewManagerModel.firePropertyChanged();
-//    }
-
     public void prepareSuccessView(InfoCollectionOutputData response) {
-        DashboardState dashboardState = new DashboardState();
+        InfoCollectionState infoCollectionState = infoCollectionViewModel.getState();
+        infoCollectionState.setUsername(response.getUsername());
+        infoCollectionViewModel.setState(infoCollectionState);
+        infoCollectionViewModel.firePropertyChanged();
+
+        DashboardState dashboardState = (DashboardState) dashboardViewModel.getState();
 
         // Set user information
         dashboardState.setUsername(response.getUsername());
@@ -77,18 +41,18 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
         dashboardState.setBmr(response.getCalculatedBMR());
         dashboardState.setTdee(response.getCalculatedTDEE());
 
-        // Set initial nutrition goals based on TDEE
-        double tdee = response.getCalculatedTDEE();
-        dashboardState.setDailyCalorieGoal(tdee);
-        dashboardState.setCarbsGoalGrams((tdee * 0.50) / 4.0);  // 50% from carbs, 4 cal/g
-        dashboardState.setProteinGoalGrams((tdee * 0.25) / 4.0);  // 25% from protein, 4 cal/g
-        dashboardState.setFatGoalGrams((tdee * 0.25) / 9.0);  // 25% from fat, 9 cal/g
+        // Set activity level
+        dashboardState.setActivityLevel(getActivityLevelDescription(response.getActivityMultiplier()));
 
-        // Initialize consumed values to 0
+        // Reset
         dashboardState.setConsumedCalories(0.0);
         dashboardState.setConsumedCarbs(0.0);
         dashboardState.setConsumedProtein(0.0);
         dashboardState.setConsumedFat(0.0);
+
+        dashboardState.setError("");
+        dashboardState.setSuccessMessage("Profile created successfully!");
+        dashboardState.setLoading(false);
 
         dashboardViewModel.setState(dashboardState);
         dashboardViewModel.firePropertyChanged();

@@ -1,19 +1,106 @@
 package use_case.dashboard;
 
+//import entity.CommonUser;
+//import entity.Food;
+//import entity.MealType;
+//import use_case.dashboard.*;
+//
+//
+//import java.util.HashSet;
+//import java.util.Map;
+//
+//public class DashboardInteractor implements DashboardInputBoundary {
+//    final DashboardDataAccessInterface userDataAccessObject;
+//    final DashboardOutputBoundary dashboardPresenter;
+//
+//    public DashboardInteractor(DashboardDataAccessInterface userDataAccessInterface,
+//                               DashboardOutputBoundary outputBoundary) {
+//        this.userDataAccessObject = userDataAccessInterface;
+//        this.dashboardPresenter = outputBoundary;
+//    }
+//
+//    @Override
+//    public void execute(DashboardInputData dashboardInputData) {
+//        try {
+//            if (!userDataAccessObject.existsByName(dashboardInputData.getUsername())) {
+//                dashboardPresenter.prepareFailView("User not found.");
+//                return;
+//            }
+//
+//            CommonUser user = (CommonUser) userDataAccessObject.get(dashboardInputData.getUsername());
+//
+//            // Update nutrition progress
+//            userDataAccessObject.updateNutritionProgress(
+//                    dashboardInputData.getUsername(),
+//                    dashboardInputData.getConsumedCalories(),
+//                    dashboardInputData.getConsumedCarbs(),
+//                    dashboardInputData.getConsumedProtein(),
+//                    dashboardInputData.getConsumedFat()
+//            );
+//
+//            // Calculate nutrition goals
+//            double bmr = user.calculateBMR();
+//            double tdee = user.calculateTDEE();
+//            double carbsGoal = user.calculateCarbsGrams();
+//            double proteinGoal = user.calculateProteinGrams();
+//            double fatGoal = user.calculateFatGrams();
+//
+//            DashboardOutputData dashboardOutputData = new DashboardOutputData(
+//                    user.getName(),
+//                    bmr,
+//                    tdee,
+//                    carbsGoal,
+//                    proteinGoal,
+//                    fatGoal,
+//                    dashboardInputData.getConsumedCalories(),
+//                    dashboardInputData.getConsumedCarbs(),
+//                    dashboardInputData.getConsumedProtein(),
+//                    dashboardInputData.getConsumedFat(),
+//                    user.getActivityLevel(),
+//                    user.getAllergies(),
+//                    true
+//            );
+//
+//            dashboardPresenter.prepareSuccessView(dashboardOutputData);
+//
+//        } catch (Exception e) {
+//            dashboardPresenter.prepareFailView(e.getMessage());
+//        }
+//    }
+//
+//    @Override
+//    public void switchToUpdateProfile() {
+//        dashboardPresenter.prepareSwitchToInfoCollection();
+//    }
+//
+//
+//    @Override
+//    public void switchToMealPlanner() {
+//        dashboardPresenter.prepareSuccessView(
+//                new DashboardOutputData("", 0, 0, 0, 0, 0, 0, 0, 0, 0, "", new HashSet<>(), true)
+//        );
+//    }
+//
+//    @Override
+//    public void switchToCustomize() {
+//        dashboardPresenter.prepareSwitchToCustomize();
+//    }
+//}
+
 import entity.CommonUser;
+import entity.Food;
+import entity.MealType;
 
-
-import java.util.HashSet;
+import java.util.*;
 
 public class DashboardInteractor implements DashboardInputBoundary {
-    final DashboardDataAccessInterface userDataAccessObject;
-    final DashboardOutputBoundary dashboardPresenter;
-//    final DashboardViewModel dashboardViewModel = new DashboardViewModel();
+    private final DashboardDataAccessInterface userDataAccessObject;
+    private final DashboardOutputBoundary dashboardPresenter;
 
-    public DashboardInteractor(DashboardDataAccessInterface userDataAccessInterface,
-                               DashboardOutputBoundary outputBoundary) {
-        this.userDataAccessObject = userDataAccessInterface;
-        this.dashboardPresenter = outputBoundary;
+    public DashboardInteractor(DashboardDataAccessInterface userDataAccessObject,
+                               DashboardOutputBoundary dashboardPresenter) {
+        this.userDataAccessObject = userDataAccessObject;
+        this.dashboardPresenter = dashboardPresenter;
     }
 
     @Override
@@ -25,39 +112,65 @@ public class DashboardInteractor implements DashboardInputBoundary {
             }
 
             CommonUser user = (CommonUser) userDataAccessObject.get(dashboardInputData.getUsername());
+            Map<MealType, Map<String, Food>> userMeals = user.getAllMeals();
 
-            // Update user's nutrition progress
-            userDataAccessObject.updateNutritionProgress(
-                    dashboardInputData.getUsername(),
-                    dashboardInputData.getConsumedCalories(),
-                    dashboardInputData.getConsumedCarbs(),
-                    dashboardInputData.getConsumedProtein(),
-                    dashboardInputData.getConsumedFat()
-            );
+            // Convert user meals to the format needed for output
+            Map<MealType, List<Food>> meals = new EnumMap<>(MealType.class);
+            for (MealType type : MealType.values()) {
+                meals.put(type, new ArrayList<>(userMeals.get(type).values()));
+            }
 
-            // Calculate nutrition goals based on user data
+            // Calculate nutrition totals from all meals
+            double totalCalories = 0;
+            double totalCarbs = 0;
+            double totalProtein = 0;
+            double totalFat = 0;
+
+            for (List<Food> mealFoods : meals.values()) {
+                for (Food food : mealFoods) {
+                    Map<String, Double> nutrients = food.getNutrients();
+                    totalCalories += nutrients.getOrDefault("ENERC_KCAL", 0.0);
+                    totalCarbs += nutrients.getOrDefault("CHOCDF", 0.0);
+                    totalProtein += nutrients.getOrDefault("PROCNT", 0.0);
+                    totalFat += nutrients.getOrDefault("FAT", 0.0);
+                }
+            }
+
+            // Calculate nutrition goals
             double bmr = user.calculateBMR();
             double tdee = user.calculateTDEE();
             double carbsGoal = user.calculateCarbsGrams();
             double proteinGoal = user.calculateProteinGrams();
             double fatGoal = user.calculateFatGrams();
 
-            DashboardOutputData dashboardOutputData = new DashboardOutputData(
+            // Update nutrition progress in the database
+            userDataAccessObject.updateNutritionProgress(
+                    user.getName(),
+                    totalCalories,
+                    totalCarbs,
+                    totalProtein,
+                    totalFat
+            );
+
+            DashboardOutputData outputData = new DashboardOutputData(
                     user.getName(),
                     bmr,
                     tdee,
                     carbsGoal,
                     proteinGoal,
                     fatGoal,
-                    dashboardInputData.getConsumedCalories(),
-                    dashboardInputData.getConsumedCarbs(),
-                    dashboardInputData.getConsumedProtein(),
-                    dashboardInputData.getConsumedFat(),
+                    meals,
+                    totalCalories,
+                    totalCarbs,
+                    totalProtein,
+                    totalFat,
                     user.getActivityLevel(),
                     user.getAllergies(),
-                    true);
+                    true,
+                    null
+            );
 
-            dashboardPresenter.prepareSuccessView(dashboardOutputData);
+            dashboardPresenter.prepareSuccessView(outputData);
 
         } catch (Exception e) {
             dashboardPresenter.prepareFailView(e.getMessage());
@@ -69,100 +182,14 @@ public class DashboardInteractor implements DashboardInputBoundary {
         dashboardPresenter.prepareSwitchToInfoCollection();
     }
 
-
     @Override
-    public void switchToMealPlanner(String username) {
-//        // Switch to meal planner view with current user info
-//        DashboardState state = (DashboardState) dashboardViewModel.getState();
-
-//        MealPlannerInputData inputData = new MealPlannerInputData(
-//                new HashSet<>(),
-//                state.getUsername()// Start with no dietary preferences selected
-//        );
-
-//        try {
-//            // Initialize the meal planner with default options
-//            DashboardOutputData outputData = new DashboardOutputData(
-//                    state.getUsername(),
-//                    state.getBmr(),
-//                    state.getTdee(),
-//                    state.getCarbsGoalGrams(),
-//                    state.getProteinGoalGrams(),
-//                    state.getFatGoalGrams(),
-//                    state.getConsumedCalories(),
-//                    state.getConsumedCarbs(),
-//                    state.getConsumedProtein(),
-//                    state.getConsumedFat(),
-//                    state.getActivityLevel(),
-//                    state.getAllergies()
-//            );
-//
-//            dashboardPresenter.prepareSwitchToMealPlanner(outputData);
-//        } catch (Exception e) {
-//            dashboardPresenter.prepareFailView(e.getMessage());
-//        }
-//    }
-
-//        String currentUser = userDataAccessObject.getCurrentUsername();
-//        if (currentUser == null || !userDataAccessObject.existsByName(currentUser)) {
-//            dashboardPresenter.prepareFailView("No active user session found");
-//            return;
-//        }
-//
-//        CommonUser user = (CommonUser) userDataAccessObject.get(currentUser);
-//
-//        // Create output data with user's dietary information
-//        DashboardOutputData outputData = new DashboardOutputData(
-//                user.getName(),
-//                user.calculateBMR(),
-//                user.calculateTDEE(),
-//                user.calculateCarbsGrams(),
-//                user.calculateProteinGrams(),
-//                user.calculateFatGrams(),
-//                0.0, // Reset consumed values for new meal plan
-//                0.0,
-//                0.0,
-//                0.0,
-//                user.getActivityLevel(),
-//                user.getAllergies(),
-//                true
-//        );
-
-//        // Trigger the transition to meal planner view
-//        dashboardPresenter.prepareSwitchToMealPlanner(outputData);
-
-        if (!userDataAccessObject.existsByName(username)) {
-            dashboardPresenter.prepareFailView("User not found.");
-            return;
-        }
-
-        CommonUser user = (CommonUser) userDataAccessObject.get(username);
-
-        DashboardOutputData outputData = new DashboardOutputData(
-                user.getName(),
-                user.calculateBMR(),
-                user.calculateTDEE(),
-                user.calculateCarbsGrams(),
-                user.calculateProteinGrams(),
-                user.calculateFatGrams(),
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                user.getActivityLevel(),
-                user.getAllergies(),
-                true
-        );
-
-        dashboardPresenter.prepareSwitchToMealPlanner(outputData);
-
+    public void switchToMealPlanner() {
+        // Implementation for meal planner navigation
+        // This will be implemented when meal planning feature is added
     }
 
     @Override
-    public void switchToMealRecorder() {
-        // Similar to switchToUpdateProfile, prepare for view transition
-        dashboardPresenter.prepareSuccessView(
-                new DashboardOutputData("", 0, 0, 0, 0, 0, 0, 0, 0, 0, "", new HashSet<>(), true)
-        );
+    public void switchToCustomize() {
+        dashboardPresenter.prepareSwitchToCustomize();
     }
 }

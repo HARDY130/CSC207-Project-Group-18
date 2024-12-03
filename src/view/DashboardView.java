@@ -114,73 +114,31 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         }
     }
 
-//    @Override
-//    public void propertyChange(PropertyChangeEvent evt) {
-//        if (evt.getPropertyName().equals("state")) {
-//            updateFromViewModel();
-//        }
-//    }
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("state")) {
-            DashboardState state = (DashboardState) dashboardViewModel.getState();
-            updateFromViewModel(state);
+            updateFromViewModel();
         }
     }
 
-//    private void updateFromViewModel() {
-//        DashboardState state = (DashboardState) dashboardViewModel.getState();
-//
-//        if (state != null) {
-//            welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
-//            activityLabel.setText("Activity Level: " + state.getActivityLevel());
-//            errorLabel.setText(state.getError());
-//            nutritionPanel.updateProgress(
-//                    state.getCaloriePercentage(),
-//                    state.getCarbsPercentage(),
-//                    state.getProteinPercentage(),
-//                    state.getFatPercentage(),
-//                    state.getFormattedCalorieProgress(),
-//                    state.getFormattedCarbsProgress(),
-//                    state.getFormattedProteinProgress(),
-//                    state.getFormattedFatProgress()
-//            );
-//        }
-//    }
+    private void updateFromViewModel() {
+        DashboardState state = (DashboardState) dashboardViewModel.getState();
 
-    private void updateFromViewModel(DashboardState state) {
         if (state != null) {
-            // Update welcome and activity labels
             welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
             activityLabel.setText("Activity Level: " + state.getActivityLevel());
-
-            // Calculate percentages based on goals and consumed values
-            double caloriePercent = calculatePercentage(state.getConsumedCalories(), state.getDailyCalorieGoal());
-            double carbsPercent = calculatePercentage(state.getConsumedCarbs(), state.getCarbsGoalGrams());
-            double proteinPercent = calculatePercentage(state.getConsumedProtein(), state.getProteinGoalGrams());
-            double fatPercent = calculatePercentage(state.getConsumedFat(), state.getFatGoalGrams());
-
-            // Format progress text
-            String calorieText = String.format("%.0f / %.0f kcal",
-                    state.getConsumedCalories(), state.getDailyCalorieGoal());
-            String carbsText = String.format("%.1f / %.1f g",
-                    state.getConsumedCarbs(), state.getCarbsGoalGrams());
-            String proteinText = String.format("%.1f / %.1f g",
-                    state.getConsumedProtein(), state.getProteinGoalGrams());
-            String fatText = String.format("%.1f / %.1f g",
-                    state.getConsumedFat(), state.getFatGoalGrams());
-
-            // Update progress rings
+            errorLabel.setText(state.getError());
             nutritionPanel.updateProgress(
-                    (int)caloriePercent, (int)carbsPercent,
-                    (int)proteinPercent, (int)fatPercent,
-                    calorieText, carbsText, proteinText, fatText);
+                    state.getCaloriePercentage(),
+                    state.getCarbsPercentage(),
+                    state.getProteinPercentage(),
+                    state.getFatPercentage(),
+                    state.getFormattedCalorieProgress(),
+                    state.getFormattedCarbsProgress(),
+                    state.getFormattedProteinProgress(),
+                    state.getFormattedFatProgress()
+            );
         }
-    }
-
-    private double calculatePercentage(double current, double goal) {
-        return goal > 0 ? Math.min(100, (current / goal) * 100) : 0;
     }
 
     public void setDashboardController(DashboardController controller) {
