@@ -34,15 +34,12 @@ public class DashboardState {
     private double consumedProtein = 0.0;
     private double consumedFat = 0.0;
 
-    // Meals tracking
     private Map<MealType, Map<String, Food>> meals;
 
-    // UI state
     private String error = "";
     private String successMessage = "";
     private boolean isLoading = false;
 
-    // Default constructor
     public DashboardState() {
         this.meals = new EnumMap<>(MealType.class);
         for (MealType type : MealType.values()) {
@@ -50,7 +47,7 @@ public class DashboardState {
         }
     }
 
-    // Copy constructor
+    // Create copy
     public DashboardState(DashboardState copy) {
         this.username = copy.username;
         this.birthDate = copy.birthDate;
@@ -74,14 +71,12 @@ public class DashboardState {
         this.successMessage = copy.successMessage;
         this.isLoading = copy.isLoading;
 
-        // Deep copy of meals
         this.meals = new EnumMap<>(MealType.class);
         for (Map.Entry<MealType, Map<String, Food>> entry : copy.meals.entrySet()) {
             this.meals.put(entry.getKey(), new HashMap<>(entry.getValue()));
         }
     }
 
-    // Getters and setters
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
@@ -164,7 +159,7 @@ public class DashboardState {
     public boolean isLoading() { return isLoading; }
     public void setLoading(boolean loading) { isLoading = loading; }
 
-    // Helper methods
+    // Helper methods used for display
     private void updateNutritionGoals() {
         carbsGoalGrams = (tdee * 0.50) / 4.0;  // 50% of calories from carbs
         proteinGoalGrams = (tdee * 0.25) / 4.0;  // 25% of calories from protein

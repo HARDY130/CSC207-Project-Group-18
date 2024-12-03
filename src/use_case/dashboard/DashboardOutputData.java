@@ -48,20 +48,33 @@ public class DashboardOutputData {
         this.errorMessage = errorMessage;
     }
 
-    // Getters
     public String getUsername() { return username; }
+
     public double getBmr() { return bmr; }
+
     public double getTdee() { return tdee; }
+
     public double getCarbsGoal() { return carbsGoal; }
+
     public double getProteinGoal() { return proteinGoal; }
+
     public double getFatGoal() { return fatGoal; }
+
     public Map<MealType, Map<String, Food>> getMeals() { return meals; }
+
     public double getConsumedCalories() { return consumedCalories; }
+
     public double getConsumedCarbs() { return consumedCarbs; }
+
     public double getConsumedProtein() { return consumedProtein; }
+
     public double getConsumedFat() { return consumedFat; }
+
     public String getActivityLevel() { return activityLevel; }
+
     public Set<Allergy> getAllergies() { return allergies; }
+
     public boolean isUseCaseSuccess() { return useCaseSuccess; }
+
     public String getErrorMessage() { return errorMessage; }
 }
