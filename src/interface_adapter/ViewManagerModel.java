@@ -10,5 +10,8 @@ public class ViewManagerModel extends ViewModel<String> {
         super("view manager");
         this.setState("");
     }
-
+    // Alias setActiveView to setState for clarity
+    public void setActiveView(String viewName) {
+        this.setState(viewName);
+    }
 }
