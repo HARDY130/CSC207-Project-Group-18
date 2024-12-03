@@ -13,11 +13,6 @@ public class DashboardViewModel extends ViewModel<DashboardState> {
     public static final String RECORD_MEAL_BUTTON_LABEL = "Record Meal";
     public static final String LOGOUT_BUTTON_LABEL = "Logout";
 
-    public static final String CALORIES_LABEL = "Daily Calories";
-    public static final String CARBS_LABEL = "Carbohydrates";
-    public static final String PROTEIN_LABEL = "Protein";
-    public static final String FAT_LABEL = "Fat";
-
     public static final Map<MealType, String> MEAL_LABELS = Map.of(
             MealType.BREAKFAST, "Breakfast",
             MealType.LUNCH, "Lunch",
