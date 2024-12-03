@@ -24,14 +24,12 @@ public class DashboardInteractor implements DashboardInputBoundary {
 
         CommonUser user = (CommonUser) userDataAccessObject.get(inputData.getUsername());
 
-        // Calculate base nutritional values
         double bmr = user.calculateBMR();
         double tdee = user.calculateTDEE();
         double carbsGoal = user.calculateCarbsGrams();
         double proteinGoal = user.calculateProteinGrams();
         double fatGoal = user.calculateFatGrams();
 
-        // Get all meals and calculate current consumption
         Map<MealType, Map<String, Food>> meals = user.getAllMeals();
         double consumedCalories = 0;
         double consumedCarbs = 0;
