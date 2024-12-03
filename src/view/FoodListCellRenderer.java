@@ -5,29 +5,6 @@ import entity.Food;
 import javax.swing.*;
 import java.awt.*;
 
-//class FoodListCellRenderer extends JLabel implements ListCellRenderer<String> {
-//    public FoodListCellRenderer() {
-//        setOpaque(true);
-//        setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-//    }
-//
-//    @Override
-//    public Component getListCellRendererComponent(JList<? extends String> list,
-//                                                  String value, int index, boolean isSelected, boolean cellHasFocus) {
-//        setText("<html>" + value.replace("\n", "<br/>") + "</html>");
-//
-//        if (isSelected) {
-//            setBackground(list.getSelectionBackground());
-//            setForeground(list.getSelectionForeground());
-//        } else {
-//            setBackground(list.getBackground());
-//            setForeground(list.getForeground());
-//        }
-//
-//        return this;
-//    }
-//}
-
 class FoodListCellRenderer extends JLabel implements ListCellRenderer<Food> {
     public FoodListCellRenderer() {
         setOpaque(true);
