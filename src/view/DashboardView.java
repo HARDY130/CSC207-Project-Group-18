@@ -42,7 +42,7 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         updateProfileButton = new JButton(DashboardViewModel.UPDATE_PROFILE_BUTTON_LABEL);
         generateMealButton = new JButton(DashboardViewModel.GENERATE_MEAL_BUTTON_LABEL);
         recordMealButton = new JButton(DashboardViewModel.RECORD_MEAL_BUTTON_LABEL);
-        logoutButton = new JButton("Logout");
+        logoutButton = new JButton(DashboardViewModel.LOGOUT_BUTTON_LABEL);
         errorLabel = new JLabel();
 
         styleComponents();
