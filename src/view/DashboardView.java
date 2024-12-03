@@ -32,7 +32,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Initialize components
         titleLabel = new JLabel(DashboardViewModel.TITLE_LABEL);
         welcomeLabel = new JLabel();
         activityLabel = new JLabel();
