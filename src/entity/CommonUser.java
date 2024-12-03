@@ -2,18 +2,17 @@ package entity;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class CommonUser implements User {
     private final String name;
     private final String password;
-    private final LocalDate birthDate;
-    private final String gender;
-    private final int weight;
-    private final int height;
-    private final double activityMultiplier;
-    private final Set<Allergy> allergies;
+    private LocalDate birthDate;
+    private String gender;
+    private int weight;
+    private int height;
+    private double activityMultiplier;
+    private Set<Allergy> allergies;
 
     // Constants for activity multipliers
     public static final double SEDENTARY = 1.2;
@@ -31,6 +30,8 @@ public class CommonUser implements User {
     private static final double PROTEIN_CALORIES_PER_GRAM = 4.0;
     private static final double FAT_CALORIES_PER_GRAM = 9.0;
 
+    private final Map<MealType, Map<String, Food>> dailyMeals;
+
     public CommonUser(String name, String password, LocalDate birthDate, String gender,
                       int weight, int height, double activityMultiplier, Set<Allergy> allergies) {
         this.name = name;
@@ -41,7 +42,12 @@ public class CommonUser implements User {
         this.height = height;
         this.activityMultiplier = activityMultiplier;
         this.allergies = new HashSet<>(allergies);
+        this.dailyMeals = new EnumMap<>(MealType.class);
+        for (MealType type : MealType.values()) {
+            dailyMeals.put(type, new HashMap<>());
+        }
     }
+
 
     @Override
     public String getName() {
@@ -90,6 +96,30 @@ public class CommonUser implements User {
         return "Activity level not specified";
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setActivityMultiplier(double activityMultiplier) {
+        this.activityMultiplier = activityMultiplier;
+    }
+
+    public void setAllergies(Set<Allergy> allergies) {
+        this.allergies = new HashSet<>(allergies);
+    }
+
     public double calculateBMR() {
         if (gender.equalsIgnoreCase("Male")) {
             return (10 * weight) + (6.25 * height) - (5 * getAge()) + 5;
@@ -115,5 +145,31 @@ public class CommonUser implements User {
     public double calculateFatGrams() {
         double fatCalories = calculateTDEE() * FAT_PERCENT;
         return fatCalories / FAT_CALORIES_PER_GRAM;
+    }
+
+    // Method to log a meal
+    public void addMeal(MealType type, String mealName, Food food) {
+        dailyMeals.get(type).put(mealName, food);
+    }
+
+    // Method to get meals by type
+    public Map<String, Food> getMealsByType(MealType type) {
+        return new HashMap<>(dailyMeals.get(type));
+    }
+
+    // Method to get all meals
+    public Map<MealType, Map<String, Food>> getAllMeals() {
+        Map<MealType, Map<String, Food>> result = new EnumMap<>(MealType.class);
+        for (MealType type : MealType.values()) {
+            result.put(type, new HashMap<>(dailyMeals.get(type)));
+        }
+        return result;
+    }
+
+    // Method to clear meals for a new day
+    public void clearMeals() {
+        for (MealType type : MealType.values()) {
+            dailyMeals.get(type).clear();
+        }
     }
 }

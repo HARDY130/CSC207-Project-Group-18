@@ -1,6 +1,7 @@
 package app;
 
 import javax.swing.JFrame;
+import java.awt.*;
 
 /**
  * The Main class of our application.
@@ -13,18 +14,25 @@ public class Main {
     public static void main(String[] args) {
         final AppBuilder appBuilder = new AppBuilder();
         final JFrame application = appBuilder
-                .addLoginView()
                 .addSignupView()
+                .addLoginView()
                 .addInfoCollectionView()
+                .addDashboardView()
                 .addLoggedInView()
+                .addMealPlannerView()
+
                 .addSignupUseCase()
                 .addLoginUseCase()
                 .addInfoCollectionUseCase()
-                .addChangePasswordUseCase()
+                .addDashboardUseCase()
+                .addMealPlannerUseCase()
+//                .addChangePasswordUseCase()
                 .addLogoutUseCase()
                 .build();
 
+        application.setMinimumSize(new Dimension(800, 600));
         application.pack();
+        application.setLocationRelativeTo(null);
         application.setVisible(true);
     }
 }

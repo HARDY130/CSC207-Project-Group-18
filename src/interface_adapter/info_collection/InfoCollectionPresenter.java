@@ -7,9 +7,9 @@ import use_case.info_collection.InfoCollectionOutputBoundary;
 import use_case.info_collection.InfoCollectionOutputData;
 
 public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
+    private final ViewManagerModel viewManagerModel;
     private final InfoCollectionViewModel infoCollectionViewModel;
     private final DashboardViewModel dashboardViewModel;
-    private final ViewManagerModel viewManagerModel;
 
     public InfoCollectionPresenter(ViewManagerModel viewManagerModel,
                                    InfoCollectionViewModel infoCollectionViewModel,
@@ -21,14 +21,16 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
 
     @Override
     public void prepareSuccessView(InfoCollectionOutputData response) {
-        // Update info collection state
+        // First update info collection state
         InfoCollectionState infoCollectionState = infoCollectionViewModel.getState();
         infoCollectionState.setUsername(response.getUsername());
         infoCollectionViewModel.setState(infoCollectionState);
         infoCollectionViewModel.firePropertyChanged();
 
         // Prepare dashboard state
-        DashboardState dashboardState = dashboardViewModel.getState();
+        DashboardState dashboardState = (DashboardState) dashboardViewModel.getState();
+
+        // Set user information
         dashboardState.setUsername(response.getUsername());
         dashboardState.setBirthDate(response.getBirthDate());
         dashboardState.setGender(response.getGender());
@@ -36,9 +38,26 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
         dashboardState.setHeight(response.getHeight());
         dashboardState.setActivityMultiplier(response.getActivityMultiplier());
         dashboardState.setAllergies(response.getAllergies());
+
+        // Set calculated values
         dashboardState.setBmr(response.getCalculatedBMR());
         dashboardState.setTdee(response.getCalculatedTDEE());
 
+        // Set activity level description based on multiplier
+        dashboardState.setActivityLevel(getActivityLevelDescription(response.getActivityMultiplier()));
+
+        // Clear any existing progress
+        dashboardState.setConsumedCalories(0.0);
+        dashboardState.setConsumedCarbs(0.0);
+        dashboardState.setConsumedProtein(0.0);
+        dashboardState.setConsumedFat(0.0);
+
+        // Clear any error messages and set success message
+        dashboardState.setError("");
+        dashboardState.setSuccessMessage("Profile created successfully!");
+        dashboardState.setLoading(false);
+
+        // Update dashboard view model
         dashboardViewModel.setState(dashboardState);
         dashboardViewModel.firePropertyChanged();
 
@@ -60,5 +79,16 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
             infoCollectionState.setGenderError(error);
         }
         infoCollectionViewModel.firePropertyChanged();
+    }
+
+    private String getActivityLevelDescription(double multiplier) {
+        return switch ((int) (multiplier * 10)) {
+            case 12 -> "Sedentary (little or no exercise)";
+            case 13, 14 -> "Lightly active (light exercise 1-3 days/week)";
+            case 15, 16 -> "Moderately active (moderate exercise 3-5 days/week)";
+            case 17, 18 -> "Very active (hard exercise 6-7 days/week)";
+            case 19, 20 -> "Super active (very hard exercise/physical job)";
+            default -> "Unknown activity level";
+        };
     }
 }
