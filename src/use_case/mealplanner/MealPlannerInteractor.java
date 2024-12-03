@@ -26,26 +26,12 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
     @Override
     public void execute(MealPlannerInputData inputData) {
         try {
-//            if (!mealStorageDataAccessInterface.existsByName(inputData.getUsername())) {
-//                mealPlannerPresenter.prepareFailView("User not found.");
-//                return;
             String currentUsername = mealStorageDataAccessInterface.existsByName(inputData.getUsername())
                     ? inputData.getUsername() : null;
             if (currentUsername == null || !mealStorageDataAccessInterface.existsByName(currentUsername)) {
                 mealPlannerPresenter.prepareFailView("User not found.");
                 return;
             }
-
-//            // Generate meal options based on dietary preferences
-//            List<Food> breakfastOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "breakfast"
-//            );
-//            List<Food> lunchOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "lunch"
-//            );
-//            List<Food> dinnerOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "dinner"
-//            );
 
             CommonUser user = (CommonUser) mealStorageDataAccessInterface.get(currentUsername);
             Map<MealType, List<Food>> mealPlan = mealPlannerDataAccessObject.generateMealPlan(

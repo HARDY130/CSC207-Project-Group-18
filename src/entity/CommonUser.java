@@ -2,34 +2,34 @@ package entity;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CommonUser implements User {
+    private final String name;
+    private final String password;
+    private LocalDate birthDate;
+    private String gender;
+    private int weight;
+    private int height;
+    private double activityMultiplier;
+    private Set<Allergy> allergies;
+
     // Constants for activity multipliers
     public static final double SEDENTARY = 1.2;
     public static final double LIGHTLY_ACTIVE = 1.375;
     public static final double MODERATELY_ACTIVE = 1.55;
     public static final double VERY_ACTIVE = 1.725;
     public static final double SUPER_ACTIVE = 1.9;
+
     // Constants for macronutrient calculations
     private static final double CARBS_PERCENT = 0.55;
     private static final double PROTEIN_PERCENT = 0.225;
     private static final double FAT_PERCENT = 0.275;
+
     private static final double CARBS_CALORIES_PER_GRAM = 4.0;
     private static final double PROTEIN_CALORIES_PER_GRAM = 4.0;
     private static final double FAT_CALORIES_PER_GRAM = 9.0;
-    private final String name;
-    private final String password;
-    private final LocalDate birthDate;
-    private final String gender;
-    private final int weight;
-    private final int height;
-    private final double activityMultiplier;
-    private final Set<Allergy> allergies;
+
     private final Map<MealType, Map<String, Food>> dailyMeals;
 
     public CommonUser(String name, String password, LocalDate birthDate, String gender,
@@ -90,12 +90,34 @@ public class CommonUser implements User {
     public String getActivityLevel() {
         if (activityMultiplier == SEDENTARY) return "Sedentary (little or no exercise)";
         if (activityMultiplier == LIGHTLY_ACTIVE) return "Lightly active (light exercise/sports 1-3 days a week)";
-        if (activityMultiplier == MODERATELY_ACTIVE) {
-            return "Moderately active (moderate exercise/sports 3-5 days a week)";
-        }
+        if (activityMultiplier == MODERATELY_ACTIVE) return "Moderately active (moderate exercise/sports 3-5 days a week)";
         if (activityMultiplier == VERY_ACTIVE) return "Very active (hard exercise/sports 6-7 days a week)";
         if (activityMultiplier == SUPER_ACTIVE) return "Super active (very hard exercise/physical job)";
         return "Activity level not specified";
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setActivityMultiplier(double activityMultiplier) {
+        this.activityMultiplier = activityMultiplier;
+    }
+
+    public void setAllergies(Set<Allergy> allergies) {
+        this.allergies = new HashSet<>(allergies);
     }
 
     public double calculateBMR() {
@@ -125,15 +147,17 @@ public class CommonUser implements User {
         return fatCalories / FAT_CALORIES_PER_GRAM;
     }
 
-    // Helper methods (Everyone can use)
+    // Method to log a meal
     public void addMeal(MealType type, String mealName, Food food) {
         dailyMeals.get(type).put(mealName, food);
     }
 
+    // Method to get meals by type
     public Map<String, Food> getMealsByType(MealType type) {
         return new HashMap<>(dailyMeals.get(type));
     }
 
+    // Method to get all meals
     public Map<MealType, Map<String, Food>> getAllMeals() {
         Map<MealType, Map<String, Food>> result = new EnumMap<>(MealType.class);
         for (MealType type : MealType.values()) {
@@ -142,6 +166,7 @@ public class CommonUser implements User {
         return result;
     }
 
+    // Method to clear meals for a new day
     public void clearMeals() {
         for (MealType type : MealType.values()) {
             dailyMeals.get(type).clear();

@@ -306,8 +306,7 @@ public class AppBuilder {
 
         InfoCollectionInputBoundary infoCollectionInteractor = new InfoCollectionInteractor(
                 (InfoCollectionUserDataAccessInterface) userDataAccessObject,
-                outputBoundary,
-                userFactory
+                outputBoundary
         );
 
         InfoCollectionController controller = new InfoCollectionController(infoCollectionInteractor);
