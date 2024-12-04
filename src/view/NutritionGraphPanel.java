@@ -36,11 +36,4 @@ public class NutritionGraphPanel extends JPanel {
         g2d.setStroke(new BasicStroke(10));
         g2d.drawArc(x - radius, y - radius, 2 * radius, 2 * radius, 90, -progress * 360 / 100);
     }
-
-    public void setProgress(int carbs, int proteins, int fats) {
-        this.carbsProgress = carbs;
-        this.proteinsProgress = proteins;
-        this.fatsProgress = fats;
-        repaint();
-    }
 }
