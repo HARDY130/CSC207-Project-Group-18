@@ -1,6 +1,7 @@
 package interface_adapter.customize;
 
 import interface_adapter.ViewModel;
+
 /**
  * The view model for the customize page.
  */

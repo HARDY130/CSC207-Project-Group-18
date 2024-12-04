@@ -1,6 +1,7 @@
 package interface_adapter.customize;
 
 import interface_adapter.ViewManagerModel;
+
 import interface_adapter.dashboard.DashboardController;
 import interface_adapter.dashboard.DashboardViewModel;
 import use_case.customize.CustomizeOutputBoundary;
@@ -17,6 +18,7 @@ public class CustomizePresenter implements CustomizeOutputBoundary {
     private final ViewManagerModel viewManagerModel;
     private final DashboardViewModel dashboardViewModel;
     private final DashboardController dashboardController;
+
 
     public CustomizePresenter(
             CustomizeViewModel customizeViewModel,
@@ -62,6 +64,7 @@ public class CustomizePresenter implements CustomizeOutputBoundary {
         customizeViewModel.setState(currentState);
         customizeViewModel.firePropertyChanged();
     }
+  
     /**
      * Presents the search results to the user.
      */

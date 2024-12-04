@@ -3,6 +3,7 @@ package use_case.customize;
 import data_access.FoodDatabaseAccessObject;
 import entity.Food;
 import entity.CommonUser;
+
 import entity.MealType;
 import use_case.dashboard.DashboardDataAccessInterface;
 import java.util.List;
@@ -66,6 +67,7 @@ public class CustomizeInteractor implements CustomizeInputBoundary {
         // Update the user's nutrition progress in the DAO
         userDataAccessObject.updateNutritionProgress(
                 username,
+
                 totalCalories,
                 totalCarbs,
                 totalProtein,
@@ -79,6 +81,7 @@ public class CustomizeInteractor implements CustomizeInputBoundary {
 //        } catch (Exception e) {
 //            customizePresenter.presentError("Failed to add food: " + e.getMessage());
 //        }
+
     }
 
     @Override

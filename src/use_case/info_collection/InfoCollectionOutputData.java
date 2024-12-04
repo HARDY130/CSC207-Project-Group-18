@@ -1,27 +1,49 @@
-//package use_case.info_collection;
-//
-///**
-// * Output Data for the Logout Use Case.
-// */
-//public class InfoCollectionOutputData {
-//
-//    private String username;
-//    private boolean useCaseFailed;
-//
-//    private final Integer age;
-//
-//
-//
-//    public LogoutOutputData(String username, boolean useCaseFailed) {
-//        this.username = username;
-//        this.useCaseFailed = useCaseFailed;
-//    }
-//
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public boolean isUseCaseFailed() {
-//        return useCaseFailed;
-//    }
-//}
+package use_case.info_collection;
+
+import entity.Allergy;
+import java.time.LocalDate;
+import java.util.Set;
+
+public class InfoCollectionOutputData {
+    private final String username;
+    private final LocalDate birthDate;
+    private final String gender;
+    private final int weight;
+    private final int height;
+    private final double activityMultiplier;
+    private final Set<Allergy> allergies;
+    private final double calculatedBMR;
+    private final double calculatedTDEE;
+    private final boolean useCaseSuccess;
+    private final String errorMessage;
+
+    public InfoCollectionOutputData(String username, LocalDate birthDate,
+                                    String gender, int weight, int height,
+                                    double activityMultiplier, Set<Allergy> allergies,
+                                    double calculatedBMR, double calculatedTDEE,
+                                    boolean useCaseSuccess, String errorMessage) {
+        this.username = username;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.weight = weight;
+        this.height = height;
+        this.activityMultiplier = activityMultiplier;
+        this.allergies = allergies;
+        this.calculatedBMR = calculatedBMR;
+        this.calculatedTDEE = calculatedTDEE;
+        this.useCaseSuccess = useCaseSuccess;
+        this.errorMessage = errorMessage;
+    }
+
+    public String getUsername() { return username; }
+    public LocalDate getBirthDate() { return birthDate; }
+    public String getGender() { return gender; }
+    public int getWeight() { return weight; }
+    public int getHeight() { return height; }
+    public double getActivityMultiplier() { return activityMultiplier; }
+    public Set<Allergy> getAllergies() { return allergies; }
+    public double getCalculatedBMR() { return calculatedBMR; }
+    public double getCalculatedTDEE() { return calculatedTDEE; }
+    public boolean isUseCaseSuccess() { return useCaseSuccess; }
+    public String getErrorMessage() { return errorMessage; }
+}

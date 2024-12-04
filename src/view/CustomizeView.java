@@ -27,79 +27,6 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
     private final JButton addToMealButton;
     private final JLabel errorLabel;
 
-//    public CustomizeView(CustomizeViewModel viewModel, CustomizeController controller, ViewManagerModel viewManagerModel) {
-//        this.customizeViewModel = viewModel;
-//        this.customizeController = controller;
-//        this.customizeViewModel.addPropertyChangeListener(this);
-//
-//        addToMealButton = new JButton("Add to Meal");
-//        addToMealButton.setEnabled(false); // Disabled until user selects a food item
-//        errorLabel = new JLabel();
-//        errorLabel.setForeground(Color.RED);
-//
-//        // Initialize components
-//        searchField = new JTextField(20);
-//        searchButton = new JButton("Search");
-//        returnButton = new JButton("Return to Dashboard");
-//        mealTypeComboBox = new JComboBox<>(MealType.values());
-////        listModel = new DefaultListModel<>();
-////        searchResultsList = new JList<>(listModel);
-//        // Initialize list components with a more user-friendly display
-//        listModel = new DefaultListModel<>();
-//        searchResultsList = new JList<>(listModel);
-//        searchResultsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        searchResultsList.setCellRenderer(new FoodListCellRenderer());
-//
-//        // Style the list
-//        searchResultsList.setFixedCellHeight(50);
-//        searchResultsList.setBackground(Color.WHITE);
-//
-//        // Add listener for list selection to enable/disable add button
-//        searchResultsList.addListSelectionListener(e -> {
-//            addToMealButton.setEnabled(!searchResultsList.isSelectionEmpty());
-//        });
-//
-//        // Add action listener for add button
-//        addToMealButton.addActionListener(e -> {
-//            Food selectedFood = searchResultsList.getSelectedValue();
-//            if (selectedFood != null) {
-//                MealType selectedMealType = (MealType) mealTypeComboBox.getSelectedItem();
-//                CustomizeState state = customizeViewModel.getState();
-//                customizeController.addFoodToMeal(state.getUsername(), selectedFood, selectedMealType);
-//            }
-//        });
-//
-//        // Add to scroll pane
-//        JScrollPane scrollPane = new JScrollPane(searchResultsList);
-//        scrollPane.setPreferredSize(new Dimension(400, 300));
-//
-//        // Update the layout
-//        JPanel resultsPanel = new JPanel(new BorderLayout());
-//        resultsPanel.add(scrollPane, BorderLayout.CENTER);
-//        resultsPanel.setBorder(BorderFactory.createTitledBorder("Search Results"));
-//
-//        add(resultsPanel, BorderLayout.CENTER);
-//        addToMealButton = new JButton("Add to Meal");
-//        errorLabel = new JLabel();
-//        errorLabel.setForeground(Color.RED);
-//
-//        // Layout
-//        setLayout(new BorderLayout());
-//        setupLayout();
-//        setupListeners();
-//    }
-//
-
-//    private void updateView(CustomizeState state) {
-//        listModel.clear();
-//        List<Food> searchResults = state.getSearchResults();
-//        if (searchResults != null) {
-//            for (Food food : searchResults) {
-//                listModel.addElement(formatFoodDisplay(food));
-//            }
-//        }
-//    }
-
 
     public CustomizeView(CustomizeViewModel viewModel, CustomizeController controller, ViewManagerModel viewManagerModel) {
         this.customizeViewModel = viewModel;
@@ -206,6 +133,7 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
         add(searchPanel, BorderLayout.NORTH);
+
 
         // Update panel layout to include new components
         JPanel bottomPanel = new JPanel(new BorderLayout());
