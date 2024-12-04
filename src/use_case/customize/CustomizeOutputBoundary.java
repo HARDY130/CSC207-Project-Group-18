@@ -9,4 +9,3 @@ public interface CustomizeOutputBoundary {
 
     void presentDashboard();
 }
-
