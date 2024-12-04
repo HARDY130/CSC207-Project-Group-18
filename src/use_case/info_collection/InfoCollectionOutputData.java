@@ -14,14 +14,11 @@ public class InfoCollectionOutputData {
     private final Set<Allergy> allergies;
     private final double calculatedBMR;
     private final double calculatedTDEE;
-    private final boolean useCaseSuccess;
-    private final String errorMessage;
 
     public InfoCollectionOutputData(String username, LocalDate birthDate,
                                     String gender, int weight, int height,
                                     double activityMultiplier, Set<Allergy> allergies,
-                                    double calculatedBMR, double calculatedTDEE,
-                                    boolean useCaseSuccess, String errorMessage) {
+                                    double calculatedBMR, double calculatedTDEE) {
         this.username = username;
         this.birthDate = birthDate;
         this.gender = gender;
@@ -31,8 +28,6 @@ public class InfoCollectionOutputData {
         this.allergies = allergies;
         this.calculatedBMR = calculatedBMR;
         this.calculatedTDEE = calculatedTDEE;
-        this.useCaseSuccess = useCaseSuccess;
-        this.errorMessage = errorMessage;
     }
 
     public String getUsername() { return username; }
@@ -44,6 +39,4 @@ public class InfoCollectionOutputData {
     public Set<Allergy> getAllergies() { return allergies; }
     public double getCalculatedBMR() { return calculatedBMR; }
     public double getCalculatedTDEE() { return calculatedTDEE; }
-    public boolean isUseCaseSuccess() { return useCaseSuccess; }
-    public String getErrorMessage() { return errorMessage; }
 }
