@@ -13,7 +13,7 @@ public class CustomizeController {
     }
 
     public void searchFood(String username, String searchQuery) {
-        CustomizeInputData inputData = new CustomizeInputData(username, searchQuery);
+        CustomizeInputData inputData = new CustomizeInputData(searchQuery);
         customizeInteractor.searchFood(inputData);
     }
 

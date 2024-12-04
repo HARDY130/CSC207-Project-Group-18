@@ -14,16 +14,6 @@ public class CustomizeState {
     private String searchQuery;
     private boolean isLoading;
 
-    public CustomizeState(CustomizeState copy) {
-        this.username = copy.username;
-        this.searchResults = copy.searchResults != null ? new ArrayList<>(copy.searchResults) : new ArrayList<>();
-        this.selectedMealType = copy.selectedMealType;
-        this.error = copy.error;
-        this.successMessage = copy.successMessage;
-        this.searchQuery = copy.searchQuery;
-        this.isLoading = copy.isLoading;
-    }
-
     public CustomizeState() {
         this.searchResults = new ArrayList<>();
         this.selectedMealType = MealType.BREAKFAST;
@@ -34,15 +24,9 @@ public class CustomizeState {
 
     public List<Food> getSearchResults() { return new ArrayList<>(searchResults); }
 
-    public MealType getSelectedMealType() { return selectedMealType; }
-
     public String getError() { return error; }
 
     public String getSuccessMessage() { return successMessage; }
-
-    public String getSearchQuery() { return searchQuery; }
-
-    public boolean isLoading() { return isLoading; }
 
     public void setUsername(String username) { this.username = username; }
 
@@ -50,17 +34,11 @@ public class CustomizeState {
         this.searchResults = new ArrayList<>(searchResults);
     }
 
-    public void setSelectedMealType(MealType selectedMealType) {
-        this.selectedMealType = selectedMealType;
-    }
-
     public void setError(String error) { this.error = error; }
 
     public void setSuccessMessage(String successMessage) {
         this.successMessage = successMessage;
     }
-
-    public void setSearchQuery(String searchQuery) { this.searchQuery = searchQuery; }
 
     public void setLoading(boolean loading) { isLoading = loading; }
 }

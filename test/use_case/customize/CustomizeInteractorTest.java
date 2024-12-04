@@ -1,5 +1,5 @@
 package use_case.customize;
-import data_access.FoodDatabaseAccessObject;
+import data_access.FoodDatabaseDataAccessObject;
 import data_access.InMemoryUserDataAccessObject;
 import entity.*;
 import interface_adapter.customize.CustomizeController;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CustomizeInteractorTest {
 
-    private FoodDatabaseAccessObject foodDatabaseAccessObject;
+    private FoodDatabaseDataAccessObject foodDatabaseAccessObject;
     private CustomizeOutputBoundary customizePresenter;
     private DashboardDataAccessInterface userDataAccessObject;
     private CustomizeInputBoundary customizeInteractor;
@@ -26,7 +26,7 @@ class CustomizeInteractorTest {
     @BeforeEach
     void setUp() {
         // Initialize the necessary dependencies
-        foodDatabaseAccessObject = new FoodDatabaseAccessObject(); // Replace with your implementation
+        foodDatabaseAccessObject = new FoodDatabaseDataAccessObject(); // Replace with your implementation
         userDataAccessObject = new InMemoryUserDataAccessObject(); // Replace with your implementation
 
         CustomizeOutputBoundary customizePresenter = new CustomizeOutputBoundary() {
