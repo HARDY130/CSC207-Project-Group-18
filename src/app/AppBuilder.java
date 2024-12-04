@@ -6,29 +6,30 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import data_access.FoodDatabaseAccessObject;
 import data_access.InMemoryUserDataAccessObject;
 import data_access.MealPlannerDataAccessObject;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.change_password.ChangePasswordController;
-import interface_adapter.change_password.ChangePasswordPresenter;
 import interface_adapter.change_password.LoggedInViewModel;
+import interface_adapter.customize.CustomizeController;
+import interface_adapter.customize.CustomizePresenter;
+import interface_adapter.customize.CustomizeViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logout.LogoutController;
 import interface_adapter.logout.LogoutPresenter;
-import interface_adapter.mealplanner.MealPlannerController;
-import interface_adapter.mealplanner.MealPlannerPresenter;
-import interface_adapter.mealplanner.MealPlannerViewModel;
+import interface_adapter.meal_planner.MealPlannerController;
+import interface_adapter.meal_planner.MealPlannerPresenter;
+import interface_adapter.meal_planner.MealPlannerViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
-import use_case.change_password.ChangePasswordInputBoundary;
-import use_case.change_password.ChangePasswordInteractor;
-import use_case.change_password.ChangePasswordOutputBoundary;
-import use_case.dashboard.DashboardDataAccessInterface;
+import use_case.customize.CustomizeInputBoundary;
+import use_case.customize.CustomizeInteractor;
+import use_case.customize.CustomizeOutputBoundary;;
 import use_case.dashboard.DashboardInputBoundary;
 import use_case.dashboard.DashboardInteractor;
 import use_case.dashboard.DashboardOutputBoundary;
@@ -38,7 +39,9 @@ import use_case.login.LoginOutputBoundary;
 import use_case.logout.LogoutInputBoundary;
 import use_case.logout.LogoutInteractor;
 import use_case.logout.LogoutOutputBoundary;
-import use_case.mealplanner.*;
+import use_case.meal_planner.MealPlannerInputBoundary;
+import use_case.meal_planner.MealPlannerInteractor;
+import use_case.meal_planner.MealPlannerOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
@@ -54,22 +57,16 @@ import use_case.info_collection.*;
  * <p/>
  * This is done by adding each View and then adding related Use Cases.
  */
-// Checkstyle note: you can ignore the "Class Data Abstraction Coupling"
-//                  and the "Class Fan-Out Complexity" issues for this lab; we encourage
-//                  your team to think about ways to refactor the code to resolve these
-//                  if your team decides to work with this as your starter code
-//                  for your final project this term.
 public class AppBuilder {
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
-    // thought question: is the hard dependency below a problem?
     private final UserFactory userFactory = new CommonUserFactory();
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
     private final ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
 
-    // thought question: is the hard dependency below a problem?
     private final InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
     private final MealPlannerDataAccessObject mealPlannerDataAccessObject;
+    private final FoodDatabaseAccessObject foodDatabaseAccessObject;
 
     private SignupView signupView;
     private SignupViewModel signupViewModel;
@@ -82,19 +79,18 @@ public class AppBuilder {
     private DashboardView dashboardView;
     private DashboardViewModel dashboardViewModel;
     private DashboardController dashboardController;
+    private CustomizeView customizeView;
+    private CustomizeViewModel customizeViewModel;
     private MealPlannerView mealPlannerView;
     private MealPlannerViewModel mealPlannerViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
-
         mealPlannerDataAccessObject = new MealPlannerDataAccessObject(userDataAccessObject);
+        foodDatabaseAccessObject = new FoodDatabaseAccessObject();
+        customizeViewModel = new CustomizeViewModel();
     }
 
-    /**
-     * Adds the Signup View to the application.
-     * @return this builder
-     */
     public AppBuilder addSignupView() {
         signupViewModel = new SignupViewModel();
         signupView = new SignupView(signupViewModel);
@@ -102,10 +98,6 @@ public class AppBuilder {
         return this;
     }
 
-    /**
-     * Adds the Login View to the application.
-     * @return this builder
-     */
     public AppBuilder addLoginView() {
         loginViewModel = new LoginViewModel();
         loginView = new LoginView(loginViewModel, viewManagerModel);
@@ -113,10 +105,6 @@ public class AppBuilder {
         return this;
     }
 
-    /**
-     * Adds the LoggedIn View to the application.
-     * @return this builder
-     */
     public AppBuilder addLoggedInView() {
         loggedInViewModel = new LoggedInViewModel();
         loggedInView = new LoggedInView(loggedInViewModel);
@@ -124,142 +112,24 @@ public class AppBuilder {
         return this;
     }
 
-    /**
-     * Adds the Signup Use Case to the application.
-     * @return this builder
-     */
-    public AppBuilder addSignupUseCase() {
-        final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
-                signupViewModel, loginViewModel, infoCollectionViewModel);
-        final SignupInputBoundary userSignupInteractor = new SignupInteractor(
-                userDataAccessObject, signupOutputBoundary, userFactory);
-
-
-        SignupController controller = new SignupController(userSignupInteractor);
-        signupView.setSignupController(controller);
-        return this;
-    }
-
-    /**
-     * Adds the Login Use Case to the application.
-     * @return this builder
-     */
-//    public AppBuilder addLoginUseCase() {
-//        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-//                loggedInViewModel, loginViewModel, infoCollectionViewModel);
-//
-//        final LoginInputBoundary loginInteractor = new LoginInteractor(
-//                userDataAccessObject, loginOutputBoundary);
-//
-//        final LoginController loginController = new LoginController(loginInteractor);
-//        loginView.setLoginController(loginController);
-//        return this;
-//    }
-    public AppBuilder addLoginUseCase() {
-        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(
-                viewManagerModel,
-                loggedInViewModel,
-                loginViewModel,
-                infoCollectionViewModel,
-                dashboardViewModel  // Add this parameter
-        );
-
-        final LoginInputBoundary loginInteractor = new LoginInteractor(
-                userDataAccessObject,
-                loginOutputBoundary
-        );
-
-        final LoginController loginController = new LoginController(loginInteractor);
-        loginView.setLoginController(loginController);
-        return this;
-    }
-
-    /**
-     * Adds the Change Password Use Case to the application.
-     * @return this builder
-     */
-//    public AppBuilder addChangePasswordUseCase() {
-//        final ChangePasswordOutputBoundary changePasswordOutputBoundary =
-//                new ChangePasswordPresenter(loggedInViewModel);
-//
-//        final ChangePasswordInputBoundary changePasswordInteractor =
-//                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);
-//
-//        final ChangePasswordController changePasswordController =
-//                new ChangePasswordController(changePasswordInteractor);
-//        loggedInView.setChangePasswordController(changePasswordController);
-//        return this;
-//    }
-
-    /**
-     * Adds the Logout Use Case to the application.
-     * @return this builder
-     */
-    public AppBuilder addLogoutUseCase() {
-        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(viewManagerModel,
-                loggedInViewModel, loginViewModel);
-
-        LogoutInputBoundary logoutInteractor = new LogoutInteractor(userDataAccessObject, logoutOutputBoundary);
-
-        LogoutController logoutController = new LogoutController(logoutInteractor);
-        loggedInView.setLogoutController(logoutController);
-        dashboardView.setLogoutController(logoutController); // Add this line to connect logout to dashboard
-
-        return this;
-    }
-
     public AppBuilder addInfoCollectionView() {
         infoCollectionViewModel = new InfoCollectionViewModel();
-        dashboardViewModel = new DashboardViewModel();  // Initialize dashboard view model
+        dashboardViewModel = new DashboardViewModel();
         infoCollectionView = new InfoCollectionView(infoCollectionViewModel, viewManagerModel);
         cardPanel.add(infoCollectionView, infoCollectionView.getViewName());
         return this;
     }
 
-
-    /**
-     * Creates the JFrame for the application and initially sets the SignupView to be displayed.
-     * @return the application
-     */
-//    public JFrame build() {
-//        final JFrame application = new JFrame("Login Example");
-//        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//
-//        application.add(cardPanel);
-//
-//        viewManagerModel.setState(signupView.getViewName());
-//        viewManagerModel.firePropertyChanged();
-//
-//        return application;
-//    }
-
-//    public JFrame build() {
-//        final JFrame application = new JFrame("Meal Planner");
-//        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        application.add(cardPanel);
-//        application.setMinimumSize(new Dimension(800, 600));  // Set minimum window size
-//        viewManagerModel.setActiveView(signupView.getViewName());
-//        viewManagerModel.firePropertyChanged();
-//        return application;
-//    }
-
     public AppBuilder addDashboardView() {
         dashboardViewModel = new DashboardViewModel();
-        dashboardView = new DashboardView(dashboardViewModel);
-        cardPanel.add(dashboardView, dashboardView.getViewName());
-        return this;
-    }
 
-    public AppBuilder addDashboardUseCase() {
         DashboardOutputBoundary outputBoundary = new DashboardPresenter(
                 viewManagerModel,
                 dashboardViewModel,
                 infoCollectionViewModel,
+                customizeViewModel,
                 mealPlannerViewModel
         );
-
-        DashboardDataAccessInterface userDataAccessObject =
-                (DashboardDataAccessInterface) this.userDataAccessObject;
 
         DashboardInputBoundary interactor = new DashboardInteractor(
                 userDataAccessObject,
@@ -267,8 +137,37 @@ public class AppBuilder {
         );
 
         dashboardController = new DashboardController(interactor);
+
+        dashboardView = new DashboardView(dashboardViewModel);
         dashboardView.setDashboardController(dashboardController);
+        cardPanel.add(dashboardView, dashboardView.getViewName());
+
         return this;
+    }
+
+    public AppBuilder addCustomizeView() {
+        customizeViewModel = new CustomizeViewModel();
+        CustomizeController customizeController = createCustomizeUseCase();
+        customizeView = new CustomizeView(customizeViewModel, customizeController, viewManagerModel);
+        cardPanel.add(customizeView, customizeView.getViewName());
+        return this;
+    }
+
+    private CustomizeController createCustomizeUseCase() {
+        CustomizeOutputBoundary customizePresenter = new CustomizePresenter(
+                customizeViewModel,
+                viewManagerModel,
+                dashboardViewModel,
+                dashboardController
+        );
+
+        CustomizeInputBoundary customizeInteractor = new CustomizeInteractor(
+                foodDatabaseAccessObject,
+                customizePresenter,
+                userDataAccessObject
+        );
+
+        return new CustomizeController(customizeInteractor);
     }
 
     public AppBuilder addMealPlannerView() {
@@ -278,12 +177,31 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addDashboardUseCase() {
+        DashboardOutputBoundary outputBoundary = new DashboardPresenter(
+                viewManagerModel,
+                dashboardViewModel,
+                infoCollectionViewModel,
+                customizeViewModel,
+                mealPlannerViewModel
+        );
+
+        DashboardInputBoundary interactor = new DashboardInteractor(
+                userDataAccessObject,
+                outputBoundary
+        );
+
+        DashboardController controller = new DashboardController(interactor);
+        dashboardView.setDashboardController(controller);
+        return this;
+    }
+
     public AppBuilder addMealPlannerUseCase() {
         MealPlannerOutputBoundary outputBoundary = new MealPlannerPresenter(
                 mealPlannerViewModel,
                 viewManagerModel,
                 dashboardViewModel
-                );
+        );
 
         MealPlannerInputBoundary interactor = new MealPlannerInteractor(
                 userDataAccessObject,
@@ -296,17 +214,55 @@ public class AppBuilder {
         return this;
     }
 
-    // Make sure InfoCollectionView can transition to Dashboard
+    public AppBuilder addSignupUseCase() {
+        SignupOutputBoundary signupOutputBoundary = new SignupPresenter(
+                viewManagerModel,
+                signupViewModel,
+                loginViewModel,
+                infoCollectionViewModel
+        );
+
+        SignupInputBoundary userSignupInteractor = new SignupInteractor(
+                userDataAccessObject,
+                signupOutputBoundary,
+                userFactory
+        );
+
+        SignupController controller = new SignupController(userSignupInteractor);
+        signupView.setSignupController(controller);
+        return this;
+    }
+
+    public AppBuilder addLoginUseCase() {
+        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(
+                viewManagerModel,
+                loggedInViewModel,
+                loginViewModel,
+                infoCollectionViewModel,
+                dashboardViewModel
+        );
+
+        LoginInputBoundary loginInteractor = new LoginInteractor(
+                userDataAccessObject,
+                loginOutputBoundary
+        );
+
+        LoginController loginController = new LoginController(loginInteractor);
+        loginView.setLoginController(loginController);
+        return this;
+    }
+
     public AppBuilder addInfoCollectionUseCase() {
         InfoCollectionOutputBoundary outputBoundary = new InfoCollectionPresenter(
                 viewManagerModel,
                 infoCollectionViewModel,
-                dashboardViewModel  // Pass dashboardViewModel
+                dashboardViewModel
         );
 
         InfoCollectionInputBoundary infoCollectionInteractor = new InfoCollectionInteractor(
-                (InfoCollectionUserDataAccessInterface) userDataAccessObject,
-                outputBoundary
+                userDataAccessObject,
+                outputBoundary,
+                userFactory
         );
 
         InfoCollectionController controller = new InfoCollectionController(infoCollectionInteractor);
@@ -314,14 +270,30 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addLogoutUseCase() {
+        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(
+                viewManagerModel,
+                loggedInViewModel,
+                loginViewModel
+        );
 
-    // Update the build method to support the new sizing
+        LogoutInputBoundary logoutInteractor = new LogoutInteractor(
+                userDataAccessObject,
+                logoutOutputBoundary
+        );
+
+        LogoutController logoutController = new LogoutController(logoutInteractor);
+        loggedInView.setLogoutController(logoutController);
+        dashboardView.setLogoutController(logoutController);
+
+        return this;
+    }
+
     public JFrame build() {
         JFrame application = new JFrame("Food Planner");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         application.add(cardPanel);
 
-        // Set minimum size to accommodate the dashboard
         application.setMinimumSize(new Dimension(800, 600));
 
         viewManagerModel.setActiveView(signupView.getViewName());

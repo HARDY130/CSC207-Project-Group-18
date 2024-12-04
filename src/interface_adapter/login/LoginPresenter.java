@@ -35,7 +35,6 @@ public class LoginPresenter implements LoginOutputBoundary {
             DashboardState dashboardState = new DashboardState();
             dashboardState.setUsername(response.getUsername());
 
-            // Set other necessary state properties from response
             CommonUser user = response.getUser();
             if (user != null) {
                 dashboardState.setBirthDate(user.getBirthDate());

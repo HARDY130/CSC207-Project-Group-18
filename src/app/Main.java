@@ -19,6 +19,7 @@ public class Main {
                 .addInfoCollectionView()
                 .addDashboardView()
                 .addLoggedInView()
+                .addCustomizeView()
                 .addMealPlannerView()
 
                 .addSignupUseCase()

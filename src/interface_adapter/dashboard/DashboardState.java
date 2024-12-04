@@ -1,11 +1,14 @@
 package interface_adapter.dashboard;
 
 import entity.Allergy;
+import entity.Food;
+import entity.MealType;
+
 import java.time.LocalDate;
 import java.util.*;
 
 public class DashboardState {
-    // User information
+    // User profile information
     private String username = "";
     private LocalDate birthDate;
     private String gender = "";
@@ -15,9 +18,11 @@ public class DashboardState {
     private String activityLevel = "";
     private Set<Allergy> allergies = new HashSet<>();
 
-    // Nutrition goals
+    // Calculated values
     private double bmr = 0.0;
     private double tdee = 0.0;
+
+    // Nutrition goals
     private double dailyCalorieGoal = 0.0;
     private double carbsGoalGrams = 0.0;
     private double proteinGoalGrams = 0.0;
@@ -29,12 +34,20 @@ public class DashboardState {
     private double consumedProtein = 0.0;
     private double consumedFat = 0.0;
 
-    // UI state
+    private Map<MealType, Map<String, Food>> meals;
+
     private String error = "";
     private String successMessage = "";
     private boolean isLoading = false;
 
-    // Copy constructor
+    public DashboardState() {
+        this.meals = new EnumMap<>(MealType.class);
+        for (MealType type : MealType.values()) {
+            meals.put(type, new HashMap<>());
+        }
+    }
+
+    // Create copy
     public DashboardState(DashboardState copy) {
         this.username = copy.username;
         this.birthDate = copy.birthDate;
@@ -57,12 +70,13 @@ public class DashboardState {
         this.error = copy.error;
         this.successMessage = copy.successMessage;
         this.isLoading = copy.isLoading;
+
+        this.meals = new EnumMap<>(MealType.class);
+        for (Map.Entry<MealType, Map<String, Food>> entry : copy.meals.entrySet()) {
+            this.meals.put(entry.getKey(), new HashMap<>(entry.getValue()));
+        }
     }
 
-    // Default constructor
-    public DashboardState() {}
-
-    // Base information getters and setters
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
@@ -87,12 +101,8 @@ public class DashboardState {
     public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
     public void setAllergies(Set<Allergy> allergies) { this.allergies = new HashSet<>(allergies); }
 
-    // Nutrition calculations getters and setters
     public double getBmr() { return bmr; }
-    public void setBmr(double bmr) {
-        this.bmr = bmr;
-        updateNutritionGoals();
-    }
+    public void setBmr(double bmr) { this.bmr = bmr; }
 
     public double getTdee() { return tdee; }
     public void setTdee(double tdee) {
@@ -102,11 +112,8 @@ public class DashboardState {
     }
 
     public double getDailyCalorieGoal() { return dailyCalorieGoal; }
-    public void setDailyCalorieGoal(double dailyCalorieGoal) {
-        this.dailyCalorieGoal = dailyCalorieGoal;
-    }
+    public void setDailyCalorieGoal(double dailyCalorieGoal) { this.dailyCalorieGoal = dailyCalorieGoal; }
 
-    // Macro goals
     public double getCarbsGoalGrams() { return carbsGoalGrams; }
     public void setCarbsGoalGrams(double carbsGoalGrams) { this.carbsGoalGrams = carbsGoalGrams; }
 
@@ -116,7 +123,6 @@ public class DashboardState {
     public double getFatGoalGrams() { return fatGoalGrams; }
     public void setFatGoalGrams(double fatGoalGrams) { this.fatGoalGrams = fatGoalGrams; }
 
-    // Consumption tracking
     public double getConsumedCalories() { return consumedCalories; }
     public void setConsumedCalories(double consumedCalories) { this.consumedCalories = consumedCalories; }
 
@@ -129,7 +135,21 @@ public class DashboardState {
     public double getConsumedFat() { return consumedFat; }
     public void setConsumedFat(double consumedFat) { this.consumedFat = consumedFat; }
 
-    // UI state getters and setters
+    public Map<MealType, Map<String, Food>> getMeals() {
+        Map<MealType, Map<String, Food>> mealsCopy = new EnumMap<>(MealType.class);
+        for (Map.Entry<MealType, Map<String, Food>> entry : meals.entrySet()) {
+            mealsCopy.put(entry.getKey(), new HashMap<>(entry.getValue()));
+        }
+        return mealsCopy;
+    }
+
+    public void setMeals(Map<MealType, Map<String, Food>> meals) {
+        this.meals = new EnumMap<>(MealType.class);
+        for (Map.Entry<MealType, Map<String, Food>> entry : meals.entrySet()) {
+            this.meals.put(entry.getKey(), new HashMap<>(entry.getValue()));
+        }
+    }
+
     public String getError() { return error; }
     public void setError(String error) { this.error = error; }
 
@@ -139,7 +159,13 @@ public class DashboardState {
     public boolean isLoading() { return isLoading; }
     public void setLoading(boolean loading) { isLoading = loading; }
 
-    // Progress calculation methods
+    // Helper methods used for display
+    private void updateNutritionGoals() {
+        carbsGoalGrams = (tdee * 0.50) / 4.0;  // 50% of calories from carbs
+        proteinGoalGrams = (tdee * 0.25) / 4.0;  // 25% of calories from protein
+        fatGoalGrams = (tdee * 0.25) / 9.0;  // 25% of calories from fat
+    }
+
     public int getCaloriePercentage() {
         return calculatePercentage(consumedCalories, dailyCalorieGoal);
     }
@@ -156,24 +182,10 @@ public class DashboardState {
         return calculatePercentage(consumedFat, fatGoalGrams);
     }
 
-    // Helper methods
     private int calculatePercentage(double current, double goal) {
-        return goal > 0 ? (int)((current / goal) * 100) : 0;
+        return goal > 0 ? Math.min(100, (int)((current / goal) * 100)) : 0;
     }
 
-    private void updateNutritionGoals() {
-        // Calculate macro goals based on TDEE
-        // Carbs: 45-65% (using 50%)
-        carbsGoalGrams = (tdee * 0.50) / 4.0;  // 4 calories per gram
-
-        // Protein: 10-35% (using 25%)
-        proteinGoalGrams = (tdee * 0.25) / 4.0;  // 4 calories per gram
-
-        // Fat: 20-35% (using 25%)
-        fatGoalGrams = (tdee * 0.25) / 9.0;  // 9 calories per gram
-    }
-
-    // Formatting helpers for display
     public String getFormattedCalorieProgress() {
         return String.format("%.0f / %.0f kcal", consumedCalories, dailyCalorieGoal);
     }

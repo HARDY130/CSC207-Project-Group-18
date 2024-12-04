@@ -1,7 +1,10 @@
 package view;
 
-import interface_adapter.dashboard.*;
+import interface_adapter.dashboard.DashboardController;
+import interface_adapter.dashboard.DashboardState;
+import interface_adapter.dashboard.DashboardViewModel;
 import interface_adapter.logout.LogoutController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +18,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
     private DashboardController dashboardController;
     private LogoutController logoutController;
 
-    // UI Components
     private final JLabel titleLabel;
     private final JLabel welcomeLabel;
     private final JLabel activityLabel;
@@ -30,11 +32,9 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         this.dashboardViewModel = viewModel;
         this.dashboardViewModel.addPropertyChangeListener(this);
 
-        // Use simple BorderLayout as base
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Initialize components
         titleLabel = new JLabel(DashboardViewModel.TITLE_LABEL);
         welcomeLabel = new JLabel();
         activityLabel = new JLabel();
@@ -42,35 +42,23 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         updateProfileButton = new JButton(DashboardViewModel.UPDATE_PROFILE_BUTTON_LABEL);
         generateMealButton = new JButton(DashboardViewModel.GENERATE_MEAL_BUTTON_LABEL);
         recordMealButton = new JButton(DashboardViewModel.RECORD_MEAL_BUTTON_LABEL);
-        logoutButton = new JButton("Logout");
+        logoutButton = new JButton(DashboardViewModel.LOGOUT_BUTTON_LABEL);
         errorLabel = new JLabel();
 
-        // Style components
         styleComponents();
-
-        // Layout components using the simplified approach
         layoutComponents();
-
-        // Add listeners
         addListeners();
     }
 
     private void styleComponents() {
-        // Title styling
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Welcome label styling
         welcomeLabel.setFont(new Font(welcomeLabel.getFont().getName(), Font.BOLD, 18));
-
-        // Activity label styling
         activityLabel.setFont(new Font(activityLabel.getFont().getName(), Font.PLAIN, 14));
-
-        // Error label styling
         errorLabel.setForeground(Color.RED);
         errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Button styling - keep buttons at fixed size
         Dimension buttonSize = new Dimension(150, 40);
         updateProfileButton.setPreferredSize(buttonSize);
         generateMealButton.setPreferredSize(buttonSize);
@@ -79,19 +67,19 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
     }
 
     private void layoutComponents() {
-        // Header panel using BoxLayout
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         activityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         headerPanel.add(titleLabel);
         headerPanel.add(Box.createVerticalStrut(10));
         headerPanel.add(welcomeLabel);
         headerPanel.add(Box.createVerticalStrut(5));
         headerPanel.add(activityLabel);
 
-        // Button panel using GridLayout like in simplified version
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4, 10, 0));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPanel.add(updateProfileButton);
@@ -99,7 +87,6 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
         buttonPanel.add(recordMealButton);
         buttonPanel.add(logoutButton);
 
-        // Add everything to main panel
         add(headerPanel, BorderLayout.NORTH);
         add(nutritionPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
@@ -114,42 +101,39 @@ public class DashboardView extends JPanel implements ActionListener, PropertyCha
 
     @Override
     public void actionPerformed(ActionEvent evt) {
+        DashboardState state = (DashboardState) dashboardViewModel.getState();
+
         if (evt.getSource() == updateProfileButton) {
             dashboardController.onUpdateProfile();
         } else if (evt.getSource() == generateMealButton) {
-            dashboardController.onGenerateMeal(((DashboardState) dashboardViewModel.getState()).getUsername());
+            dashboardController.onGenerateMeal(state.getUsername());
         } else if (evt.getSource() == recordMealButton) {
-            dashboardController.onRecordMeal();
+            dashboardController.onCustomize();
         } else if (evt.getSource() == logoutButton && logoutController != null) {
-            String username = welcomeLabel.getText().replace("Welcome, ", "");
-            logoutController.execute(username);
+            logoutController.execute(state.getUsername());
         }
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("state")) {
-            updateFromViewModel();
-        }
-    }
+            DashboardState state = (DashboardState) evt.getNewValue();
+            if (state != null) {
+                welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
+                activityLabel.setText("Activity Level: " + state.getActivityLevel());
+                errorLabel.setText(state.getError());
 
-    private void updateFromViewModel() {
-        DashboardState state = (DashboardState) dashboardViewModel.getState();
-        if (state != null) {
-            welcomeLabel.setText(DashboardViewModel.WELCOME_LABEL + state.getUsername());
-            activityLabel.setText("Activity Level: " + state.getActivityLevel());
-            errorLabel.setText(state.getError());
-
-            nutritionPanel.updateProgress(
-                    state.getCaloriePercentage(),
-                    state.getCarbsPercentage(),
-                    state.getProteinPercentage(),
-                    state.getFatPercentage(),
-                    state.getFormattedCalorieProgress(),
-                    state.getFormattedCarbsProgress(),
-                    state.getFormattedProteinProgress(),
-                    state.getFormattedFatProgress()
-            );
+                nutritionPanel.updateProgress(
+                        state.getCaloriePercentage(),
+                        state.getCarbsPercentage(),
+                        state.getProteinPercentage(),
+                        state.getFatPercentage(),
+                        state.getFormattedCalorieProgress(),
+                        state.getFormattedCarbsProgress(),
+                        state.getFormattedProteinProgress(),
+                        state.getFormattedFatProgress()
+                );
+            }
         }
     }
 
