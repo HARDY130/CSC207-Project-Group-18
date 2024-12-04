@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class DashboardState {
-    // User profile information
     private String username = "";
     private LocalDate birthDate;
     private String gender = "";
@@ -18,7 +17,6 @@ public class DashboardState {
     private String activityLevel = "";
     private Set<Allergy> allergies = new HashSet<>();
 
-    // Calculated values
     private double bmr = 0.0;
     private double tdee = 0.0;
 
@@ -47,7 +45,6 @@ public class DashboardState {
         }
     }
 
-    // Create copy
     public DashboardState(DashboardState copy) {
         this.username = copy.username;
         this.birthDate = copy.birthDate;
@@ -78,33 +75,43 @@ public class DashboardState {
     }
 
     public String getUsername() { return username; }
+
     public void setUsername(String username) { this.username = username; }
 
     public LocalDate getBirthDate() { return birthDate; }
+
     public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
 
     public String getGender() { return gender; }
+
     public void setGender(String gender) { this.gender = gender; }
 
     public int getWeight() { return weight; }
+
     public void setWeight(int weight) { this.weight = weight; }
 
     public int getHeight() { return height; }
+
     public void setHeight(int height) { this.height = height; }
 
     public double getActivityMultiplier() { return activityMultiplier; }
+
     public void setActivityMultiplier(double activityMultiplier) { this.activityMultiplier = activityMultiplier; }
 
     public String getActivityLevel() { return activityLevel; }
+
     public void setActivityLevel(String activityLevel) { this.activityLevel = activityLevel; }
 
     public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
+
     public void setAllergies(Set<Allergy> allergies) { this.allergies = new HashSet<>(allergies); }
 
     public double getBmr() { return bmr; }
+
     public void setBmr(double bmr) { this.bmr = bmr; }
 
     public double getTdee() { return tdee; }
+
     public void setTdee(double tdee) {
         this.tdee = tdee;
         this.dailyCalorieGoal = tdee;
@@ -112,27 +119,35 @@ public class DashboardState {
     }
 
     public double getDailyCalorieGoal() { return dailyCalorieGoal; }
+
     public void setDailyCalorieGoal(double dailyCalorieGoal) { this.dailyCalorieGoal = dailyCalorieGoal; }
 
     public double getCarbsGoalGrams() { return carbsGoalGrams; }
+
     public void setCarbsGoalGrams(double carbsGoalGrams) { this.carbsGoalGrams = carbsGoalGrams; }
 
     public double getProteinGoalGrams() { return proteinGoalGrams; }
+
     public void setProteinGoalGrams(double proteinGoalGrams) { this.proteinGoalGrams = proteinGoalGrams; }
 
     public double getFatGoalGrams() { return fatGoalGrams; }
+
     public void setFatGoalGrams(double fatGoalGrams) { this.fatGoalGrams = fatGoalGrams; }
 
     public double getConsumedCalories() { return consumedCalories; }
+
     public void setConsumedCalories(double consumedCalories) { this.consumedCalories = consumedCalories; }
 
     public double getConsumedCarbs() { return consumedCarbs; }
+
     public void setConsumedCarbs(double consumedCarbs) { this.consumedCarbs = consumedCarbs; }
 
     public double getConsumedProtein() { return consumedProtein; }
+
     public void setConsumedProtein(double consumedProtein) { this.consumedProtein = consumedProtein; }
 
     public double getConsumedFat() { return consumedFat; }
+
     public void setConsumedFat(double consumedFat) { this.consumedFat = consumedFat; }
 
     public Map<MealType, Map<String, Food>> getMeals() {
@@ -151,15 +166,18 @@ public class DashboardState {
     }
 
     public String getError() { return error; }
+
     public void setError(String error) { this.error = error; }
 
     public String getSuccessMessage() { return successMessage; }
+
     public void setSuccessMessage(String successMessage) { this.successMessage = successMessage; }
 
     public boolean isLoading() { return isLoading; }
+
     public void setLoading(boolean loading) { isLoading = loading; }
 
-    // Helper methods used for display
+    // Helper methods for display (Everyone can use)
     private void updateNutritionGoals() {
         carbsGoalGrams = (tdee * 0.50) / 4.0;  // 50% of calories from carbs
         proteinGoalGrams = (tdee * 0.25) / 4.0;  // 25% of calories from protein

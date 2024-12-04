@@ -19,6 +19,7 @@ public class Main {
                 .addInfoCollectionView()
                 .addDashboardView()
                 .addLoggedInView()
+                .addCustomizeView()
                 .addMealPlannerView()
 
                 .addSignupUseCase()
@@ -26,7 +27,6 @@ public class Main {
                 .addInfoCollectionUseCase()
                 .addDashboardUseCase()
                 .addMealPlannerUseCase()
-//                .addChangePasswordUseCase()
                 .addLogoutUseCase()
                 .build();
 
