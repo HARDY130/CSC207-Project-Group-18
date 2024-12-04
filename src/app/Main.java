@@ -1,8 +1,7 @@
 package app;
 
 import javax.swing.JFrame;
-
-import java.awt.Dimension;
+import java.awt.*;
 
 /**
  * The Main class of our application.
@@ -10,28 +9,26 @@ import java.awt.Dimension;
 public class Main {
     /**
      * Builds and runs the CA architecture of the application.
-     *
      * @param args unused arguments
      */
     public static void main(String[] args) {
         final AppBuilder appBuilder = new AppBuilder();
         final JFrame application = appBuilder
-            .addSignupView()
-            .addLoginView()
-            .addInfoCollectionView()
-            .addDashboardView()
-            .addLoggedInView()
-            .addCustomizeView()
-            .addMealPlannerView()
+                .addSignupView()
+                .addLoginView()
+                .addInfoCollectionView()
+                .addDashboardView()
+                .addLoggedInView()
+                .addCustomizeView()
+                .addMealPlannerView()
 
-            .addSignupUseCase()
-            .addLoginUseCase()
-            .addInfoCollectionUseCase()
-            .addDashboardUseCase()
-            .addMealPlannerUseCase()
-//                .addChangePasswordUseCase()
-            .addLogoutUseCase()
-            .build();
+                .addSignupUseCase()
+                .addLoginUseCase()
+                .addInfoCollectionUseCase()
+                .addDashboardUseCase()
+                .addMealPlannerUseCase()
+                .addLogoutUseCase()
+                .build();
 
         application.setMinimumSize(new Dimension(800, 600));
         application.pack();
