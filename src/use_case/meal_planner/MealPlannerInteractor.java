@@ -27,6 +27,7 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
         try {
             String currentUsername = mealStorageDataAccessInterface.existsByName(inputData.getUsername())
                     ? inputData.getUsername() : null;
+
             if (currentUsername == null || !mealStorageDataAccessInterface.existsByName(currentUsername)) {
                 mealPlannerPresenter.prepareFailView("User not found.");
                 return;
