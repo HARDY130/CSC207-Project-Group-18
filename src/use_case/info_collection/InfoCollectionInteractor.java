@@ -77,9 +77,7 @@ public class InfoCollectionInteractor implements InfoCollectionInputBoundary {
                     infoCollectionInputData.getActivityMultiplier(),
                     infoCollectionInputData.getAllergies(),
                     commonUser.calculateBMR(),
-                    commonUser.calculateTDEE(),
-                    true,
-                    null
+                    commonUser.calculateTDEE()
             );
 
             infoCollectionPresenter.prepareSuccessView(infoCollectionOutputData);

@@ -8,11 +8,6 @@ import interface_adapter.meal_planner.MealPlannerState;
 import interface_adapter.meal_planner.MealPlannerViewModel;
 import use_case.dashboard.DashboardOutputBoundary;
 import use_case.dashboard.DashboardOutputData;
-import entity.Food;
-import entity.MealType;
-
-import java.util.Map;
-import java.util.List;
 
 public class DashboardPresenter implements DashboardOutputBoundary {
     private final DashboardViewModel dashboardViewModel;

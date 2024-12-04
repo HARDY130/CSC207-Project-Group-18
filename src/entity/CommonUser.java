@@ -7,12 +7,12 @@ import java.util.*;
 public class CommonUser implements User {
     private final String name;
     private final String password;
-    private LocalDate birthDate;
-    private String gender;
-    private int weight;
-    private int height;
-    private double activityMultiplier;
-    private Set<Allergy> allergies;
+    private final LocalDate birthDate;
+    private final String gender;
+    private final int weight;
+    private final int height;
+    private final double activityMultiplier;
+    private final Set<Allergy> allergies;
 
     // Constants for activity multipliers
     public static final double SEDENTARY = 1.2;
@@ -96,30 +96,6 @@ public class CommonUser implements User {
         return "Activity level not specified";
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setActivityMultiplier(double activityMultiplier) {
-        this.activityMultiplier = activityMultiplier;
-    }
-
-    public void setAllergies(Set<Allergy> allergies) {
-        this.allergies = new HashSet<>(allergies);
-    }
-
     public double calculateBMR() {
         if (gender.equalsIgnoreCase("Male")) {
             return (10 * weight) + (6.25 * height) - (5 * getAge()) + 5;
@@ -147,17 +123,15 @@ public class CommonUser implements User {
         return fatCalories / FAT_CALORIES_PER_GRAM;
     }
 
-    // Method to log a meal
+    // Helper methods (Everyone can use)
     public void addMeal(MealType type, String mealName, Food food) {
         dailyMeals.get(type).put(mealName, food);
     }
 
-    // Method to get meals by type
     public Map<String, Food> getMealsByType(MealType type) {
         return new HashMap<>(dailyMeals.get(type));
     }
 
-    // Method to get all meals
     public Map<MealType, Map<String, Food>> getAllMeals() {
         Map<MealType, Map<String, Food>> result = new EnumMap<>(MealType.class);
         for (MealType type : MealType.values()) {
@@ -166,7 +140,6 @@ public class CommonUser implements User {
         return result;
     }
 
-    // Method to clear meals for a new day
     public void clearMeals() {
         for (MealType type : MealType.values()) {
             dailyMeals.get(type).clear();

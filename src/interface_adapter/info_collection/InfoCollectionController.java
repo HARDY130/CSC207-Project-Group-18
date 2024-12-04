@@ -5,7 +5,6 @@ import use_case.info_collection.InfoCollectionInputData;
 import java.time.LocalDate;
 import java.util.Set;
 import entity.Allergy;
-import use_case.info_collection.UserUpdateInfo;
 
 public class InfoCollectionController {
     final InfoCollectionInputBoundary infoCollectionUseCaseInteractor;
@@ -14,15 +13,15 @@ public class InfoCollectionController {
         this.infoCollectionUseCaseInteractor = infoCollectionUseCaseInteractor;
     }
 
-    public void execute(String username, int yearOfBirth,
+    public void execute(String username, String password, int yearOfBirth,
                         String gender, int weight, int height,
                         double activityMultiplier, Set<Allergy> allergies) {
-
         LocalDate birthDate = LocalDate.of(yearOfBirth, 1, 1);
-        UserUpdateInfo updateInfo = new UserUpdateInfo(
-            birthDate, gender, weight, height, activityMultiplier, allergies);
 
-        InfoCollectionInputData inputData = new InfoCollectionInputData(username, updateInfo);
+        InfoCollectionInputData inputData = new InfoCollectionInputData(
+                username, password, birthDate, gender, weight, height,
+                activityMultiplier, allergies);
+
         infoCollectionUseCaseInteractor.execute(inputData);
     }
 }
