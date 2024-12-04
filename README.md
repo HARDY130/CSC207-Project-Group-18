@@ -9,8 +9,6 @@ Pronounced as (I-ta-da-ki-ma-su Nutritional assistant)
 
 Our program is a Nutritional Assistant, which was designed to help users figure out and manage their recommended macronutrient and calorie levels. The program determines a recommended nutritional threshold, allows the user to search up recipes and nutritional information about the dishes they prepare, and can generate a recommended comprehensive meal plan for the entire day, based on user specification.
 
-
-
 The nomenclature of our program's name, Romanized: (itadakimasu) comes from Japanese culture, where "いただきます" is a phrase said before eating to express gratitude for the food, the people who prepared it, and the ingredients. It conveys mindfulness and respect toward the act of eating. 
 
 ## **The Purpose**
@@ -105,119 +103,7 @@ Replace ``Main`` with the actual name of your main class.
 ### Using the Application
 - Once the application starts, follow the on-screen instructions or refer to the user manual for guidance.
 
-# Usage Guide
 
-Welcome to the Food Planner application! Follow this guide to get started and make the most out of its features.
-
----
-
-## 1. Login
-
-- Access your account to manage your profile and track your meals.
-
-1. Open the app, and the **Login Screen** will appear.
-2. Enter your **username** and **password**.
-3. Click **Log in**.
-
-🎉 *If the credentials are correct, you’ll be redirected to the dashboard.*
-
----
-
-## 2. Sign Up
-
-- Create an account to start using the app.
-
-1. On the **Sign Up Screen**, enter:
-    - A unique **username**.
-    - A secure **password**, and confirm it by re-entering.
-2. Click **Sign up**.
-
-💡 *If any required fields are missing, the app will guide you to complete your profile in the next steps.*
-
----
-
-## 3. Complete Your Profile
-
-- Provide essential information for a tailored experience.
-
-1. Fill in your:
-    - **Year of Birth** (used to calculate your age).
-    - **Gender** (Male/Female).
-    - **Weight** (kg) and **Height** (cm).
-    - **Activity Level** (e.g., Sedentary, Active).
-2. Specify any **allergies** or dietary preferences (e.g., gluten-free, vegan).
-3. Click **Save** to finalize your profile.
-
-💡 *The app will calculate your recommended calorie intake based on this information.*
-
----
-
-## 4. Dashboard
-
-- Your central hub for tracking nutrition and activity.
-
-- **What you’ll see:**
-    - A visual breakdown of your calorie and macronutrient (carbs, protein, fat) progress.
-    - Recent activity level information.
-- **Features:**
-    - **Update Profile**: Modify your personal details.
-    - **Generate Meal Plan**: Get meal recommendations based on your preferences.
-    - **Record Meal**: Log meals and track your nutrition.
-
----
-
-## 5. Meal Planner
-
-- Generate meal suggestions based on your dietary preferences.
-
-1. Choose your **dietary preferences** (e.g., high-protein, vegetarian, Mediterranean).
-2. Click **Generate New Meals**.
-3. Browse the meal suggestions and click **Add** to include them in your plan.
-
----
-
-## 6. Record a Meal
-
-- Log your meals to track daily nutrition.
-
-1. Enter the name of the meal or food item in the **search bar**.
-2. Select the appropriate result from the list.
-3. Specify the **meal type** (e.g., breakfast, lunch, dinner).
-4. Click **Add to Meal**.
-
-💡 *Nutritional details will automatically be updated in your profile.*
-
----
-Thank you for using Food Planner! If you need further assistance, feel free to reach out.
-
-# License
-
-This project is licensed under the **MIT License**.
-
-You are free to use, copy, modify, and distribute the code for any purpose, provided you include the original license.
-See the [LICENSE file](./LICENSE) for more details.
-
-MIT License
-
-Copyright (c) 2024 Hao Hu, Zihan Jin, Jeffrey Shen, Chuxuan Ai
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -248,4 +134,3 @@ We welcome contributions to enhance いただきます. Whether you're fixing bu
 6.	Provide a clear title and description for the merge request.
 7.	All pull requests are reviewed by at least one project owner.
 8.	Once we approved, your changes will be merged into the main branch.
-

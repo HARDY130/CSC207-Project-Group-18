@@ -20,13 +20,12 @@ public class Main {
                 .addDashboardView()
                 .addLoggedInView()
                 .addCustomizeView()
-                .addMealPlannerView()
 
                 .addSignupUseCase()
                 .addLoginUseCase()
                 .addInfoCollectionUseCase()
                 .addDashboardUseCase()
-                .addMealPlannerUseCase()
+                .addCustomizeUseCase()
 //                .addChangePasswordUseCase()
                 .addLogoutUseCase()
                 .build();
