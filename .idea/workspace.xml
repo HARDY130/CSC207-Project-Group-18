@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="fixed some imports, and some style constraints for you :)" />
+    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="added my tests">
+      <change afterPath="$PROJECT_DIR$/test/use_case/mealplanner/MealPlannerinteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/use_case/mealplanner/MealPlannerInteractorTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,11 +63,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.MealPlannerInteractorTest.executor": "Coverage",
     "JUnit.SignupInteractorTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "mealplanner-del-fix",
+    "git-widget-placeholder": "mealplanner-test-add",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/user/IdeaProjects/CSC207-Project-Group-18/src/interface_adapter/dashboard",
     "node.js.detected.package.eslint": "true",
@@ -81,7 +85,7 @@
       <recent name="C:\Users\user\IdeaProjects\CSC207-Project-Group-18\src\interface_adapter\dashboard" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.MealPlannerInteractorTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="FinalProject" />
@@ -91,6 +95,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MealPlannerInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FinalProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.meal_planner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.meal_planner" />
+      <option name="MAIN_CLASS_NAME" value="use_case.meal_planner.MealPlannerInteractorTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -118,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MealPlannerInteractorTest" />
         <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.SignupInteractorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -214,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733043849913</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added my tests">
+      <option name="closed" value="true" />
+      <created>1733347253737</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733347253737</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +270,8 @@
     <MESSAGE value="Finish customize" />
     <MESSAGE value="1.Replace the label text for button in DashboardView with the label instance in DashboardViewModel&#10;2.Delete the label instance that are not used in DashboardViewModel" />
     <MESSAGE value="fixed some imports, and some style constraints for you :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some imports, and some style constraints for you :)" />
+    <MESSAGE value="added my tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added my tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
