@@ -14,7 +14,6 @@ public class CustomizeState {
     private String searchQuery;
     private boolean isLoading;
 
-    // Copy constructor
     public CustomizeState(CustomizeState copy) {
         this.username = copy.username;
         this.searchResults = copy.searchResults != null ? new ArrayList<>(copy.searchResults) : new ArrayList<>();
@@ -25,68 +24,43 @@ public class CustomizeState {
         this.isLoading = copy.isLoading;
     }
 
-    // Default constructor
     public CustomizeState() {
         this.searchResults = new ArrayList<>();
         this.selectedMealType = MealType.BREAKFAST;
         this.isLoading = false;
     }
 
-    // Getters
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
-    // Setters
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public List<Food> getSearchResults() { return new ArrayList<>(searchResults); }
 
-    public List<Food> getSearchResults() {
-        return new ArrayList<>(searchResults);
-    }
+    public MealType getSelectedMealType() { return selectedMealType; }
+
+    public String getError() { return error; }
+
+    public String getSuccessMessage() { return successMessage; }
+
+    public String getSearchQuery() { return searchQuery; }
+
+    public boolean isLoading() { return isLoading; }
+
+    public void setUsername(String username) { this.username = username; }
 
     public void setSearchResults(List<Food> searchResults) {
         this.searchResults = new ArrayList<>(searchResults);
-    }
-
-    public MealType getSelectedMealType() {
-        return selectedMealType;
     }
 
     public void setSelectedMealType(MealType selectedMealType) {
         this.selectedMealType = selectedMealType;
     }
 
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
-
-    public String getSuccessMessage() {
-        return successMessage;
-    }
+    public void setError(String error) { this.error = error; }
 
     public void setSuccessMessage(String successMessage) {
         this.successMessage = successMessage;
     }
 
-    public String getSearchQuery() {
-        return searchQuery;
-    }
+    public void setSearchQuery(String searchQuery) { this.searchQuery = searchQuery; }
 
-    public void setSearchQuery(String searchQuery) {
-        this.searchQuery = searchQuery;
-    }
-
-    public boolean isLoading() {
-        return isLoading;
-    }
-
-    public void setLoading(boolean loading) {
-        isLoading = loading;
-    }
+    public void setLoading(boolean loading) { isLoading = loading; }
 }

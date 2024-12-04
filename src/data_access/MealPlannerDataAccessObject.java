@@ -31,7 +31,6 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
     private static final String RS_ID = "18c92ef1";
     private static final String RS_KEY = "f2e78bebf0400504c0710cbb8ac5719a";
 
-    // Calorie distribution ratios
     private static final double BREAKFAST_MIN_RATIO = 0.1;
     private static final double BREAKFAST_MAX_RATIO = 0.3;
     private static final double LUNCH_MIN_RATIO = 0.3;
@@ -76,7 +75,6 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
 
         JSONObject plan = new JSONObject();
 
-        // Main accept section for overall diet and health constraints
         JSONObject mainAccept = new JSONObject();
         JSONArray mainAll = new JSONArray();
 
@@ -90,7 +88,6 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         healthObj.put("health", healthLabels);
         mainAll.put(healthObj);
 
-        // Diet labels
         JSONObject dietObj = new JSONObject();
         JSONArray dietLabels = new JSONArray();
         for (String diet : selectedDiets) {
@@ -104,7 +101,6 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         mainAccept.put("all", mainAll);
         plan.put("accept", mainAccept);
 
-        // Calculate calorie goals based on user's TDEE
         double tdee = user.calculateTDEE();
         JSONObject mainFit = new JSONObject();
         JSONObject mainCalories = new JSONObject();
@@ -113,7 +109,6 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         mainFit.put("ENERC_KCAL", mainCalories);
         plan.put("fit", mainFit);
 
-        // Create meal sections
         JSONObject sections = new JSONObject();
 
         // Breakfast section
@@ -164,7 +159,6 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
     private JSONObject createMealSection(String mealType, double minCalories, double maxCalories) {
         JSONObject section = new JSONObject();
 
-        // Accept
         JSONObject accept = new JSONObject();
         JSONArray all = new JSONArray();
         JSONObject mealObj = new JSONObject();
@@ -175,7 +169,6 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         accept.put("all", all);
         section.put("accept", accept);
 
-        // Fit
         JSONObject fit = new JSONObject();
         JSONObject calories = new JSONObject();
         calories.put("min", minCalories);

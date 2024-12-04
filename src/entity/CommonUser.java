@@ -125,17 +125,15 @@ public class CommonUser implements User {
         return fatCalories / FAT_CALORIES_PER_GRAM;
     }
 
-    // Method to log a meal
+    // Helper methods (Everyone can use)
     public void addMeal(MealType type, String mealName, Food food) {
         dailyMeals.get(type).put(mealName, food);
     }
 
-    // Method to get meals by type
     public Map<String, Food> getMealsByType(MealType type) {
         return new HashMap<>(dailyMeals.get(type));
     }
 
-    // Method to get all meals
     public Map<MealType, Map<String, Food>> getAllMeals() {
         Map<MealType, Map<String, Food>> result = new EnumMap<>(MealType.class);
         for (MealType type : MealType.values()) {
@@ -144,7 +142,6 @@ public class CommonUser implements User {
         return result;
     }
 
-    // Method to clear meals for a new day
     public void clearMeals() {
         for (MealType type : MealType.values()) {
             dailyMeals.get(type).clear();

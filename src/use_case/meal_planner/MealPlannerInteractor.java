@@ -3,6 +3,7 @@ package use_case.meal_planner;
 import entity.CommonUser;
 import entity.Food;
 import entity.MealType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +14,9 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
     final MealPlannerOutputBoundary mealPlannerPresenter;
 
     public MealPlannerInteractor(
-        MealStorageDataAccessInterface mealStorageDataAccessInterface,
-        MealPlannerDataAccessInterface dataAccessInterface,
-        MealPlannerOutputBoundary outputBoundary) {
+            MealStorageDataAccessInterface mealStorageDataAccessInterface,
+            MealPlannerDataAccessInterface dataAccessInterface,
+            MealPlannerOutputBoundary outputBoundary) {
         this.mealStorageDataAccessInterface = mealStorageDataAccessInterface;
         this.mealPlannerDataAccessObject = dataAccessInterface;
         this.mealPlannerPresenter = outputBoundary;
@@ -25,7 +26,7 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
     public void execute(MealPlannerInputData inputData) {
         try {
             String currentUsername = mealStorageDataAccessInterface.existsByName(inputData.getUsername())
-                ? inputData.getUsername() : null;
+                    ? inputData.getUsername() : null;
             if (currentUsername == null || !mealStorageDataAccessInterface.existsByName(currentUsername)) {
                 mealPlannerPresenter.prepareFailView("User not found.");
                 return;
@@ -33,17 +34,15 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
 
             CommonUser user = (CommonUser) mealStorageDataAccessInterface.get(currentUsername);
             Map<MealType, List<Food>> mealPlan = mealPlannerDataAccessObject.generateMealPlan(
-                user,
-                new ArrayList<>(inputData.getDietaryPreferences())
+                    user,
+                    new ArrayList<>(inputData.getDietaryPreferences())
             );
 
             MealPlannerOutputData outputData = new MealPlannerOutputData(
-                currentUsername,
-                mealPlan.get(MealType.BREAKFAST),
-                mealPlan.get(MealType.LUNCH),
-                mealPlan.get(MealType.DINNER),
-                true,
-                null
+                    currentUsername,
+                    mealPlan.get(MealType.BREAKFAST),
+                    mealPlan.get(MealType.LUNCH),
+                    mealPlan.get(MealType.DINNER)
             );
 
             mealPlannerPresenter.prepareSuccessView(outputData);

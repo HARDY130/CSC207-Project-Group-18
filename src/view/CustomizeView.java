@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
-import java.util.Map;
 
 public class CustomizeView extends JPanel implements ActionListener, PropertyChangeListener {
     private final String viewName = "customize";
@@ -35,8 +34,8 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
         setLayout(new BorderLayout());
 
         searchField = new JTextField(20);
-        searchButton = new JButton("Search");
-        returnButton = new JButton("Return to Dashboard");
+        searchButton = new JButton(CustomizeViewModel.SEARCH_BUTTON_LABEL);
+        returnButton = new JButton(CustomizeViewModel.RETURN_BUTTON_LABEL);
         mealTypeComboBox = new JComboBox<>(MealType.values());
 
         listModel = new DefaultListModel<>();
@@ -46,7 +45,7 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
         searchResultsList.setFixedCellHeight(50);
         searchResultsList.setBackground(Color.WHITE);
 
-        addToMealButton = new JButton("Add to Meal");
+        addToMealButton = new JButton(CustomizeViewModel.ADD_BUTTON_LABEL);
         addToMealButton.setEnabled(false);
         errorLabel = new JLabel();
         errorLabel.setForeground(Color.RED);

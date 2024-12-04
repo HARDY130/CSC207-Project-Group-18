@@ -1,6 +1,7 @@
 package use_case.meal_planner;
 
 import entity.Food;
+
 import java.util.List;
 
 public class MealPlannerOutputData {
@@ -8,41 +9,17 @@ public class MealPlannerOutputData {
     private final List<Food> breakfastOptions;
     private final List<Food> lunchOptions;
     private final List<Food> dinnerOptions;
-    private final boolean useCaseSuccess;
-    private final String errorMessage;
 
     public MealPlannerOutputData(String username, List<Food> breakfastOptions,
-                                 List<Food> lunchOptions, List<Food> dinnerOptions,
-                                 boolean success, String errorMessage) {
+                                 List<Food> lunchOptions, List<Food> dinnerOptions) {
         this.username = username;
         this.breakfastOptions = breakfastOptions;
         this.lunchOptions = lunchOptions;
         this.dinnerOptions = dinnerOptions;
-        this.useCaseSuccess = success;
-        this.errorMessage = errorMessage;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public List<Food> getBreakfastOptions() {
-        return breakfastOptions;
-    }
-
-    public List<Food> getLunchOptions() {
-        return lunchOptions;
-    }
-
-    public List<Food> getDinnerOptions() {
-        return dinnerOptions;
-    }
-
-    public boolean isUseCaseSuccess() {
-        return useCaseSuccess;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
+    public String getUsername() { return username; }
+    public List<Food> getBreakfastOptions() { return breakfastOptions; }
+    public List<Food> getLunchOptions() { return lunchOptions; }
+    public List<Food> getDinnerOptions() { return dinnerOptions; }
 }
