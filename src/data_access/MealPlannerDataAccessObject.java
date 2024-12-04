@@ -130,7 +130,7 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         requestBody.put("plan", plan);
 
         String endpoint = String.format("%s/%s/select?beta=true", BASE_URL, APP_ID);
-      
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(endpoint))
                 .header("Accept", "application/json")
@@ -196,6 +196,7 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
 
                 if (sections.has(sectionName)) {
                     JSONObject mealSection = sections.getJSONObject(sectionName);
+
                     if (mealSection.has("_links") &&
                             mealSection.getJSONObject("_links").has("self")) {
 

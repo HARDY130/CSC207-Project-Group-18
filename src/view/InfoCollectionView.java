@@ -212,14 +212,13 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
 
                 infoCollectionController.execute(
                         infoCollectionViewModel.getState().getUsername(),
+                        infoCollectionViewModel.getState().getPassword(),
                         Integer.parseInt(yearOfBirthField.getText()),
-                        genderField.getSelectedItem().toString(),
+                        (String) genderField.getSelectedItem(),
                         Integer.parseInt(weightField.getText()),
                         Integer.parseInt(heightField.getText()),
-                        activityMultipliers.get(activityField.getSelectedItem().toString()),
+                        activityMultipliers.get(activityField.getSelectedItem()),
                         selectedAllergies
-
-
                 );
             }
         });
