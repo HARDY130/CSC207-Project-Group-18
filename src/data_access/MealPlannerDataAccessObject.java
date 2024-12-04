@@ -4,6 +4,7 @@ import entity.Allergy;
 import entity.CommonUser;
 import entity.Food;
 import entity.MealType;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.meal_planner.MealPlannerDataAccessInterface;
@@ -129,7 +130,7 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
         requestBody.put("plan", plan);
 
         String endpoint = String.format("%s/%s/select?beta=true", BASE_URL, APP_ID);
-
+      
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(endpoint))
                 .header("Accept", "application/json")
@@ -195,14 +196,12 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
 
                 if (sections.has(sectionName)) {
                     JSONObject mealSection = sections.getJSONObject(sectionName);
-
                     if (mealSection.has("_links") &&
                             mealSection.getJSONObject("_links").has("self")) {
 
                         String recipeUrl = mealSection.getJSONObject("_links")
                                 .getJSONObject("self")
                                 .getString("href");
-
                         try {
                             List<Food> foods = fetchRecipeDetails(recipeUrl);
                             if (!foods.isEmpty()) {
@@ -221,7 +220,7 @@ public class MealPlannerDataAccessObject implements MealPlannerDataAccessInterfa
 
     private List<Food> fetchRecipeDetails(String url) throws Exception {
         String recipeId = url.substring(url.lastIndexOf("/") + 1).split("\\?")[0];
-
+      
         String fullUrl = String.format("https://api.edamam.com/api/recipes/v2/%s" +
                         "?type=public" +
                         "&beta=true" +
