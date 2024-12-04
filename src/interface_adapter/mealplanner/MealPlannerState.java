@@ -1,8 +1,12 @@
-package interface_adapter.mealplanner;
+package interface_adapter.meal_planner;
 
 import entity.Allergy;
 import entity.Food;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class MealPlannerState {
     private String username = "";
@@ -26,6 +30,7 @@ public class MealPlannerState {
         this.error = copy.error;
     }
 
+    // Default constructor
     public MealPlannerState() {}
 
     // Getters and setters

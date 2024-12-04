@@ -1,6 +1,5 @@
-package use_case.mealplanner;
+package use_case.meal_planner;
 
-import data_access.MealPlannerDataAccessObject;
 import entity.CommonUser;
 import entity.Food;
 import entity.MealType;
@@ -19,16 +18,13 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
             MealPlannerDataAccessInterface dataAccessInterface,
             MealPlannerOutputBoundary outputBoundary) {
         this.mealStorageDataAccessInterface = mealStorageDataAccessInterface;
-        this.mealPlannerDataAccessObject= dataAccessInterface;
+        this.mealPlannerDataAccessObject = dataAccessInterface;
         this.mealPlannerPresenter = outputBoundary;
     }
 
     @Override
     public void execute(MealPlannerInputData inputData) {
         try {
-//            if (!mealStorageDataAccessInterface.existsByName(inputData.getUsername())) {
-//                mealPlannerPresenter.prepareFailView("User not found.");
-//                return;
             String currentUsername = mealStorageDataAccessInterface.existsByName(inputData.getUsername())
                     ? inputData.getUsername() : null;
             if (currentUsername == null || !mealStorageDataAccessInterface.existsByName(currentUsername)) {
@@ -36,35 +32,20 @@ public class MealPlannerInteractor implements MealPlannerInputBoundary {
                 return;
             }
 
-//            // Generate meal options based on dietary preferences
-//            List<Food> breakfastOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "breakfast"
-//            );
-//            List<Food> lunchOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "lunch"
-//            );
-//            List<Food> dinnerOptions = mealPlannerDataAccessObject.generateMealOptions(
-//                    inputData.getDietaryPreferences(), "dinner"
-//            );
-
             CommonUser user = (CommonUser) mealStorageDataAccessInterface.get(currentUsername);
             Map<MealType, List<Food>> mealPlan = mealPlannerDataAccessObject.generateMealPlan(
                     user,
                     new ArrayList<>(inputData.getDietaryPreferences())
             );
 
-
             MealPlannerOutputData outputData = new MealPlannerOutputData(
                     currentUsername,
                     mealPlan.get(MealType.BREAKFAST),
                     mealPlan.get(MealType.LUNCH),
-                    mealPlan.get(MealType.DINNER),
-                    true,
-                    null
+                    mealPlan.get(MealType.DINNER)
             );
 
             mealPlannerPresenter.prepareSuccessView(outputData);
-
         } catch (Exception e) {
             mealPlannerPresenter.prepareFailView(e.getMessage());
         }

@@ -1,32 +1,32 @@
-package interface_adapter.mealplanner;
+package interface_adapter.meal_planner;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.dashboard.DashboardViewModel;
-import use_case.mealplanner.MealPlannerOutputBoundary;
-import use_case.mealplanner.MealPlannerOutputData;
-import use_case.mealplanner.MealPlannerOutputBoundary;
-import use_case.mealplanner.MealPlannerOutputData;
+import use_case.meal_planner.MealPlannerOutputBoundary;
+import use_case.meal_planner.MealPlannerOutputData;
 
-public class MealPlannerPresenter implements use_case.mealplanner.MealPlannerOutputBoundary {
+public class MealPlannerPresenter implements MealPlannerOutputBoundary {
     private final MealPlannerViewModel mealPlannerViewModel;
     private final ViewManagerModel viewManagerModel;
     private final DashboardViewModel dashboardViewModel;
 
-    public MealPlannerPresenter(MealPlannerViewModel viewModel, ViewManagerModel viewManagerModel, DashboardViewModel dashboardViewModel) {
+    public MealPlannerPresenter(
+            MealPlannerViewModel viewModel,
+            ViewManagerModel viewManagerModel,
+            DashboardViewModel dashboardViewModel) {
         this.mealPlannerViewModel = viewModel;
         this.viewManagerModel = viewManagerModel;
         this.dashboardViewModel = dashboardViewModel;
     }
 
     @Override
-    public void prepareSuccessView(use_case.mealplanner.MealPlannerOutputData outputData) {
-        // Update the view model's state with new meal options
+    public void prepareSuccessView(MealPlannerOutputData outputData) {
         MealPlannerState state = mealPlannerViewModel.getState();
         state.setUsername(outputData.getUsername());
         state.setBreakfastOptions(outputData.getBreakfastOptions());
         state.setLunchOptions(outputData.getLunchOptions());
         state.setDinnerOptions(outputData.getDinnerOptions());
-        state.setError("");  // Clear any existing errors
+        state.setError("");
 
         mealPlannerViewModel.setState(state);
         mealPlannerViewModel.firePropertyChanged();
@@ -46,4 +46,3 @@ public class MealPlannerPresenter implements use_case.mealplanner.MealPlannerOut
         viewManagerModel.firePropertyChanged();
     }
 }
-

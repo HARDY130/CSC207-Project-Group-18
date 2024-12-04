@@ -1,4 +1,4 @@
-package interface_adapter.mealplanner;
+package interface_adapter.meal_planner;
 
 import interface_adapter.ViewModel;
 
