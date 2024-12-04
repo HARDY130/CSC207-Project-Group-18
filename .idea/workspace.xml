@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="fixed some imports, and some style constraints for you :)" />
+    <list default="true" id="d9fc2438-211c-42c3-9644-91e5b5a21a3f" name="Changes" comment="Updated">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/Allergy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Allergy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/info_collection/InfoCollectionState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/login/LoginInteractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInteractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoggedInView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SignupView$5.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,25 +81,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "JUnit.SignupInteractorTest.executor": "Coverage",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "mealplanner-del-fix",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/IdeaProjects/CSC207-Project-Group-18/src/interface_adapter/dashboard",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SignupInteractorTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#18 on Combine&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/IdeaProjects/lab-5&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\IdeaProjects\CSC207-Project-Group-18\src\interface_adapter\dashboard" />
@@ -118,8 +142,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.SignupInteractorTest" />
@@ -243,7 +267,8 @@
     <MESSAGE value="Finish customize" />
     <MESSAGE value="1.Replace the label text for button in DashboardView with the label instance in DashboardViewModel&#10;2.Delete the label instance that are not used in DashboardViewModel" />
     <MESSAGE value="fixed some imports, and some style constraints for you :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some imports, and some style constraints for you :)" />
+    <MESSAGE value="Updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
