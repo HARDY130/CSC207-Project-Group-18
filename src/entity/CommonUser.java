@@ -7,12 +7,12 @@ import java.util.*;
 public class CommonUser implements User {
     private final String name;
     private final String password;
-    private final LocalDate birthDate;
-    private final String gender;
-    private final int weight;
-    private final int height;
-    private final double activityMultiplier;
-    private final Set<Allergy> allergies;
+    private LocalDate birthDate;
+    private String gender;
+    private int weight;
+    private int height;
+    private double activityMultiplier;
+    private Set<Allergy> allergies;
 
     // Constants for activity multipliers
     public static final double SEDENTARY = 1.2;
@@ -96,6 +96,30 @@ public class CommonUser implements User {
         return "Activity level not specified";
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setActivityMultiplier(double activityMultiplier) {
+        this.activityMultiplier = activityMultiplier;
+    }
+
+    public void setAllergies(Set<Allergy> allergies) {
+        this.allergies = new HashSet<>(allergies);
+    }
+
     public double calculateBMR() {
         if (gender.equalsIgnoreCase("Male")) {
             return (10 * weight) + (6.25 * height) - (5 * getAge()) + 5;
@@ -138,11 +162,5 @@ public class CommonUser implements User {
             result.put(type, new HashMap<>(dailyMeals.get(type)));
         }
         return result;
-    }
-
-    public void clearMeals() {
-        for (MealType type : MealType.values()) {
-            dailyMeals.get(type).clear();
-        }
     }
 }
