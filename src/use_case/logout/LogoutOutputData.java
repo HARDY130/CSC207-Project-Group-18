@@ -23,12 +23,4 @@ public class LogoutOutputData {
     public CommonUser getUser() {
         return user;
     }
-
-    public boolean isProfileComplete() {
-        return profileComplete;
-    }
-
-    public boolean isUseCaseFailed() {
-        return useCaseFailed;
-    }
 }

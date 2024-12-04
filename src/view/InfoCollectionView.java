@@ -65,7 +65,6 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
         mainContentPanel.setPreferredSize(new Dimension(500, mainContentPanel.getPreferredSize().height));
         mainContentPanel.setMaximumSize(new Dimension(500, Integer.MAX_VALUE));
 
-        // Set colors
         yearOfBirthErrorField.setForeground(Color.RED);
         weightErrorField.setForeground(Color.RED);
         heightErrorField.setForeground(Color.RED);
@@ -81,13 +80,11 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
         mainContentPanel.add(formPanel);
         mainContentPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        // Add allergy
         JPanel allergySection = createAllergyPanel();
         allergySection.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainContentPanel.add(allergySection);
         mainContentPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        // Add buttons
         JPanel buttonPanel = createButtonPanel();
         buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainContentPanel.add(buttonPanel);
@@ -100,7 +97,6 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
-        // Set up the main panel
         setLayout(new BorderLayout());
         add(scrollPane, BorderLayout.CENTER);
 
@@ -117,7 +113,6 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Add all the personal info panel
         addFormRow(panel, gbc, 0, InfoCollectionViewModel.BIRTH_YEAR_LABEL,
                 yearOfBirthField, yearOfBirthErrorField);
 
@@ -163,7 +158,6 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
         allergyPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
         allergyPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        // Create for each allergy
         for (Allergy allergy : Allergy.values()) {
             JPanel itemPanel = new JPanel();
             itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.X_AXIS));
@@ -182,7 +176,6 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
 
         allergyPanel.setVisible(false);
 
-        // Add toggle button and allergy panel
         toggleAllergiesButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         containerPanel.add(toggleAllergiesButton);
         containerPanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -219,14 +212,13 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
 
                 infoCollectionController.execute(
                         infoCollectionViewModel.getState().getUsername(),
+                        infoCollectionViewModel.getState().getPassword(),
                         Integer.parseInt(yearOfBirthField.getText()),
-                        genderField.getSelectedItem().toString(),
+                        (String) genderField.getSelectedItem(),
                         Integer.parseInt(weightField.getText()),
                         Integer.parseInt(heightField.getText()),
-                        activityMultipliers.get(activityField.getSelectedItem().toString()),
+                        activityMultipliers.get(activityField.getSelectedItem()),
                         selectedAllergies
-
-
                 );
             }
         });
@@ -358,7 +350,6 @@ public class InfoCollectionView extends JPanel implements ActionListener, Proper
                 genderField.setSelectedItem(state.getGender());
             }
 
-            // Error messages
             yearOfBirthErrorField.setText(state.getYearOfBirthError());
             weightErrorField.setText(state.getWeightError());
             heightErrorField.setText(state.getHeightError());

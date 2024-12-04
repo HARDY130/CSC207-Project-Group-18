@@ -109,26 +109,20 @@ public class NutritionProgressPanel extends JPanel {
             Graphics2D g2d = (Graphics2D) g;
             configureGraphics(g2d);
 
-            // Calculate dimensions
             int padding = 10;
             int diameter = Math.min(getWidth(), getHeight()) - (padding * 2);
             int x = (getWidth() - diameter) / 2;
             int y = (getHeight() - diameter) / 2;
             int strokeWidth = diameter / 10;
 
-            // Draw shadow
             drawShadow(g2d, x, y, diameter);
 
-            // Draw background circle
             drawBackgroundCircle(g2d, x, y, diameter, strokeWidth);
 
-            // Draw progress arc
             drawProgressArc(g2d, x, y, diameter, strokeWidth);
 
-            // Draw center circle
             drawCenterCircle(g2d, x, y, diameter);
 
-            // Draw text
             drawText(g2d, x, y, diameter);
         }
 
@@ -176,7 +170,6 @@ public class NutritionProgressPanel extends JPanel {
             int innerX = x + (diameter - innerDiameter) / 2;
             int innerY = y + (diameter - innerDiameter) / 2;
 
-            // Create gradient for center circle
             GradientPaint gradient = new GradientPaint(
                     innerX, innerY, Color.WHITE,
                     innerX + innerDiameter, innerY + innerDiameter,
@@ -189,7 +182,6 @@ public class NutritionProgressPanel extends JPanel {
         private void drawText(Graphics2D g2d, int x, int y, int diameter) {
             g2d.setColor(Color.DARK_GRAY);
 
-            // Draw label
             Font labelFont = new Font("Segoe UI", Font.BOLD, diameter/10);
             g2d.setFont(labelFont);
             FontMetrics labelMetrics = g2d.getFontMetrics();
@@ -197,7 +189,6 @@ public class NutritionProgressPanel extends JPanel {
                     x + (diameter - labelMetrics.stringWidth(label))/2,
                     y + diameter/2 - diameter/8);
 
-            // Draw value
             Font valueFont = new Font("Segoe UI", Font.PLAIN, diameter/12);
             g2d.setFont(valueFont);
             FontMetrics valueMetrics = g2d.getFontMetrics();
@@ -205,7 +196,6 @@ public class NutritionProgressPanel extends JPanel {
                     x + (diameter - valueMetrics.stringWidth(value))/2,
                     y + diameter/2 + diameter/8);
 
-            // Draw percentage
             Font percentFont = new Font("Segoe UI", Font.BOLD, diameter/8);
             g2d.setFont(percentFont);
             String percentText = currentProgress + "%";
