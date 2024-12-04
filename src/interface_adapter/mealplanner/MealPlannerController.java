@@ -1,8 +1,9 @@
-package interface_adapter.mealplanner;
+package interface_adapter.meal_planner;
 
-import use_case.mealplanner.MealPlannerInputBoundary;
-import use_case.mealplanner.MealPlannerInputData;
 import entity.Food;
+import use_case.meal_planner.MealPlannerInputBoundary;
+import use_case.meal_planner.MealPlannerInputData;
+
 import java.util.Set;
 
 public class MealPlannerController {
@@ -25,4 +26,3 @@ public class MealPlannerController {
         mealPlannerUseCaseInteractor.goHome();
     }
 }
-
