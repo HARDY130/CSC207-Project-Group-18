@@ -157,11 +157,7 @@ public class CustomizeView extends JPanel implements ActionListener, PropertyCha
                 listModel.addElement(food);
             }
         }
-
-        if (state.isLoading()) {
-            searchButton.setEnabled(false);
-            searchButton.setText("Searching...");
-        } else {
+        else {
             searchButton.setEnabled(true);
             searchButton.setText("Search");
         }
