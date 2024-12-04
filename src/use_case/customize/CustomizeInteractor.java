@@ -1,23 +1,23 @@
 package use_case.customize;
 
-import data_access.FoodDatabaseAccessObject;
-import entity.CommonUser;
+import data_access.FoodDatabaseDataAccessObject;
 import entity.Food;
+import entity.CommonUser;
 import entity.MealType;
+import use_case.dashboard.DashboardDataAccessInterface;
 import java.util.List;
 import java.util.Map;
-import use_case.dashboard.DashboardDataAccessInterface;
 
 public class CustomizeInteractor implements CustomizeInputBoundary {
-    private final FoodDatabaseAccessObject foodDatabaseAccessObject;
+    private final FoodDatabaseDataAccessObject foodDatabaseDataAccessObject;
     private final CustomizeOutputBoundary customizePresenter;
     private final DashboardDataAccessInterface userDataAccessObject;
 
     public CustomizeInteractor(
-        FoodDatabaseAccessObject foodDatabaseAccessObject,
-        CustomizeOutputBoundary customizePresenter,
-        DashboardDataAccessInterface userDataAccessObject) {
-        this.foodDatabaseAccessObject = foodDatabaseAccessObject;
+            FoodDatabaseDataAccessObject foodDatabaseDataAccessObject,
+            CustomizeOutputBoundary customizePresenter,
+            DashboardDataAccessInterface userDataAccessObject) {
+        this.foodDatabaseDataAccessObject = foodDatabaseDataAccessObject;
         this.customizePresenter = customizePresenter;
         this.userDataAccessObject = userDataAccessObject;
     }
@@ -25,7 +25,7 @@ public class CustomizeInteractor implements CustomizeInputBoundary {
     @Override
     public void searchFood(CustomizeInputData inputData) {
         try {
-            List<Food> foods = foodDatabaseAccessObject.searchFoods(inputData.getSearchQuery());
+            List<Food> foods = foodDatabaseDataAccessObject.searchFoods(inputData.getSearchQuery());
             customizePresenter.presentSearchResults(new CustomizeOutputData(foods, null));
         } catch (Exception e) {
             customizePresenter.presentError("Failed to search foods: " + e.getMessage());
@@ -131,11 +131,11 @@ public class CustomizeInteractor implements CustomizeInputBoundary {
 
             // Update the user's nutrition progress in the DAO
             userDataAccessObject.updateNutritionProgress(
-                username,
-                totalCalories,
-                totalCarbs,
-                totalProtein,
-                totalFat
+                    username,
+                    totalCalories,
+                    totalCarbs,
+                    totalProtein,
+                    totalFat
             );
 
             // Save updated user
@@ -165,15 +165,15 @@ public class CustomizeInteractor implements CustomizeInputBoundary {
         }
 
         userDataAccessObject.updateNutritionProgress(
-            user.getName(),
-            totalCalories,
-            totalCarbs,
-            totalProtein,
-            totalFat
+                user.getName(),
+                totalCalories,
+                totalCarbs,
+                totalProtein,
+                totalFat
         );
     }
 
-    //    @Override
+//    @Override
 //    public void returnToDashboard(String username) {
 //        customizePresenter.presentDashboard();
 //    }

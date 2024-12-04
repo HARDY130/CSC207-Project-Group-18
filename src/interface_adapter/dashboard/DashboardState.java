@@ -3,15 +3,11 @@ package interface_adapter.dashboard;
 import entity.Allergy;
 import entity.Food;
 import entity.MealType;
+
 import java.time.LocalDate;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class DashboardState {
-    // User profile information
     private String username = "";
     private LocalDate birthDate;
     private String gender = "";
@@ -21,7 +17,6 @@ public class DashboardState {
     private String activityLevel = "";
     private Set<Allergy> allergies = new HashSet<>();
 
-    // Calculated values
     private double bmr = 0.0;
     private double tdee = 0.0;
 
@@ -37,15 +32,12 @@ public class DashboardState {
     private double consumedProtein = 0.0;
     private double consumedFat = 0.0;
 
-    // Meals tracking
     private Map<MealType, Map<String, Food>> meals;
 
-    // UI state
     private String error = "";
     private String successMessage = "";
     private boolean isLoading = false;
 
-    // Default constructor
     public DashboardState() {
         this.meals = new EnumMap<>(MealType.class);
         for (MealType type : MealType.values()) {
@@ -53,7 +45,6 @@ public class DashboardState {
         }
     }
 
-    // Copy constructor
     public DashboardState(DashboardState copy) {
         this.username = copy.username;
         this.birthDate = copy.birthDate;
@@ -77,89 +68,49 @@ public class DashboardState {
         this.successMessage = copy.successMessage;
         this.isLoading = copy.isLoading;
 
-        // Deep copy of meals
         this.meals = new EnumMap<>(MealType.class);
         for (Map.Entry<MealType, Map<String, Food>> entry : copy.meals.entrySet()) {
             this.meals.put(entry.getKey(), new HashMap<>(entry.getValue()));
         }
     }
 
-    // Getters and setters
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
+    public LocalDate getBirthDate() { return birthDate; }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+    public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
 
-    public String getGender() {
-        return gender;
-    }
+    public String getGender() { return gender; }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public void setGender(String gender) { this.gender = gender; }
 
-    public int getWeight() {
-        return weight;
-    }
+    public int getWeight() { return weight; }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
+    public void setWeight(int weight) { this.weight = weight; }
 
-    public int getHeight() {
-        return height;
-    }
+    public int getHeight() { return height; }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
+    public void setHeight(int height) { this.height = height; }
 
-    public double getActivityMultiplier() {
-        return activityMultiplier;
-    }
+    public double getActivityMultiplier() { return activityMultiplier; }
 
-    public void setActivityMultiplier(double activityMultiplier) {
-        this.activityMultiplier = activityMultiplier;
-    }
+    public void setActivityMultiplier(double activityMultiplier) { this.activityMultiplier = activityMultiplier; }
 
-    public String getActivityLevel() {
-        return activityLevel;
-    }
+    public String getActivityLevel() { return activityLevel; }
 
-    public void setActivityLevel(String activityLevel) {
-        this.activityLevel = activityLevel;
-    }
+    public void setActivityLevel(String activityLevel) { this.activityLevel = activityLevel; }
 
-    public Set<Allergy> getAllergies() {
-        return new HashSet<>(allergies);
-    }
+    public Set<Allergy> getAllergies() { return new HashSet<>(allergies); }
 
-    public void setAllergies(Set<Allergy> allergies) {
-        this.allergies = new HashSet<>(allergies);
-    }
+    public void setAllergies(Set<Allergy> allergies) { this.allergies = new HashSet<>(allergies); }
 
-    public double getBmr() {
-        return bmr;
-    }
+    public double getBmr() { return bmr; }
 
-    public void setBmr(double bmr) {
-        this.bmr = bmr;
-    }
+    public void setBmr(double bmr) { this.bmr = bmr; }
 
-    public double getTdee() {
-        return tdee;
-    }
+    public double getTdee() { return tdee; }
 
     public void setTdee(double tdee) {
         this.tdee = tdee;
@@ -167,69 +118,37 @@ public class DashboardState {
         updateNutritionGoals();
     }
 
-    public double getDailyCalorieGoal() {
-        return dailyCalorieGoal;
-    }
+    public double getDailyCalorieGoal() { return dailyCalorieGoal; }
 
-    public void setDailyCalorieGoal(double dailyCalorieGoal) {
-        this.dailyCalorieGoal = dailyCalorieGoal;
-    }
+    public void setDailyCalorieGoal(double dailyCalorieGoal) { this.dailyCalorieGoal = dailyCalorieGoal; }
 
-    public double getCarbsGoalGrams() {
-        return carbsGoalGrams;
-    }
+    public double getCarbsGoalGrams() { return carbsGoalGrams; }
 
-    public void setCarbsGoalGrams(double carbsGoalGrams) {
-        this.carbsGoalGrams = carbsGoalGrams;
-    }
+    public void setCarbsGoalGrams(double carbsGoalGrams) { this.carbsGoalGrams = carbsGoalGrams; }
 
-    public double getProteinGoalGrams() {
-        return proteinGoalGrams;
-    }
+    public double getProteinGoalGrams() { return proteinGoalGrams; }
 
-    public void setProteinGoalGrams(double proteinGoalGrams) {
-        this.proteinGoalGrams = proteinGoalGrams;
-    }
+    public void setProteinGoalGrams(double proteinGoalGrams) { this.proteinGoalGrams = proteinGoalGrams; }
 
-    public double getFatGoalGrams() {
-        return fatGoalGrams;
-    }
+    public double getFatGoalGrams() { return fatGoalGrams; }
 
-    public void setFatGoalGrams(double fatGoalGrams) {
-        this.fatGoalGrams = fatGoalGrams;
-    }
+    public void setFatGoalGrams(double fatGoalGrams) { this.fatGoalGrams = fatGoalGrams; }
 
-    public double getConsumedCalories() {
-        return consumedCalories;
-    }
+    public double getConsumedCalories() { return consumedCalories; }
 
-    public void setConsumedCalories(double consumedCalories) {
-        this.consumedCalories = consumedCalories;
-    }
+    public void setConsumedCalories(double consumedCalories) { this.consumedCalories = consumedCalories; }
 
-    public double getConsumedCarbs() {
-        return consumedCarbs;
-    }
+    public double getConsumedCarbs() { return consumedCarbs; }
 
-    public void setConsumedCarbs(double consumedCarbs) {
-        this.consumedCarbs = consumedCarbs;
-    }
+    public void setConsumedCarbs(double consumedCarbs) { this.consumedCarbs = consumedCarbs; }
 
-    public double getConsumedProtein() {
-        return consumedProtein;
-    }
+    public double getConsumedProtein() { return consumedProtein; }
 
-    public void setConsumedProtein(double consumedProtein) {
-        this.consumedProtein = consumedProtein;
-    }
+    public void setConsumedProtein(double consumedProtein) { this.consumedProtein = consumedProtein; }
 
-    public double getConsumedFat() {
-        return consumedFat;
-    }
+    public double getConsumedFat() { return consumedFat; }
 
-    public void setConsumedFat(double consumedFat) {
-        this.consumedFat = consumedFat;
-    }
+    public void setConsumedFat(double consumedFat) { this.consumedFat = consumedFat; }
 
     public Map<MealType, Map<String, Food>> getMeals() {
         Map<MealType, Map<String, Food>> mealsCopy = new EnumMap<>(MealType.class);
@@ -246,31 +165,19 @@ public class DashboardState {
         }
     }
 
-    public String getError() {
-        return error;
-    }
+    public String getError() { return error; }
 
-    public void setError(String error) {
-        this.error = error;
-    }
+    public void setError(String error) { this.error = error; }
 
-    public String getSuccessMessage() {
-        return successMessage;
-    }
+    public String getSuccessMessage() { return successMessage; }
 
-    public void setSuccessMessage(String successMessage) {
-        this.successMessage = successMessage;
-    }
+    public void setSuccessMessage(String successMessage) { this.successMessage = successMessage; }
 
-    public boolean isLoading() {
-        return isLoading;
-    }
+    public boolean isLoading() { return isLoading; }
 
-    public void setLoading(boolean loading) {
-        isLoading = loading;
-    }
+    public void setLoading(boolean loading) { isLoading = loading; }
 
-    // Helper methods
+    // Helper methods for display (Everyone can use)
     private void updateNutritionGoals() {
         carbsGoalGrams = (tdee * 0.50) / 4.0;  // 50% of calories from carbs
         proteinGoalGrams = (tdee * 0.25) / 4.0;  // 25% of calories from protein
@@ -294,7 +201,7 @@ public class DashboardState {
     }
 
     private int calculatePercentage(double current, double goal) {
-        return goal > 0 ? Math.min(100, (int) ((current / goal) * 100)) : 0;
+        return goal > 0 ? Math.min(100, (int)((current / goal) * 100)) : 0;
     }
 
     public String getFormattedCalorieProgress() {

@@ -91,13 +91,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FoodDatabaseAccessObject {
+public class FoodDatabaseDataAccessObject {
     private final String APP_ID = "f4d052b7";
     private final String APP_KEY = "46cfeab6f40ed5e084106e0870f61131%09";
     private final String BASE_URL = "https://api.edamam.com/api/food-database/v2";
     private final HttpClient httpClient;
 
-    public FoodDatabaseAccessObject() {
+    public FoodDatabaseDataAccessObject() {
         this.httpClient = HttpClient.newHttpClient();
     }
 
