@@ -9,10 +9,6 @@ public class CustomizeInputData {
         this.searchQuery = searchQuery;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public String getSearchQuery() {
         return searchQuery;
     }

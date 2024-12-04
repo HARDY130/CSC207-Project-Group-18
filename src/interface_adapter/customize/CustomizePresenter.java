@@ -7,6 +7,8 @@ import use_case.customize.CustomizeOutputBoundary;
 import use_case.customize.CustomizeOutputData;
 import use_case.dashboard.DashboardInputData;
 
+import java.util.HashSet;
+
 public class CustomizePresenter implements CustomizeOutputBoundary {
     private final CustomizeViewModel customizeViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -14,9 +16,9 @@ public class CustomizePresenter implements CustomizeOutputBoundary {
     private final DashboardController dashboardController;
 
     public CustomizePresenter(
-        CustomizeViewModel customizeViewModel,
-        ViewManagerModel viewManagerModel,
-        DashboardViewModel dashboardViewModel, DashboardController dashboardController) {
+            CustomizeViewModel customizeViewModel,
+            ViewManagerModel viewManagerModel,
+            DashboardViewModel dashboardViewModel, DashboardController dashboardController) {
         this.customizeViewModel = customizeViewModel;
         this.viewManagerModel = viewManagerModel;
         this.dashboardViewModel = dashboardViewModel;
@@ -58,21 +60,12 @@ public class CustomizePresenter implements CustomizeOutputBoundary {
         customizeViewModel.firePropertyChanged();
     }
 
-    @Override
-//    public void presentDashboard() {
-//        viewManagerModel.setActiveView(dashboardViewModel.getViewName());
-//        viewManagerModel.firePropertyChanged();
-//    }
-
     public void presentDashboard() {
         // Create a new dashboard input data with the current user
         System.out.println("CustomizePresenter presentDashboard called");
         CustomizeState currentState = customizeViewModel.getState();
-//        DashboardInputData dashboardInputData = new DashboardInputData(
-//                currentState.getUsername()
-//        );
         DashboardInputData dashboardInputData = new DashboardInputData(
-            currentState.getUsername()
+                currentState.getUsername()
         );
 
         // This will trigger the dashboard to refresh with the latest data
