@@ -10,42 +10,19 @@ import java.util.Set;
  */
 
 public class InfoCollectionInputData {
-
     private final String username;
-    private final String password;
-    private final LocalDate birthDate;
-    private final String gender;
-    private final int weight;
-    private final int height;
-    private final double activityMultiplier;
-    private final Set<Allergy> allergies;
+    private final UserUpdateInfo updateInfo;
 
-    public InfoCollectionInputData(String username, String password, LocalDate birthDate,
-                                   String gender, int weight, int height, double activityMultiplier, Set<Allergy> allergies) {
+    public InfoCollectionInputData(String username, UserUpdateInfo updateInfo) {
         this.username = username;
-        this.password = password;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.weight = weight;
-        this.height = height;
-        this.activityMultiplier = activityMultiplier;
-        this.allergies = allergies;
+        this.updateInfo = updateInfo;
     }
 
+    public String getUsername() {
+        return username;
+    }
 
-    public String getUsername() { return username; }
-
-    public String getPassword() { return password; }
-
-    public LocalDate getBirthDate() { return birthDate; }
-
-    public String getGender() { return gender; }
-
-    public int getWeight() { return weight; }
-
-    public int getHeight() { return height; }
-
-    public double getActivityMultiplier() { return activityMultiplier; }
-
-    public Set<Allergy> getAllergies() { return allergies; }
+    public UserUpdateInfo getUpdateInfo() {
+        return updateInfo;
+    }
 }
