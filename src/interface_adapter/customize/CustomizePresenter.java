@@ -9,6 +9,9 @@ import use_case.dashboard.DashboardInputData;
 
 import java.util.HashSet;
 
+/**
+ * The presenter for the customize page.
+ */
 public class CustomizePresenter implements CustomizeOutputBoundary {
     private final CustomizeViewModel customizeViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -59,6 +62,9 @@ public class CustomizePresenter implements CustomizeOutputBoundary {
         customizeViewModel.setState(currentState);
         customizeViewModel.firePropertyChanged();
     }
+    /**
+     * Presents the search results to the user.
+     */
 
     public void presentDashboard() {
         // Create a new dashboard input data with the current user
