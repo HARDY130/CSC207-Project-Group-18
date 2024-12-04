@@ -139,10 +139,4 @@ public class CommonUser implements User {
         }
         return result;
     }
-
-    public void clearMeals() {
-        for (MealType type : MealType.values()) {
-            dailyMeals.get(type).clear();
-        }
-    }
 }

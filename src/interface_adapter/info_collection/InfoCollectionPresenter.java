@@ -20,51 +20,9 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
     }
 
     @Override
-//    public void prepareSuccessView(InfoCollectionOutputData response) {
-//        InfoCollectionState infoCollectionState = infoCollectionViewModel.getState();
-//        infoCollectionState.setUsername(response.getUsername());
-//        infoCollectionViewModel.setState(infoCollectionState);
-//        infoCollectionViewModel.firePropertyChanged();
-//
-//        DashboardState dashboardState = (DashboardState) dashboardViewModel.getState();
-//
-//        // Set user information
-//        dashboardState.setUsername(response.getUsername());
-//        dashboardState.setBirthDate(response.getBirthDate());
-//        dashboardState.setGender(response.getGender());
-//        dashboardState.setWeight(response.getWeight());
-//        dashboardState.setHeight(response.getHeight());
-//        dashboardState.setActivityMultiplier(response.getActivityMultiplier());
-//        dashboardState.setAllergies(response.getAllergies());
-//
-//        // Set calculated values
-//        dashboardState.setBmr(response.getCalculatedBMR());
-//        dashboardState.setTdee(response.getCalculatedTDEE());
-//
-//        // Set activity level
-//        dashboardState.setActivityLevel(getActivityLevelDescription(response.getActivityMultiplier()));
-//
-//        // Reset
-//        dashboardState.setConsumedCalories(0.0);
-//        dashboardState.setConsumedCarbs(0.0);
-//        dashboardState.setConsumedProtein(0.0);
-//        dashboardState.setConsumedFat(0.0);
-//
-//        dashboardState.setError("");
-//        dashboardState.setSuccessMessage("Profile created successfully!");
-//        dashboardState.setLoading(false);
-//
-//        dashboardViewModel.setState(dashboardState);
-//        dashboardViewModel.firePropertyChanged();
-//
-//        viewManagerModel.setActiveView(dashboardViewModel.getViewName());
-//        viewManagerModel.firePropertyChanged();
-//    }
-
     public void prepareSuccessView(InfoCollectionOutputData response) {
         DashboardState dashboardState = new DashboardState();
 
-        // Set user information
         dashboardState.setUsername(response.getUsername());
         dashboardState.setBirthDate(response.getBirthDate());
         dashboardState.setGender(response.getGender());
@@ -73,7 +31,6 @@ public class InfoCollectionPresenter implements InfoCollectionOutputBoundary {
         dashboardState.setActivityMultiplier(response.getActivityMultiplier());
         dashboardState.setAllergies(response.getAllergies());
 
-        // Set calculated values
         dashboardState.setBmr(response.getCalculatedBMR());
         dashboardState.setTdee(response.getCalculatedTDEE());
 
