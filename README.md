@@ -61,7 +61,7 @@ This feature allows users to create customized meal options:
 ## 🔧 Installation
 
 ### Prerequisites
-- Java Development Kit (JDK) version X.X or higher
+- Java Development Kit (JDK) version 17 or higher
 - An IDE (IntelliJ IDEA, Eclipse) or text editor with Java support
 - [Optional] Java runtime environment (JRE)
 
