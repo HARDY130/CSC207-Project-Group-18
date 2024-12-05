@@ -24,7 +24,10 @@ public class InfoCollectionInteractor implements InfoCollectionInputBoundary {
         try {
             if (userDataAccessObject.existsByName(infoCollectionInputData.getUsername())) {
                 User existingUser = userDataAccessObject.get(infoCollectionInputData.getUsername());
-                if (existingUser != null && !existingUser.getPassword().equals(infoCollectionInputData.getPassword())) {
+                if (existingUser == null) {
+                    infoCollectionPresenter.prepareFailView("User data error");
+                    return;
+                } else if (!existingUser.getPassword().equals(infoCollectionInputData.getPassword())) {
                     infoCollectionPresenter.prepareFailView("Incorrect password for existing user.");
                     return;
                 }
