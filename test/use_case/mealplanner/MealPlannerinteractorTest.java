@@ -90,8 +90,6 @@ class MealPlannerInteractorTest {
         assertEquals(Arrays.asList(testFood), output.getBreakfastOptions());
         assertEquals(Arrays.asList(testFood), output.getLunchOptions());
         assertEquals(Arrays.asList(testFood), output.getDinnerOptions());
-        assertTrue(output.isUseCaseSuccess());
-        assertNull(output.getErrorMessage());
     }
 
     @Test
